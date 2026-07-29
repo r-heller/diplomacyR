@@ -1,0 +1,2015 @@
+{
+  "meta": {
+    "source": "Diplomacy Adjudicator Test Cases (DATC), version 2.4, section 6",
+    "author": "Lucas B. Kruijswijk",
+    "note": "Expected outcomes are taken from the DATC and are fixed by the rules of the game; they are not derived from this package's output."
+  },
+  "cases": [
+    {
+      "id": "6.H.1",
+      "section": "6.H",
+      "description": "retreats to same place should cause disbandment of those retreating units. fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "gre"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "aeg"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "gre"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["Austria: f tri-alb", "Austria: a ser s f tri-alb", "Turkey: f gre-alb"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "gre"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "aeg"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.2",
+      "section": "6.H",
+      "description": "No supports from retreating unit fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "hol"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["England: f nwy-nth", "Russia: f edi-nth", "Russia: f hol s f edi-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.3",
+      "section": "6.H",
+      "description": "No Convoy during retreat fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["England: a hol-yor", "England: f nth c a hol-yor"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.4",
+      "section": "6.H",
+      "description": "No other moves during retreat fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["England: a hol-bel", "England: f nth-nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.5",
+      "section": "6.H",
+      "description": "legal retreat areas for ank: smy, arm illegal retreat areas for ank: con, bla fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "sc_owners": [],
+      "orders": "Turkey: f ank-bla",
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.5.mod",
+      "section": "6.H",
+      "description": "MODIFIED case 8: unit cannot retreat to occupied area fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "sc_owners": [],
+      "orders": "Turkey: f ank-con",
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.6",
+      "section": "6.H",
+      "description": "Unit may not retreat to a contested area fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "vie"
+        }
+      ],
+      "sc_owners": [],
+      "orders": "Italy: a vie-boh",
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.7",
+      "section": "6.H",
+      "description": "multiple retreat to same area will disband units",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "boh"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "boh"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["Italy: a vie-tyr", "Italy: a boh-tyr"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "boh"
+        },
+        {
+          "power": "all",
+          "type": "fleet",
+          "loc": "units"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.8",
+      "section": "6.H",
+      "description": "triple retreat to same area will disband units fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "hol"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["England: f nwy-nth", "Russia: f edi-nth", "Russia: f hol-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.9",
+      "section": "6.H",
+      "description": "dislodged unit will not make attackers area contested fixed prestate",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "pru"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["Germany: f kie-ber", "Russia: a pru-war"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "pru"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ber"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.10",
+      "section": "6.H",
+      "description": "not retreating to attacker does not mean contested",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "sil"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["England: a kie-ber", "Germany: a pru-ber"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.11",
+      "section": "6.H",
+      "description": "retreat when dislodged by adjacent convoy",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "mar"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "wes"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "lyo"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "mar"
+        }
+      ],
+      "sc_owners": [],
+      "orders": "Italy: a mar-gas",
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "mar"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "wes"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "gas"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.12",
+      "section": "6.H",
+      "description": "Retreat when dislodged by adjacent convoy while trying to do the same",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "cly"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["England: f eng-pic", "England: a lvp-edi"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "cly"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.13",
+      "section": "6.H",
+      "description": "No retreat with convoy in main phase",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "pic"
+        }
+      ],
+      "sc_owners": [],
+      "orders": "England: a pic-lon",
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.14",
+      "section": "6.H",
+      "description": "No retreat with support in main phase",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mar"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        }
+      ],
+      "sc_owners": [],
+      "orders": ["England: a pic-bel", "France: a bur-bel"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mar"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.15",
+      "section": "6.H",
+      "description": "No coastal crawl in retreat",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/sc"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/sc"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.H.16",
+      "section": "6.H",
+      "description": "Contested for Both Coasts (if one coast is contested, the other(s) is(are) not available for retreat.",
+      "phase": "Retreat",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "gas"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "tun"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "prestate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "sc_owners": [],
+      "orders": "France: f wes-spa/sc",
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "gas"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "tun"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.I.1",
+      "section": "6.I",
+      "description": "too many build orders Russia has 1 supply center, and 1 unit Germany owns 3 supply centers, and 2 units, thus gets to build one.",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "par"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "war"
+        },
+        {
+          "power": "Germany",
+          "centre": "kie"
+        },
+        {
+          "power": "Germany",
+          "centre": "mun"
+        }
+      ],
+      "orders": ["Germany: build a war", "Germany: build a kie", "Germany: build a mun"],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "par"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "kie"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.I.2",
+      "section": "6.I",
+      "description": "fleets cannot be built in land areas russia: one supply center, one build",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "mos"
+        }
+      ],
+      "orders": "Russia: build f mos",
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.I.3",
+      "section": "6.I",
+      "description": "supply center must be empty for building",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Germany",
+          "centre": "ber"
+        },
+        {
+          "power": "Germany",
+          "centre": "mun"
+        }
+      ],
+      "orders": "Germany: build f ber",
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.I.4",
+      "section": "6.I",
+      "description": "both coasts must be empty for building",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "stp/sc"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "mos"
+        }
+      ],
+      "orders": "Russia: build f stp/nc",
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "stp/sc"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.I.5",
+      "section": "6.I",
+      "description": "building in home supply center that is not owned is prohibited",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "ber"
+        },
+        {
+          "power": "Germany",
+          "centre": "mun"
+        }
+      ],
+      "orders": "Germany: build a ber",
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.I.6",
+      "section": "6.I",
+      "description": "building in owned supply center that is not a home supply center",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Germany",
+          "centre": "ber"
+        },
+        {
+          "power": "Germany",
+          "centre": "war"
+        }
+      ],
+      "orders": "Germany: build a war",
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.I.7",
+      "section": "6.I",
+      "description": "only one build in a home supply center",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "mos"
+        },
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "war"
+        }
+      ],
+      "orders": ["Russia: build a mos", "Russia: build a mos"],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.1",
+      "section": "6.J",
+      "description": "too many remove orders",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "France",
+          "centre": "par"
+        }
+      ],
+      "orders": ["France: remove lyo", "France: remove pic", "France: remove par"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.2",
+      "section": "6.J",
+      "description": "removing the same unit twice 2 units to remove",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "lyo"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "France",
+          "centre": "par"
+        }
+      ],
+      "orders": ["France: remove par", "France: remove par"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.3",
+      "section": "6.J",
+      "description": "civil disorder: two armies with different distance",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "lvn"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "mos"
+        },
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "war"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "lvn"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.4",
+      "section": "6.J",
+      "description": "civil disorder: two armies with equal distance",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "lvn"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "ukr"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "mos"
+        },
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "war"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "ukr"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.5",
+      "section": "6.J",
+      "description": "civil disorder: two fleets with different distance",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ber"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "mos"
+        },
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "war"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.6",
+      "section": "6.J",
+      "description": "civil disorder: two fleets with equal distance",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "mos"
+        },
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "war"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.7",
+      "section": "6.J",
+      "description": "Russia must 1 unit. NOTE: this depends on the home supply center info not changing!",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "boh"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "war"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "boh"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.8",
+      "section": "6.J",
+      "description": "civil disorder: a fleet with a shorter distance than the army army should be removed",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "mos"
+        },
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "war"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.9.part1",
+      "section": "6.J",
+      "description": "civil disorder must be counted from both coasts part 1",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "stp"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.9.part2",
+      "section": "6.J",
+      "description": "part 2",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "stp"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.10",
+      "section": "6.J",
+      "description": "civil disorder: counting convoying distance",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "gre"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "sil"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Italy",
+          "centre": "ven"
+        },
+        {
+          "power": "Italy",
+          "centre": "rom"
+        },
+        {
+          "power": "Italy",
+          "centre": "nap"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "gre"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.J.11",
+      "section": "6.J",
+      "description": "civil disorder: counting distance without convoying fleet",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "rom"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "gre"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "sil"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Italy",
+          "centre": "ven"
+        },
+        {
+          "power": "Italy",
+          "centre": "rom"
+        },
+        {
+          "power": "Italy",
+          "centre": "nap"
+        }
+      ],
+      "orders": [],
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "rom"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "gre"
+        }
+      ],
+      "poststate_dislodged": []
+    }
+  ]
+}

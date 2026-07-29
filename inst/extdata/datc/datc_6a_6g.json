@@ -1,0 +1,7914 @@
+{
+  "meta": {
+    "source": "Diplomacy Adjudicator Test Cases (DATC), version 2.4, section 6",
+    "author": "Lucas B. Kruijswijk",
+    "note": "Expected outcomes are taken from the DATC and are fixed by the rules of the game; they are not derived from this package's output."
+  },
+  "cases": [
+    {
+      "id": "6.A.1",
+      "section": "6.A",
+      "description": "illegal move (no convoy) : should fail",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "England: f nth-pic",
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.2",
+      "section": "6.A",
+      "description": "army cannot move to sea",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "England: a lvp-iri",
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.3",
+      "section": "6.A",
+      "description": "fleet cannot move to land",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "Germany: f kie-mun",
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.3.fleet.support.inland",
+      "section": "6.A",
+      "description": "fleet cannot support inland",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "gal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "rum"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f tri s a bud", "Austria: a bud h", "Russia: a gal-bud", "Russia: a rum s a gal-bud"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "rum"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        }
+      ]
+    },
+    {
+      "id": "6.A.4",
+      "section": "6.A",
+      "description": "move to same sector is illegal",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "Germany: f kie-kie",
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.5",
+      "section": "6.A",
+      "description": "move to same sector is illegal, even with convoy",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "wal"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth convoys a yor - yor", "England: a yor-yor", "England: a lvp supports a yor-yor", "Germany: f lon-yor", "Germany: a wal supports f lon-yor"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "wal"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        }
+      ]
+    },
+    {
+      "id": "6.A.5.old",
+      "section": "6.A",
+      "description": "move to same sector is illegal, even with convoy",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f lon-yor", "England: f nth convoys a yor - yor", "England: a yor-yor", "England: a lvp supports a yor-yor"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.6",
+      "section": "6.A",
+      "description": "ordering units of another power is illegal",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "Germany: f lon-nth",
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.7",
+      "section": "6.A",
+      "description": "only armies can convoy",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f lon-bel", "England: f nth convoys a lon-bel"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.7.modified",
+      "section": "6.A",
+      "description": "only armies can convoy; this is similar, but with the correct specifier in the convoy order",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f lon-bel", "England: f nth convoys f lon-bel"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.8",
+      "section": "6.A",
+      "description": "army cannot get an additional hold power by supporting itself fleet tri should be dislodged",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Italy: a ven-tri", "Italy: a tyr supports a ven-tri", "Austria: f tri supports f tri"],
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        }
+      ]
+    },
+    {
+      "id": "6.A.9",
+      "section": "6.A",
+      "description": "fleets must follow coasts if not on sea",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "rom"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "Italy: f rom-ven",
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "rom"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.10",
+      "section": "6.A",
+      "description": "support on unreachable destination is not possible",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "rom"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "apu"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a ven hold", "Italy: f rom supports a apu-ven", "Italy: a apu-ven"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "rom"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "apu"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.10.old",
+      "section": "6.A",
+      "description": "support on unreachable destination is not possible",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a bud supports f tri-ven", "Austria: f tri-ven", "Italy: a ven hold"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.11",
+      "section": "6.A",
+      "description": "simple bounce",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a vie-tyr", "Italy: a ven-tyr"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.A.12",
+      "section": "6.A",
+      "description": "3-unit bounce",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a vie-tyr", "Italy: a ven-tyr", "Germany: a mun-tyr"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.1",
+      "section": "6.B",
+      "description": "moving with unspec. coast when a coast is necessary move fails; coast is significant",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "por"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "France: f por-spa",
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "por"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.2",
+      "section": "6.B",
+      "description": "moving with unspecified coast when coast is not specified",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "gas"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "France: f gas-spa",
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.3",
+      "section": "6.B",
+      "description": "moving w/wrong coast, when coast is not necessary this should fail, since coast should be NC; cannot move to SC",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "gas"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "France: f gas-spa/sc",
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "gas"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.4",
+      "section": "6.B",
+      "description": "support to unreachable coast allowed although fleet in mar cannot go to the n.c., it can target it.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "gas"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mar"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: f gas-spa/nc", "France: f mar supports f gas-spa/nc", "Italy: f wes-spa/sc"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mar"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.5",
+      "section": "6.B",
+      "description": "support from unreachable coast not allowed coast of the fleet. gol cannot be reached from spa/nc thus spanish support is invalid, and gol is not dislodged",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mar"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: f spa/nc supports f mar-lyo", "France: f mar-lyo", "Italy: f lyo hold"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mar"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.6",
+      "section": "6.B",
+      "description": "support can be cut with other coast italian fleet should cut support in spa, so french fleet is dislodged by the english",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f iri supports f nao-mao", "England: f nao-mao", "France: f spa/nc supports f mao", "France: f mao hold", "Italy: f lyo-spa/sc"],
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ]
+    },
+    {
+      "id": "6.B.7",
+      "section": "6.B",
+      "description": "supporting with an unspecified coast preferred: support of por is successful result is stalemate",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "por"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: f por supports f mao - spa", "France: f mao - spa/nc", "Italy: f lyo supports f wes-spa/sc", "Italy: f wes-spa/sc"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "por"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.8",
+      "section": "6.B",
+      "description": "supporting with unspecified coast when only 1 coast is possible stalemate should again occur",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "por"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "gas"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: f por supports f gas-spa", "France: f gas-spa/nc", "Italy: f lyo supports f wes-spa/sc", "Italy: f wes-spa/sc"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "por"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "gas"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.9",
+      "section": "6.B",
+      "description": "supporting with wrong coast preferred: if support doesn't match move (even with coasts), does not apply",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "por"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: f por supports f mao - spa/nc", "France: f mao - spa/sc", "Italy: f lyo supports f wes-spa/sc", "Italy: f wes-spa/sc"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "por"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "spa/sc"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.10",
+      "section": "6.B",
+      "description": "unit ordered with wrong coast, but coast is insignificant",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/sc"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "France: f spa/nc-lyo",
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "lyo"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.11",
+      "section": "6.B",
+      "description": "coast cannot be ordered to change",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "France: f spa/sc-lyo",
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.12",
+      "section": "6.B",
+      "description": "armies may not move to coasts (in other words: coasts are irrelevent to armies)",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "gas"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": "France: a gas-spa/nc",
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "spa"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.13",
+      "section": "6.B",
+      "description": "\"Coastal Crawl\" cases Circular Movement w/use of a coast NOT possible this counts as a head-to-head battle",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bul/sc"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "con"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Turkey: f bul/sc-con", "Turkey: f con-bul/ec"],
+      "poststate": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bul/sc"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "con"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.B.14",
+      "section": "6.B",
+      "description": "building with an unspecified coast",
+      "phase": "Adjustment",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [
+        {
+          "power": "Russia",
+          "centre": "stp"
+        },
+        {
+          "power": "Russia",
+          "centre": "mos"
+        }
+      ],
+      "orders": "Russia: build f stp",
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mos"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.C.1",
+      "section": "6.C",
+      "description": "3-army circular movement",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Turkey: f ank-con", "Turkey: a con-smy", "Turkey: a smy-ank"],
+      "poststate": [
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "ank"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.C.2",
+      "section": "6.C",
+      "description": "3-army circular movement w/support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Turkey: f ank-con", "Turkey: a con-smy", "Turkey: a smy-ank", "Turkey: a bul s f ank-con"],
+      "poststate": [
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "ank"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.C.3",
+      "section": "6.C",
+      "description": "disrupted 3-army circular movement",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Turkey: f ank-con", "Turkey: a con-smy", "Turkey: a smy-ank", "Turkey: a bul-con"],
+      "poststate": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.C.4",
+      "section": "6.C",
+      "description": "circular movement w/attacked convoy",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "nap"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a tri-ser", "Austria: a ser-bul", "Turkey: a bul-tri", "Turkey: f aeg c a bul-tri", "Turkey: f ion c a bul-tri", "Turkey: f adr c a bul-tri", "Italy: f nap-ion"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bul"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "nap"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.C.5",
+      "section": "6.C",
+      "description": "disrupted circular movement due to a dislodged convoy",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "nap"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "tun"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a tri-ser", "Austria: a ser-bul", "Turkey: a bul-tri", "Turkey: f aeg c a bul-tri", "Turkey: f ion c a bul-tri", "Turkey: f adr c a bul-tri", "Italy: f nap-ion", "Italy: f tun s f nap-ion"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "tun"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ion"
+        }
+      ]
+    },
+    {
+      "id": "6.C.6",
+      "section": "6.C",
+      "description": "two armies with two convoys",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-bel", "England: a lon-bel", "France: f eng c a bel-lon", "France: a bel-lon"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "lon"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.C.7",
+      "section": "6.C",
+      "description": "disrupted unit swap (lon-bel bounces off bur-bel)",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-bel", "England: a lon-bel", "France: f eng c a bel-lon", "France: a bel-lon", "France: a bur-bel"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.1",
+      "section": "6.D",
+      "description": "supported hold can prevent dislodgement",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f adr s a tri-ven", "Austria: a tri-ven", "Italy: a ven h", "Italy: a tyr s a ven"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.2",
+      "section": "6.D",
+      "description": "move cuts support on hold",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f adr s a tri-ven", "Austria: a tri-ven", "Austria: a vie-tyr", "Italy: a ven h", "Italy: a tyr s a ven"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        }
+      ]
+    },
+    {
+      "id": "6.D.3",
+      "section": "6.D",
+      "description": "move cuts support on move",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "ion"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f adr s a tri-ven", "Austria: a tri-ven", "Italy: a ven h", "Italy: f ion-adr"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "ion"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.4",
+      "section": "6.D",
+      "description": "support to hold on unit supporting a hold is allowed",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber s f kie", "Germany: f kie s a ber", "Russia: f bal s a pru-ber", "Russia: a pru-ber"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.5",
+      "section": "6.D",
+      "description": "support to hold on unit supporting a move is allowed",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber s a mun-sil", "Germany: f kie s a ber", "Germany: a mun-sil", "Russia: f bal s a pru-ber", "Russia: a pru-ber"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.6",
+      "section": "6.D",
+      "description": "support to hold on convoying unit is allowed",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "pru"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "lvn"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bot"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber-swe", "Germany: f bal c a ber-swe", "Germany: f pru s f bal", "Russia: f lvn-bal", "Russia: f bot s f lvn-bal"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "pru"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "lvn"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bot"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.7",
+      "section": "6.D",
+      "description": "support to hold on moving unit NOT allowed",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "pru"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "lvn"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bot"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "fin"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: f bal-swe", "Germany: f pru s f bal", "Russia: f lvn-bal", "Russia: f bot s f lvn-bal", "Russia: a fin-swe"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "pru"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bot"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "fin"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bal"
+        }
+      ]
+    },
+    {
+      "id": "6.D.8",
+      "section": "6.D",
+      "description": "failed convoy cannot receive hold support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "alb"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "gre"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f ion h", "Austria: a ser s a alb-gre", "Austria: a alb-gre", "Turkey: a gre-nap", "Turkey: a bul s a gre"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "gre"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "gre"
+        }
+      ]
+    },
+    {
+      "id": "6.D.9",
+      "section": "6.D",
+      "description": "support to move on holding unit is not allowed",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "alb"
+        },
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Italy: a ven-tri", "Italy: a tyr s a ven-tri", "Austria: f alb s a tri-ser", "Austria: f tri h"],
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "alb"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        }
+      ]
+    },
+    {
+      "id": "6.D.10",
+      "section": "6.D",
+      "description": "self-dislodgement prohibited",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber h", "Germany: f kie-ber", "Germany: a mun s f kie-ber"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.11",
+      "section": "6.D",
+      "description": "no self-dislodgement of returning unit",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber-pru", "Germany: f kie-ber", "Germany: a mun s f kie-ber", "Russia: a war-pru"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.12",
+      "section": "6.D",
+      "description": "supporting a foreign unit to dislodge own unit is prohibited",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f tri h", "Austria: a vie s a ven-tri", "Italy: a ven-tri"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.13",
+      "section": "6.D",
+      "description": "supporting a foreign unit to dislodge a returning own unit is prohibited",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "apu"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f tri-adr", "Austria: a vie s a ven-tri", "Italy: a ven-tri", "Italy: f apu-adr"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "apu"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.14",
+      "section": "6.D",
+      "description": "supporting a foreign unit is not enough to prevent dislodgement",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "adr"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f tri h", "Austria: a vie s a ven-tri", "Italy: a ven-tri", "Italy: a tyr s a ven-tri", "Italy: f adr s a ven-tri"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "adr"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        }
+      ]
+    },
+    {
+      "id": "6.D.15",
+      "section": "6.D",
+      "description": "defender cannot cut support for attack on itself",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Russia: f con s f bla-ank", "Russia: f bla-ank", "Turkey: f ank-con"],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ]
+    },
+    {
+      "id": "6.D.16",
+      "section": "6.D",
+      "description": "convoying a dislodging unit of same power is allowed",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a lon h", "England: f nth c a bel-lon", "France: f eng s a bel-lon", "France: a bel-lon"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "lon"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        }
+      ]
+    },
+    {
+      "id": "6.D.17",
+      "section": "6.D",
+      "description": "dislodgement cuts support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "arm"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Russia: f con s f bla-ank", "Russia: f bla-ank", "Turkey: f ank-con", "Turkey: a smy s f ank-con", "Turkey: a arm-ank"],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "arm"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        }
+      ]
+    },
+    {
+      "id": "6.D.18",
+      "section": "6.D",
+      "description": "surviving unit will sustain support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "bul"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "arm"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Russia: f con s f bla-ank", "Russia: f bla-ank", "Russia: a bul s f con", "Turkey: f ank-con", "Turkey: a smy s f ank-con", "Turkey: a arm-ank"],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ank"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "bul"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "arm"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ]
+    },
+    {
+      "id": "6.D.19",
+      "section": "6.D",
+      "description": "even when surviving is in an alternative way",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "smy"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Russia: f con s f bla-ank", "Russia: f bla-ank", "Russia: a smy s f ank-con", "Turkey: f ank-con"],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ank"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "smy"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ank"
+        }
+      ]
+    },
+    {
+      "id": "6.D.20",
+      "section": "6.D",
+      "description": "unit cannot cut support of its own country",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f lon s f nth-eng", "England: f nth-eng", "England: a yor-lon", "France: f eng h"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ]
+    },
+    {
+      "id": "6.D.21",
+      "section": "6.D",
+      "description": "dislodging does not cancel a support cut",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f tri h", "Italy: a ven-tri", "Italy: a tyr s a ven-tri", "Germany: a mun-tyr", "Russia: a sil-mun", "Russia: a ber s a sil-mun"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "tyr"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        }
+      ]
+    },
+    {
+      "id": "6.D.22",
+      "section": "6.D",
+      "description": "impossible fleet move cannot be supported",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "bur"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: f kie-mun", "Germany: a bur s a mun-kie", "Russia: a mun-kie", "Russia: a ber s a mun-kie"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "bur"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "ber"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        }
+      ]
+    },
+    {
+      "id": "6.D.23",
+      "section": "6.D",
+      "description": "impossible coast move cannot be supported",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mar"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Italy: f lyo-spa/sc", "Italy: f wes s f lyo-spa/sc", "France: f spa/nc-lyo", "France: f mar s f spa/nc-lyo"],
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "spa/sc"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mar"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/nc"
+        }
+      ]
+    },
+    {
+      "id": "6.D.24",
+      "section": "6.D",
+      "description": "impossible army move cannot be supported",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "mar"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/sc"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "tys"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: a mar-lyo", "France: f spa/sc s a mar-lyo", "Italy: f lyo h", "Turkey: f tys s f wes-lyo", "Turkey: f wes-lyo"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "mar"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "spa/sc"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "tys"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "lyo"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "lyo"
+        }
+      ]
+    },
+    {
+      "id": "6.D.25",
+      "section": "6.D",
+      "description": "failing hold support can be supported",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber s a pru", "Germany: f kie s a ber", "Russia: f bal s a pru-ber", "Russia: a pru-ber"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.26",
+      "section": "6.D",
+      "description": "failing move support can be supported",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber s a sil", "Germany: f kie s a ber", "Russia: f bal s a pru-ber", "Russia: a pru-ber"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.27",
+      "section": "6.D",
+      "description": "failing convoy support can be supported",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "pru"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f swe-bal", "England: f den s f swe-bal", "Germany: a ber h", "Russia: f bal c a ber-lvn", "Russia: f pru s f bal"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "pru"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.28",
+      "section": "6.D",
+      "description": "Impossible Move and Support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "rum"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a bud s f rum", "Russia: f rum-hol", "Turkey: f bla-rum", "Turkey: a bul s f bla-rum"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "rum"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.29",
+      "section": "6.D",
+      "description": "Move to Impossible Coast and Support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "rum"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a bud s f rum", "Russia: f rum-bul/sc", "Turkey: f bla-rum", "Turkey: a bul s f bla-rum"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "rum"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.30",
+      "section": "6.D",
+      "description": "Move without Coast and Support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Italy: f aeg s f con", "Russia: f con-bul", "Turkey: f bla-con", "Turkey: a bul s f bla-con"],
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.31",
+      "section": "6.D",
+      "description": "A Tricky Impossible Support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "rum"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a rum-arm", "Turkey: f bla s a rum-arm"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "rum"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.32",
+      "section": "6.D",
+      "description": "A missing fleet",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "yor"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f edi s a lvp-yor", "England: a lvp-yor", "France: f lon s a yor", "Germany: a yor-hol"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "yor"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.33",
+      "section": "6.D",
+      "description": "Unwanted Support allowed Self-Standoff can be broken by an unwanted support.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "gal"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "bul"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a ser-bud", "Austria: a vie-bud", "Russia: a gal s a ser-bud", "Turkey: a bul-ser"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "gal"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "ser"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.D.34",
+      "section": "6.D",
+      "description": "Support targeting own area not allowed",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "pru"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "lvn"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber-pru", "Germany: a sil s a ber-pru", "Germany: f bal s a ber-pru", "Italy: a pru s a lvn-pru", "Russia: a war s a lvn-pru", "Russia: a lvn-pru"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "pru"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "war"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "lvn"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.1",
+      "section": "6.E",
+      "description": "dislodged unit has no effect on attacker's area",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber-pru", "Germany: a kie-ber", "Germany: a sil s a ber-pru", "Russia: a pru-ber"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "pru"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "sil"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ]
+    },
+    {
+      "id": "6.E.2",
+      "section": "6.E",
+      "description": "no self-dislodgement in head-to-head battle",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber-kie", "Germany: f kie-ber", "Germany: a mun s a ber-kie"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "kie"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.3",
+      "section": "6.E",
+      "description": "no help in dislodging own unit",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "kie"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: a ber-kie", "Germany: a mun s f kie-ber", "England: f kie-ber"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "kie"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.4",
+      "section": "6.E",
+      "description": "non-dislodged loser still has effect",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ruh"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: f hol-nth", "Germany: f hel s f hol-nth", "Germany: f ska s f hol-nth", "France: f nth-hol", "France: f bel s f nth-hol", "England: f edi s f nwg-nth", "England: f yor s f nwg-nth", "England: f nwg-nth", "Austria: a kie s a ruh-hol", "Austria: a ruh-hol"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ruh"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.5",
+      "section": "6.E",
+      "description": "loser dislodged by another army still has effect",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ruh"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: f hol-nth", "Germany: f hel s f hol-nth", "Germany: f ska s f hol-nth", "France: f nth-hol", "France: f bel s f nth-hol", "England: f edi s f nwg-nth", "England: f yor s f nwg-nth", "England: f nwg-nth", "England: f lon s f nwg-nth", "Austria: a kie s a ruh-hol", "Austria: a ruh-hol"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ruh"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ]
+    },
+    {
+      "id": "6.E.6",
+      "section": "6.E",
+      "description": "not dislodged because of own support still has effect",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ruh"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Germany: f hol-nth", "Germany: f hel s f hol-nth", "France: f nth-hol", "France: f bel s f nth-hol", "France: f eng s f hol-nth", "Austria: a kie s a ruh-hol", "Austria: a ruh-hol"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ruh"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.7",
+      "section": "6.E",
+      "description": "no self dislodgement with beleagured garrison",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth h", "England: f yor s f nwy-nth", "Germany: f hol s f hel-nth", "Germany: f hel-nth", "Russia: f ska s f nwy-nth", "Russia: f nwy-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.8",
+      "section": "6.E",
+      "description": "no self dislodgement with beleagured garrison and head-to-head battle",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth-nwy", "England: f yor s f nwy-nth", "Germany: f hol s f hel-nth", "Germany: f hel-nth", "Russia: f ska s f nwy-nth", "Russia: f nwy-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.9",
+      "section": "6.E",
+      "description": "Almost self dislodgement with beleagured garrison like 6.e.9, but fleet is moving away.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth-nwg", "England: f yor s f nwy-nth", "Germany: f hol s f hel-nth", "Germany: f hel-nth", "Russia: f ska s f nwy-nth", "Russia: f nwy-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.10",
+      "section": "6.E",
+      "description": "with beleaguered garrison. Beleagured fleet in previous case is in circular movement with the weaker attacker; the circular movement fails",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth-den", "England: f yor s f nwy-nth", "Germany: f hol s f hel-nth", "Germany: f hel-nth", "Germany: f den-hel", "Russia: f ska s f nwy-nth", "Russia: f nwy-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.11",
+      "section": "6.E",
+      "description": "No self dislodgement with beleaguered garrison; unit swap with adjacent convoying & 2 coasts. This is a fairly complex test case.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "spa"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mar"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "gas"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "por"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: a spa - por via convoy", "France: f mao c a spa-por", "France: f lyo s f por-spa/nc", "Germany: a mar s a gas-spa", "Germany: a gas-spa", "Italy: f por-spa/nc", "Italy: f wes s f por-spa/nc"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "por"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "lyo"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "mar"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "gas"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "spa/nc"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "wes"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.12",
+      "section": "6.E",
+      "description": "support on attack of own unit can be used for other means",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "gal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "rum"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: a bud-rum", "Austria: a ser s a vie-bud", "Italy: a vie-bud", "Russia: a gal-bud", "Russia: a rum s a gal-bud"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "bud"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "ser"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "vie"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "gal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "rum"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.13",
+      "section": "6.E",
+      "description": "3-way beleagured garrison",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f edi s f yor-nth", "England: f yor-nth", "France: f bel-nth", "France: f eng s f bel-nth", "Germany: f nth h", "Russia: f nwg-nth", "Russia: f nwy s f nwg-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.14",
+      "section": "6.E",
+      "description": "If one of the units makes an illegal move, that unit still has the possibility to defend against attacks with a strength of 1",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "edi"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a lvp-edi", "Russia: f edi-lvp"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "edi"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.E.15.",
+      "section": "6.E",
+      "description": "",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "ruh"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f hol supports a ruh - kie", "England: a ruh - kie", "France: a kie - ber", "France: a mun supports a kie - ber", "France: a sil supports a kie - ber", "Germany: a ber - kie", "Germany: f den supports a ber - kie", "Germany: f hel supports a ber - kie", "Russia: f bal supports a pru - ber", "Russia: a pru - ber"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "ruh"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "kie"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "mun"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "sil"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "ber"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "pru"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.1",
+      "section": "6.F",
+      "description": "no convoy in coastal areas",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "gre"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Turkey: a gre-sev", "Turkey: f aeg c a gre-sev", "Turkey: f con c a gre-sev", "Turkey: f bla c a gre-sev"],
+      "poststate": [
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "gre"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "con"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "bla"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.2",
+      "section": "6.F",
+      "description": "an army being convoyed can bounce as nwymal",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f eng c a lon-bre", "England: a lon-bre", "France: a par-bre"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.3",
+      "section": "6.F",
+      "description": "an army being convoyed can receive support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f eng c a lon-bre", "England: a lon-bre", "England: f mao s a lon-bre", "France: a par-bre"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "par"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.4",
+      "section": "6.F",
+      "description": "an attacked convoy is not disrupted",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "Germany: f ska-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.E",
+      "section": "6.F",
+      "description": "A beleagured convoy is not disrupted",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "den"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "France: f eng-nth", "France: f bel s f eng-nth", "Germany: f ska-nth", "Germany: f den s f ska-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "den"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.6",
+      "section": "6.F",
+      "description": "dislodged convoy does not cut support",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "Germany: a hol s a bel", "Germany: a bel s a hol", "Germany: f hel s f ska-nth", "Germany: f ska-nth", "France: a pic-bel", "France: a bur s a pic-bel"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ]
+    },
+    {
+      "id": "6.F.7",
+      "section": "6.F",
+      "description": "dislodged convoy does not cause contested area",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "Germany: f hel s f ska-nth", "Germany: f ska-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ]
+    },
+    {
+      "id": "6.F.8",
+      "section": "6.F",
+      "description": "dislodged convoy does not cause a bounce",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "bel"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "Germany: f hel s f ska-nth", "Germany: f ska-nth", "Germany: a bel-hol"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "hol"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ]
+    },
+    {
+      "id": "6.F.9",
+      "section": "6.F",
+      "description": "dislodge of multi-route convoy poststate: per 2000 rules",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f eng c a lon-bel", "England: f nth c a lon-bel", "England: a lon-bel", "France: f bre s f mao-eng", "France: f mao-eng"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ]
+    },
+    {
+      "id": "6.F.10",
+      "section": "6.F",
+      "description": "dislodge of multi-route convoy with foreign fleet",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-bel", "England: a lon-bel", "Germany: f eng c a lon-bel", "France: f bre s f mao-eng", "France: f mao-eng"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ]
+    },
+    {
+      "id": "6.F.11",
+      "section": "6.F",
+      "description": "dislodge of multi-route convoy with only foreign fleets 2000 rules resolution",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a lon-bel", "Germany: f eng c a lon-bel", "Russia: f nth c a lon-bel", "France: f bre s f mao-eng", "France: f mao-eng"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ]
+    },
+    {
+      "id": "6.F.12",
+      "section": "6.F",
+      "description": "dislodged convoying fleet not on route",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f eng c a lon-bel", "England: a lon-bel", "England: f iri c a lon-bel", "France: f nao s f mao-iri", "France: f mao-iri"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "iri"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "iri"
+        }
+      ]
+    },
+    {
+      "id": "6.F.13",
+      "section": "6.F",
+      "description": "The Unwanted Alternative",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "den"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a lon-bel", "England: f nth c a lon-bel", "France: f eng c a lon-bel", "Germany: f hol s f den-nth", "Germany: f den-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hol"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ]
+    },
+    {
+      "id": "6.F.14",
+      "section": "6.F",
+      "description": "simple convoy paradox; preferred results (2000/szykman)",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "wal"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f lon s f wal-eng", "England: f wal-eng", "France: a bre-lon", "France: f eng c a bre-lon"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ]
+    },
+    {
+      "id": "6.F.14.v1",
+      "section": "6.F",
+      "description": "simple convoy paradox with additional convoy (paradox rules only apply to paradox core) SYZKMAN resolution",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "wal"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "naf"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f lon s f wal-eng", "England: f wal-eng", "France: a bre-lon", "France: f eng c a bre-lon", "Italy: f iri c a naf-wal", "Italy: f mao c a naf-wal", "Italy: f naf-wal"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "naf"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ]
+    },
+    {
+      "id": "6.F.16",
+      "section": "6.F",
+      "description": "Pandin's paradox",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "wal"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f lon s f wal-eng", "England: f wal-eng", "France: a bre-lon", "France: f eng c a bre-lon", "Germany: f nth s f bel-eng", "Germany: f bel-eng"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "wal"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.17",
+      "section": "6.F",
+      "description": "2000 rules used, because, syzkman only is used by jdip when 2000 rules break down. But this is not jDip, so I will use syzkman all I want...",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "wal"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f lon s f wal-eng", "England: f wal-eng", "France: a bre-lon", "France: f eng c a bre-lon", "France: f yor s a bre-lon", "Germany: f nth s f bel-eng", "Germany: f bel-eng"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "wal"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.18",
+      "section": "6.F",
+      "description": "betrayal paradox--via Syzkman",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth c a lon-bel", "England: a lon-bel", "England: f eng s a lon-bel", "France: f bel s f nth", "Germany: f hel s f ska-nth", "Germany: f ska-nth"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.19",
+      "section": "6.F",
+      "description": "multi-route convoy disruption paradox (no paradox, really, if 2000 rule is used as-is)",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "tun"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "tys"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "nap"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "rom"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: a tun-nap", "France: f tys c a tun-nap", "France: f ion c a tun-nap", "Italy: f nap s f rom-tys", "Italy: f rom-tys"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "tun"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "tys"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "nap"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "rom"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.20",
+      "section": "6.F",
+      "description": "unwanted multi-route convoy paradox 2000 rule / Syzkman rule / All Hold rule give same results",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "tun"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "tys"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "nap"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "ion"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "eas"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: a tun-nap", "France: f tys c a tun-nap", "Italy: f nap s f ion", "Italy: f ion c a tun-nap", "Turkey: f aeg s f eas-ion", "Turkey: f eas-ion"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "tun"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "tys"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "nap"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "aeg"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ion"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "ion"
+        }
+      ]
+    },
+    {
+      "id": "6.F.21",
+      "section": "6.F",
+      "description": "dad's army convoy",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "cly"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Russia: a edi s a nwy-cly", "Russia: f nwg c a nwy-cly", "Russia: a nwy-cly", "France: f iri s f mao-nao", "France: f mao-nao", "England: a lvp-cly via convoy", "England: f nao c a lvp-cly", "England: f cly s f nao"],
+      "poststate": [
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "cly"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.22",
+      "section": "6.F",
+      "description": "second-order paradox w/2 resolutions; syzkman preferred",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "pic"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f edi-nth", "England: f lon s f edi-nth", "France: a bre-lon", "France: f eng c a bre-lon", "Germany: f bel s f pic-eng", "Germany: f pic-eng", "Russia: a nwy-bel", "Russia: f nth c a nwy-bel"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ]
+    },
+    {
+      "id": "6.F.22.extended",
+      "section": "6.F",
+      "description": "of the paradox (and the paradox breaker should not be applied on this order). When the paradox is resolved and Edinburgh is empty, the Russian convoy in St Petersburg can succeed.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "pic"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "stp"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f edi-nth", "England: f lon s f edi-nth", "France: a bre-lon", "France: f eng c a bre-lon", "Germany: f bel s f pic-eng", "Germany: f pic-eng", "Russia: a nwy-bel", "Russia: f nth c a nwy-bel", "Russia: f nwg c a stp-edi", "Russia: f bar c a stp-edi", "Russia: a stp-edi"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "edi"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ]
+    },
+    {
+      "id": "6.F.23",
+      "section": "6.F",
+      "description": "Second-order paradox with two exclusive convoys Syzkman results; no units should move.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f edi-nth", "England: f yor s f edi-nth", "France: a bre-lon", "France: f eng c a bre-lon", "Germany: f bel s f eng", "Germany: f lon s f nth", "Italy: f mao-eng", "Italy: f iri s f mao-eng", "Russia: a nwy-bel", "Russia: f nth c a nwy-bel"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "yor"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.F.24",
+      "section": "6.F",
+      "description": "2nd-order paradox with NO resolution; szykman used",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f edi-nth", "England: f lon s f edi-nth", "England: f iri-eng", "England: f mao s f iri-eng", "France: a bre-lon", "France: f eng c a bre-lon", "France: f bel s f eng", "Russia: a nwy-bel", "Russia: f nth c a nwy-bel"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bel"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ]
+    },
+    {
+      "id": "6.G.1",
+      "section": "6.G",
+      "description": "Two units can swap places via convoy By the 2000 rules, units are swapped, because \"intent\" of england is to swap.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a nwy-swe", "England: f ska c a nwy-swe", "Russia: a swe-nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.2",
+      "section": "6.G",
+      "description": "kidnapping an army no swap should occur",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "swe"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a nwy-swe", "Russia: f swe-nwy", "Germany: f ska c a nwy-swe"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "swe"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.3",
+      "section": "6.G",
+      "description": "kidnapping with a disrupted convoy here, there is no intent to convoy. So no convoy occurs.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: f bre-eng", "France: a pic-bel", "France: a bur s a pic-bel", "France: f mao s f bre-eng", "England: f eng c a pic-bel"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ]
+    },
+    {
+      "id": "6.G.4",
+      "section": "6.G",
+      "description": "Kidnapping with a disrupted convoy and opposite move",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "bre"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "pic"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: f bre-eng", "France: a pic-bel", "France: a bur s a pic-bel", "France: f mao s f bre-eng", "England: f eng c a pic-bel", "England: a bel-pic"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bur"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "mao"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ]
+    },
+    {
+      "id": "6.G.5",
+      "section": "6.G",
+      "description": "swapping with intent",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "rom"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "tys"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "apu"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ion"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Italy: a rom-apu", "Italy: f tys c a apu-rom", "Turkey: a apu-rom", "Turkey: f ion c a apu-rom"],
+      "poststate": [
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "apu"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "tys"
+        },
+        {
+          "power": "Turkey",
+          "type": "army",
+          "loc": "rom"
+        },
+        {
+          "power": "Turkey",
+          "type": "fleet",
+          "loc": "ion"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.6",
+      "section": "6.G",
+      "description": "swapping with unintended intent",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nao"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a lvp-edi", "England: f eng c a lvp-edi", "Germany: a edi-lvp", "France: f iri h", "France: f nth h", "Russia: f nwg c a lvp-edi", "Russia: f nao c a lvp-edi"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "iri"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nao"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.7",
+      "section": "6.G",
+      "description": "swapping with illegal intent",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bot"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f ska c a swe-nwy", "England: f nwy-swe", "Russia: a swe-nwy", "Russia: f bot c a swe-nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bot"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.8",
+      "section": "6.G",
+      "description": "explicit convoy that isn't there explicit 'via convoy' should be irrelevent if there is not both a land and convoy route.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["France: a bel-hol via convoy", "England: f nth-hel", "England: a hol-kie"],
+      "poststate": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "hel"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "kie"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.9",
+      "section": "6.G",
+      "description": "swapped or dislodged?",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "fin"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a nwy-swe", "England: f ska c a nwy-swe", "England: f fin s a nwy-swe", "Russia: a swe-nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "fin"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.10",
+      "section": "6.G",
+      "description": "swapped or a head-to-head battle?",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "fin"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a nwy-swe via convoy", "England: f den s a nwy-swe", "England: f fin s a nwy-swe", "Germany: f ska c a nwy-swe", "Russia: a swe-nwy", "Russia: f bar s a swe-nwy", "France: f nwg-nwy", "France: f nth s f nwg-nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "fin"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.10.mod",
+      "section": "6.G",
+      "description": "swapped or a head-to-head battle? we remove the \"via convoy\" here, just to do a further test.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "fin"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a nwy-swe", "England: f den s a nwy-swe", "England: f fin s a nwy-swe", "Germany: f ska c a nwy-swe", "Russia: a swe-nwy", "Russia: f bar s a swe-nwy", "France: f nwg-nwy", "France: f nth s f nwg-nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "fin"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.11",
+      "section": "6.G",
+      "description": "land route is chosen, but not available when the convoy route is chosen. Paradox resolution is by Szykman",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nwy s f nth-ska", "England: f nth-ska", "Russia: a swe-nwy", "Russia: f ska c a swe-nwy", "Russia: f bar s a swe-nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ]
+    },
+    {
+      "id": "6.G.11.mod",
+      "section": "6.G",
+      "description": "This was to test the adjudicator before it could detect 'intent' as per the rules. poststate valid for 2000 rules / Syzkman rule for paradoxes",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nwy s f nth-ska", "England: f nth-ska", "Russia: a swe-nwy via convoy", "Russia: f ska c a swe-nwy", "Russia: f bar s a swe-nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        }
+      ]
+    },
+    {
+      "id": "6.G.12",
+      "section": "6.G",
+      "description": "Two units should be able to swap if they are both convoyed.",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "iri"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a lvp-edi via convoy", "England: f nao c a lvp-edi", "England: f nwg c a lvp-edi", "Germany: a edi-lvp via convoy", "Germany: f nth c a edi-lvp", "Germany: f eng c a edi-lvp", "Germany: f iri c a edi-lvp"],
+      "poststate": [
+        {
+          "power": "Germany",
+          "type": "army",
+          "loc": "lvp"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nao"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "edi"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "iri"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.13",
+      "section": "6.G",
+      "description": "support cut on attack on itself via convoy",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "alb"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["Austria: f adr c a tri-ven", "Austria: a tri-ven", "Italy: a ven s f alb-tri", "Italy: f alb-tri"],
+      "poststate": [
+        {
+          "power": "Austria",
+          "type": "fleet",
+          "loc": "adr"
+        },
+        {
+          "power": "Italy",
+          "type": "army",
+          "loc": "ven"
+        },
+        {
+          "power": "Italy",
+          "type": "fleet",
+          "loc": "tri"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "Austria",
+          "type": "army",
+          "loc": "tri"
+        }
+      ]
+    },
+    {
+      "id": "6.G.14.",
+      "section": "6.G",
+      "description": "",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "fin"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a nwy - swe", "England: f den supports a nwy - swe", "England: f fin supports a nwy - swe", "France: f nwg - nwy", "France: f nth supports f nwg - nwy", "Germany: f ska convoys a swe - nwy", "Russia: a swe - nwy via convoy", "Russia: f bar supports a swe - nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "fin"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nwg"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Germany",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "bar"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.15.",
+      "section": "6.G",
+      "description": "",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth convoys a lon - bel", "England: a hol supports a lon - bel", "England: a yor - lon", "England: a lon - bel via convoy", "France: f eng convoys a bel - lon", "France: a bel - lon via convoy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        }
+      ],
+      "poststate_dislodged": [
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        }
+      ]
+    },
+    {
+      "id": "6.G.16.",
+      "section": "6.G",
+      "description": "",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a nwy - swe", "England: a den supports a nwy - swe", "England: f bal supports a nwy - swe", "England: f nth - nwy", "Russia: a swe - nwy via convoy", "Russia: f ska convoys a swe - nwy", "Russia: f nwg supports a swe - nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.17.",
+      "section": "6.G",
+      "description": "",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: a nwy - swe via convoy", "England: a den supports a nwy - swe", "England: f bal supports a nwy - swe", "England: f ska convoys a nwy - swe", "England: f nth - nwy", "Russia: a swe - nwy", "Russia: f nwg supports a swe - nwy"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "swe"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "den"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "bal"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "ska"
+        },
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "Russia",
+          "type": "army",
+          "loc": "nwy"
+        },
+        {
+          "power": "Russia",
+          "type": "fleet",
+          "loc": "nwg"
+        }
+      ],
+      "poststate_dislodged": []
+    },
+    {
+      "id": "6.G.18.",
+      "section": "6.G",
+      "description": "",
+      "phase": "Movement",
+      "prestate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "ruh"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "wal"
+        }
+      ],
+      "prestate_dislodged": [],
+      "sc_owners": [],
+      "orders": ["England: f nth convoys a lon - bel", "England: a hol supports a lon - bel", "England: a yor - lon", "England: a lon - bel", "England: a ruh supports a lon - bel", "France: f eng convoys a bel - lon", "France: a bel - lon", "France: a wal supports a bel - lon"],
+      "poststate": [
+        {
+          "power": "England",
+          "type": "fleet",
+          "loc": "nth"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "hol"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "yor"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "bel"
+        },
+        {
+          "power": "England",
+          "type": "army",
+          "loc": "ruh"
+        },
+        {
+          "power": "France",
+          "type": "fleet",
+          "loc": "eng"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "lon"
+        },
+        {
+          "power": "France",
+          "type": "army",
+          "loc": "wal"
+        }
+      ],
+      "poststate_dislodged": []
+    }
+  ]
+}

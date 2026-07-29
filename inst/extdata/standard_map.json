@@ -1,0 +1,1054 @@
+{
+  "name": "standard",
+  "description": "Standard seven-power Diplomacy board (pre-1914 Europe): 75 provinces, 34 supply centres, 22 starting units.",
+  "powers": ["Austria", "England", "France", "Germany", "Italy", "Russia", "Turkey"],
+  "provinces": [
+    {
+      "code": "adr",
+      "name": "Adriatic Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 47,
+      "y": 48
+    },
+    {
+      "code": "aeg",
+      "name": "Aegean Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 59,
+      "y": 41
+    },
+    {
+      "code": "alb",
+      "name": "Albania",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 51,
+      "y": 48
+    },
+    {
+      "code": "ank",
+      "name": "Ankara",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Turkey",
+      "coasts": [],
+      "x": 68,
+      "y": 48
+    },
+    {
+      "code": "apu",
+      "name": "Apulia",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 47,
+      "y": 43
+    },
+    {
+      "code": "arm",
+      "name": "Armenia",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 75,
+      "y": 48
+    },
+    {
+      "code": "bal",
+      "name": "Baltic Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 48,
+      "y": 74
+    },
+    {
+      "code": "bar",
+      "name": "Barents Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 55,
+      "y": 97
+    },
+    {
+      "code": "bel",
+      "name": "Belgium",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 31,
+      "y": 70
+    },
+    {
+      "code": "ber",
+      "name": "Berlin",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Germany",
+      "coasts": [],
+      "x": 44,
+      "y": 70
+    },
+    {
+      "code": "bla",
+      "name": "Black Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 65,
+      "y": 55
+    },
+    {
+      "code": "boh",
+      "name": "Bohemia",
+      "type": "land",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 45,
+      "y": 62
+    },
+    {
+      "code": "bot",
+      "name": "Gulf of Bothnia",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 50,
+      "y": 80
+    },
+    {
+      "code": "bre",
+      "name": "Brest",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "France",
+      "coasts": [],
+      "x": 23,
+      "y": 63
+    },
+    {
+      "code": "bud",
+      "name": "Budapest",
+      "type": "land",
+      "supply_centre": true,
+      "home_power": "Austria",
+      "coasts": [],
+      "x": 52,
+      "y": 58
+    },
+    {
+      "code": "bul",
+      "name": "Bulgaria",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": ["ec", "sc"],
+      "x": 58,
+      "y": 50
+    },
+    {
+      "code": "bur",
+      "name": "Burgundy",
+      "type": "land",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 33,
+      "y": 60
+    },
+    {
+      "code": "cly",
+      "name": "Clyde",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 19,
+      "y": 85
+    },
+    {
+      "code": "con",
+      "name": "Constantinople",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Turkey",
+      "coasts": [],
+      "x": 62,
+      "y": 45
+    },
+    {
+      "code": "den",
+      "name": "Denmark",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 40,
+      "y": 75
+    },
+    {
+      "code": "eas",
+      "name": "Eastern Mediterranean",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 66,
+      "y": 34
+    },
+    {
+      "code": "edi",
+      "name": "Edinburgh",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "England",
+      "coasts": [],
+      "x": 22,
+      "y": 83
+    },
+    {
+      "code": "eng",
+      "name": "English Channel",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 19,
+      "y": 70
+    },
+    {
+      "code": "fin",
+      "name": "Finland",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 53,
+      "y": 87
+    },
+    {
+      "code": "gal",
+      "name": "Galicia",
+      "type": "land",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 55,
+      "y": 63
+    },
+    {
+      "code": "gas",
+      "name": "Gascony",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 26,
+      "y": 53
+    },
+    {
+      "code": "gre",
+      "name": "Greece",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 55,
+      "y": 42
+    },
+    {
+      "code": "hel",
+      "name": "Helgoland Bight",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 36,
+      "y": 74
+    },
+    {
+      "code": "hol",
+      "name": "Holland",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 34,
+      "y": 73
+    },
+    {
+      "code": "ion",
+      "name": "Ionian Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 50,
+      "y": 34
+    },
+    {
+      "code": "iri",
+      "name": "Irish Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 14,
+      "y": 76
+    },
+    {
+      "code": "kie",
+      "name": "Kiel",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Germany",
+      "coasts": [],
+      "x": 39,
+      "y": 71
+    },
+    {
+      "code": "lon",
+      "name": "London",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "England",
+      "coasts": [],
+      "x": 25,
+      "y": 74
+    },
+    {
+      "code": "lvn",
+      "name": "Livonia",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 56,
+      "y": 78
+    },
+    {
+      "code": "lvp",
+      "name": "Liverpool",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "England",
+      "coasts": [],
+      "x": 20,
+      "y": 79
+    },
+    {
+      "code": "lyo",
+      "name": "Gulf of Lyon",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 33,
+      "y": 44
+    },
+    {
+      "code": "mao",
+      "name": "Mid-Atlantic Ocean",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 10,
+      "y": 55
+    },
+    {
+      "code": "mar",
+      "name": "Marseilles",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "France",
+      "coasts": [],
+      "x": 32,
+      "y": 50
+    },
+    {
+      "code": "mos",
+      "name": "Moscow",
+      "type": "land",
+      "supply_centre": true,
+      "home_power": "Russia",
+      "coasts": [],
+      "x": 68,
+      "y": 76
+    },
+    {
+      "code": "mun",
+      "name": "Munich",
+      "type": "land",
+      "supply_centre": true,
+      "home_power": "Germany",
+      "coasts": [],
+      "x": 40,
+      "y": 65
+    },
+    {
+      "code": "naf",
+      "name": "North Africa",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 30,
+      "y": 28
+    },
+    {
+      "code": "nao",
+      "name": "North Atlantic Ocean",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 10,
+      "y": 88
+    },
+    {
+      "code": "nap",
+      "name": "Naples",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Italy",
+      "coasts": [],
+      "x": 45,
+      "y": 39
+    },
+    {
+      "code": "nth",
+      "name": "North Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 29,
+      "y": 79
+    },
+    {
+      "code": "nwg",
+      "name": "Norwegian Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 30,
+      "y": 92
+    },
+    {
+      "code": "nwy",
+      "name": "Norway",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 40,
+      "y": 85
+    },
+    {
+      "code": "par",
+      "name": "Paris",
+      "type": "land",
+      "supply_centre": true,
+      "home_power": "France",
+      "coasts": [],
+      "x": 29,
+      "y": 61
+    },
+    {
+      "code": "pic",
+      "name": "Picardy",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 28,
+      "y": 67
+    },
+    {
+      "code": "pie",
+      "name": "Piedmont",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 37,
+      "y": 52
+    },
+    {
+      "code": "por",
+      "name": "Portugal",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 14,
+      "y": 44
+    },
+    {
+      "code": "pru",
+      "name": "Prussia",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 49,
+      "y": 70
+    },
+    {
+      "code": "rom",
+      "name": "Rome",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Italy",
+      "coasts": [],
+      "x": 42,
+      "y": 44
+    },
+    {
+      "code": "ruh",
+      "name": "Ruhr",
+      "type": "land",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 36,
+      "y": 68
+    },
+    {
+      "code": "rum",
+      "name": "Rumania",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 59,
+      "y": 57
+    },
+    {
+      "code": "ser",
+      "name": "Serbia",
+      "type": "land",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 53,
+      "y": 52
+    },
+    {
+      "code": "sev",
+      "name": "Sevastopol",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Russia",
+      "coasts": [],
+      "x": 70,
+      "y": 64
+    },
+    {
+      "code": "sil",
+      "name": "Silesia",
+      "type": "land",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 47,
+      "y": 67
+    },
+    {
+      "code": "ska",
+      "name": "Skagerrak",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 41,
+      "y": 78
+    },
+    {
+      "code": "smy",
+      "name": "Smyrna",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Turkey",
+      "coasts": [],
+      "x": 66,
+      "y": 41
+    },
+    {
+      "code": "spa",
+      "name": "Spain",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": ["nc", "sc"],
+      "x": 22,
+      "y": 45
+    },
+    {
+      "code": "stp",
+      "name": "St Petersburg",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Russia",
+      "coasts": ["nc", "sc"],
+      "x": 62,
+      "y": 88
+    },
+    {
+      "code": "swe",
+      "name": "Sweden",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 46,
+      "y": 83
+    },
+    {
+      "code": "syr",
+      "name": "Syria",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 74,
+      "y": 39
+    },
+    {
+      "code": "tri",
+      "name": "Trieste",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Austria",
+      "coasts": [],
+      "x": 45,
+      "y": 54
+    },
+    {
+      "code": "tun",
+      "name": "Tunis",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": null,
+      "coasts": [],
+      "x": 42,
+      "y": 30
+    },
+    {
+      "code": "tus",
+      "name": "Tuscany",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 40,
+      "y": 48
+    },
+    {
+      "code": "tyr",
+      "name": "Tyrolia",
+      "type": "land",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 42,
+      "y": 59
+    },
+    {
+      "code": "tys",
+      "name": "Tyrrhenian Sea",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 44,
+      "y": 38
+    },
+    {
+      "code": "ukr",
+      "name": "Ukraine",
+      "type": "land",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 62,
+      "y": 68
+    },
+    {
+      "code": "ven",
+      "name": "Venice",
+      "type": "coast",
+      "supply_centre": true,
+      "home_power": "Italy",
+      "coasts": [],
+      "x": 41,
+      "y": 52
+    },
+    {
+      "code": "vie",
+      "name": "Vienna",
+      "type": "land",
+      "supply_centre": true,
+      "home_power": "Austria",
+      "coasts": [],
+      "x": 47,
+      "y": 59
+    },
+    {
+      "code": "wal",
+      "name": "Wales",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 19,
+      "y": 75
+    },
+    {
+      "code": "war",
+      "name": "Warsaw",
+      "type": "land",
+      "supply_centre": true,
+      "home_power": "Russia",
+      "coasts": [],
+      "x": 54,
+      "y": 70
+    },
+    {
+      "code": "wes",
+      "name": "Western Mediterranean",
+      "type": "sea",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 34,
+      "y": 36
+    },
+    {
+      "code": "yor",
+      "name": "Yorkshire",
+      "type": "coast",
+      "supply_centre": false,
+      "home_power": null,
+      "coasts": [],
+      "x": 24,
+      "y": 78
+    }
+  ],
+  "coast_locations": [
+    {
+      "loc": "bul/ec",
+      "x": 61,
+      "y": 52
+    },
+    {
+      "loc": "bul/sc",
+      "x": 58,
+      "y": 46
+    },
+    {
+      "loc": "spa/nc",
+      "x": 20,
+      "y": 53
+    },
+    {
+      "loc": "spa/sc",
+      "x": 24,
+      "y": 38
+    },
+    {
+      "loc": "stp/nc",
+      "x": 58,
+      "y": 93
+    },
+    {
+      "loc": "stp/sc",
+      "x": 57,
+      "y": 82
+    }
+  ],
+  "army_adjacency": {
+    "adr": [],
+    "aeg": [],
+    "alb": ["gre", "ser", "tri"],
+    "ank": ["arm", "con", "smy"],
+    "apu": ["nap", "rom", "ven"],
+    "arm": ["ank", "sev", "smy", "syr"],
+    "bal": [],
+    "bar": [],
+    "bel": ["bur", "hol", "pic", "ruh"],
+    "ber": ["kie", "mun", "pru", "sil"],
+    "bla": [],
+    "boh": ["gal", "mun", "sil", "tyr", "vie"],
+    "bot": [],
+    "bre": ["gas", "par", "pic"],
+    "bud": ["gal", "rum", "ser", "tri", "vie"],
+    "bul": ["con", "gre", "rum", "ser"],
+    "bur": ["bel", "gas", "mar", "mun", "par", "pic", "ruh"],
+    "cly": ["edi", "lvp"],
+    "con": ["ank", "bul", "smy"],
+    "den": ["kie", "swe"],
+    "eas": [],
+    "edi": ["cly", "lvp", "yor"],
+    "eng": [],
+    "fin": ["nwy", "stp", "swe"],
+    "gal": ["boh", "bud", "rum", "sil", "ukr", "vie", "war"],
+    "gas": ["bre", "bur", "mar", "par", "spa"],
+    "gre": ["alb", "bul", "ser"],
+    "hel": [],
+    "hol": ["bel", "kie", "ruh"],
+    "ion": [],
+    "iri": [],
+    "kie": ["ber", "den", "hol", "mun", "ruh"],
+    "lon": ["wal", "yor"],
+    "lvn": ["mos", "pru", "stp", "war"],
+    "lvp": ["cly", "edi", "wal", "yor"],
+    "lyo": [],
+    "mao": [],
+    "mar": ["bur", "gas", "pie", "spa"],
+    "mos": ["lvn", "sev", "stp", "ukr", "war"],
+    "mun": ["ber", "boh", "bur", "kie", "ruh", "sil", "tyr"],
+    "naf": "tun",
+    "nao": [],
+    "nap": ["apu", "rom"],
+    "nth": [],
+    "nwg": [],
+    "nwy": ["fin", "stp", "swe"],
+    "par": ["bre", "bur", "gas", "pic"],
+    "pic": ["bel", "bre", "bur", "par"],
+    "pie": ["mar", "tus", "tyr", "ven"],
+    "por": "spa",
+    "pru": ["ber", "lvn", "sil", "war"],
+    "rom": ["apu", "nap", "tus", "ven"],
+    "ruh": ["bel", "bur", "hol", "kie", "mun"],
+    "rum": ["bud", "bul", "gal", "ser", "sev", "ukr"],
+    "ser": ["alb", "bud", "bul", "gre", "rum", "tri"],
+    "sev": ["arm", "mos", "rum", "ukr"],
+    "sil": ["ber", "boh", "gal", "mun", "pru", "war"],
+    "ska": [],
+    "smy": ["ank", "arm", "con", "syr"],
+    "spa": ["gas", "mar", "por"],
+    "stp": ["fin", "lvn", "mos", "nwy"],
+    "swe": ["den", "fin", "nwy"],
+    "syr": ["arm", "smy"],
+    "tri": ["alb", "bud", "ser", "tyr", "ven", "vie"],
+    "tun": "naf",
+    "tus": ["pie", "rom", "ven"],
+    "tyr": ["boh", "mun", "pie", "tri", "ven", "vie"],
+    "tys": [],
+    "ukr": ["gal", "mos", "rum", "sev", "war"],
+    "ven": ["apu", "pie", "rom", "tri", "tus", "tyr"],
+    "vie": ["boh", "bud", "gal", "tri", "tyr"],
+    "wal": ["lon", "lvp", "yor"],
+    "war": ["gal", "lvn", "mos", "pru", "sil", "ukr"],
+    "wes": [],
+    "yor": ["edi", "lon", "lvp", "wal"]
+  },
+  "fleet_adjacency": {
+    "adr": ["alb", "apu", "ion", "tri", "ven"],
+    "aeg": ["bul/sc", "con", "eas", "gre", "ion", "smy"],
+    "alb": ["adr", "gre", "ion", "tri"],
+    "ank": ["arm", "bla", "con"],
+    "apu": ["adr", "ion", "nap", "ven"],
+    "arm": ["ank", "bla", "sev"],
+    "bal": ["ber", "bot", "den", "kie", "lvn", "pru", "swe"],
+    "bar": ["nwg", "nwy", "stp/nc"],
+    "bel": ["eng", "hol", "nth", "pic"],
+    "ber": ["bal", "kie", "pru"],
+    "bla": ["ank", "arm", "bul/ec", "con", "rum", "sev"],
+    "bot": ["bal", "fin", "lvn", "stp/sc", "swe"],
+    "bre": ["eng", "gas", "mao", "pic"],
+    "bul/ec": ["bla", "con", "rum"],
+    "bul/sc": ["aeg", "con", "gre"],
+    "cly": ["edi", "lvp", "nao", "nwg"],
+    "con": ["aeg", "ank", "bla", "bul/ec", "bul/sc", "smy"],
+    "den": ["bal", "hel", "kie", "nth", "ska", "swe"],
+    "eas": ["aeg", "ion", "smy", "syr"],
+    "edi": ["cly", "nth", "nwg", "yor"],
+    "eng": ["bel", "bre", "iri", "lon", "mao", "nth", "pic", "wal"],
+    "fin": ["bot", "stp/sc", "swe"],
+    "gas": ["bre", "mao", "spa/nc"],
+    "gre": ["aeg", "alb", "bul/sc", "ion"],
+    "hel": ["den", "hol", "kie", "nth"],
+    "hol": ["bel", "hel", "kie", "nth"],
+    "ion": ["adr", "aeg", "alb", "apu", "eas", "gre", "nap", "tun", "tys"],
+    "iri": ["eng", "lvp", "mao", "nao", "wal"],
+    "kie": ["bal", "ber", "den", "hel", "hol"],
+    "lon": ["eng", "nth", "wal", "yor"],
+    "lvn": ["bal", "bot", "pru", "stp/sc"],
+    "lvp": ["cly", "iri", "nao", "wal"],
+    "lyo": ["mar", "pie", "spa/sc", "tus", "tys", "wes"],
+    "mao": ["bre", "eng", "gas", "iri", "naf", "nao", "por", "spa/nc", "spa/sc", "wes"],
+    "mar": ["lyo", "pie", "spa/sc"],
+    "naf": ["mao", "tun", "wes"],
+    "nao": ["cly", "iri", "lvp", "mao", "nwg"],
+    "nap": ["apu", "ion", "rom", "tys"],
+    "nth": ["bel", "den", "edi", "eng", "hel", "hol", "lon", "nwg", "nwy", "ska", "yor"],
+    "nwg": ["bar", "cly", "edi", "nao", "nth", "nwy"],
+    "nwy": ["bar", "nth", "nwg", "ska", "stp/nc", "swe"],
+    "pic": ["bel", "bre", "eng"],
+    "pie": ["lyo", "mar", "tus"],
+    "por": ["mao", "spa/nc", "spa/sc"],
+    "pru": ["bal", "ber", "lvn"],
+    "rom": ["nap", "tus", "tys"],
+    "rum": ["bla", "bul/ec", "sev"],
+    "sev": ["arm", "bla", "rum"],
+    "ska": ["den", "nth", "nwy", "swe"],
+    "smy": ["aeg", "con", "eas", "syr"],
+    "spa/nc": ["gas", "mao", "por"],
+    "spa/sc": ["lyo", "mao", "mar", "por", "wes"],
+    "stp/nc": ["bar", "nwy"],
+    "stp/sc": ["bot", "fin", "lvn"],
+    "swe": ["bal", "bot", "den", "fin", "nwy", "ska"],
+    "syr": ["eas", "smy"],
+    "tri": ["adr", "alb", "ven"],
+    "tun": ["ion", "naf", "tys", "wes"],
+    "tus": ["lyo", "pie", "rom", "tys"],
+    "tys": ["ion", "lyo", "nap", "rom", "tun", "tus", "wes"],
+    "ven": ["adr", "apu", "tri"],
+    "wal": ["eng", "iri", "lon", "lvp"],
+    "wes": ["lyo", "mao", "naf", "spa/sc", "tun", "tys"],
+    "yor": ["edi", "lon", "nth"]
+  },
+  "supply_centres": ["ank", "bel", "ber", "bre", "bud", "bul", "con", "den", "edi", "gre", "hol", "kie", "lon", "lvp", "mar", "mos", "mun", "nap", "nwy", "par", "por", "rom", "rum", "ser", "sev", "smy", "spa", "stp", "swe", "tri", "tun", "ven", "vie", "war"],
+  "home_centres": {
+    "Austria": ["bud", "tri", "vie"],
+    "England": ["edi", "lon", "lvp"],
+    "France": ["bre", "mar", "par"],
+    "Germany": ["ber", "kie", "mun"],
+    "Italy": ["nap", "rom", "ven"],
+    "Russia": ["mos", "sev", "stp", "war"],
+    "Turkey": ["ank", "con", "smy"]
+  },
+  "start_units": [
+    {
+      "power": "Austria",
+      "type": "army",
+      "loc": "bud"
+    },
+    {
+      "power": "Austria",
+      "type": "army",
+      "loc": "vie"
+    },
+    {
+      "power": "Austria",
+      "type": "fleet",
+      "loc": "tri"
+    },
+    {
+      "power": "England",
+      "type": "fleet",
+      "loc": "edi"
+    },
+    {
+      "power": "England",
+      "type": "fleet",
+      "loc": "lon"
+    },
+    {
+      "power": "England",
+      "type": "army",
+      "loc": "lvp"
+    },
+    {
+      "power": "France",
+      "type": "fleet",
+      "loc": "bre"
+    },
+    {
+      "power": "France",
+      "type": "army",
+      "loc": "mar"
+    },
+    {
+      "power": "France",
+      "type": "army",
+      "loc": "par"
+    },
+    {
+      "power": "Germany",
+      "type": "fleet",
+      "loc": "kie"
+    },
+    {
+      "power": "Germany",
+      "type": "army",
+      "loc": "ber"
+    },
+    {
+      "power": "Germany",
+      "type": "army",
+      "loc": "mun"
+    },
+    {
+      "power": "Italy",
+      "type": "fleet",
+      "loc": "nap"
+    },
+    {
+      "power": "Italy",
+      "type": "army",
+      "loc": "rom"
+    },
+    {
+      "power": "Italy",
+      "type": "army",
+      "loc": "ven"
+    },
+    {
+      "power": "Russia",
+      "type": "army",
+      "loc": "war"
+    },
+    {
+      "power": "Russia",
+      "type": "army",
+      "loc": "mos"
+    },
+    {
+      "power": "Russia",
+      "type": "fleet",
+      "loc": "sev"
+    },
+    {
+      "power": "Russia",
+      "type": "fleet",
+      "loc": "stp/sc"
+    },
+    {
+      "power": "Turkey",
+      "type": "fleet",
+      "loc": "ank"
+    },
+    {
+      "power": "Turkey",
+      "type": "army",
+      "loc": "con"
+    },
+    {
+      "power": "Turkey",
+      "type": "army",
+      "loc": "smy"
+    }
+  ]
+}

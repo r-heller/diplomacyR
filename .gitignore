@@ -1,0 +1,12 @@
+# orchestration / build prompts - not part of the package
+.orchestration/
+CLAUDE_CODE_*.md
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rcheck/
+*.tar.gz
+docs/
+inst/doc/

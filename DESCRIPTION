@@ -1,0 +1,42 @@
+Package: diplomacyR
+Title: Play, Simulate, and Analyse the Board Game Diplomacy
+Version: 0.1.0
+Authors@R: person("Raban", "Heller", email = "raban.heller@charite.de",
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8006-9742"))
+Description: A complete engine for the strategic board game Diplomacy, covering
+    the standard seven-power pre-1914 European map. Provides a rules-accurate
+    simultaneous-movement adjudicator (hold, move, support, convoy, retreat, and
+    build phases) validated against the Diplomacy Adjudicator Test Cases, a set
+    of scriptable bots for automated play, batch simulation with outcome
+    analysis, and a comprehensive 'shiny' application for interactive play and
+    exploration. Board states and analyses render as 'ggplot2' objects.
+License: MIT + file LICENSE
+URL: https://github.com/r-heller/diplomacyR, https://r-heller.github.io/diplomacyR/
+BugReports: https://github.com/r-heller/diplomacyR/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: R (>= 4.1.0)
+Imports:
+    cli,
+    ggplot2,
+    jsonlite,
+    rlang,
+    stats,
+    tibble,
+    tidyr,
+    dplyr,
+    utils
+Suggests:
+    bslib,
+    covr,
+    DT,
+    knitr,
+    plotly,
+    rmarkdown,
+    shiny,
+    shinyWidgets,
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
+VignetteBuilder: knitr
