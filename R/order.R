@@ -24,7 +24,7 @@ new_dp_orders <- function(x) {
 #'
 #' @param x A candidate `dp_orders` object.
 #' @param call Caller environment, for error reporting.
-#' @return `x`, invisibly validated.
+#' @return `x`, validated.
 #' @noRd
 validate_dp_orders <- function(x, call = rlang::caller_env()) {
   .check_class(x, "dp_orders", call = call)
@@ -42,7 +42,7 @@ validate_dp_orders <- function(x, call = rlang::caller_env()) {
       call = call
     )
   }
-  invisible(x)
+  x
 }
 
 #' Construct a Diplomacy order

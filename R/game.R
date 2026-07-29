@@ -47,7 +47,7 @@ new_dp_game <- function(map, units, sc_owner, season, year, phase, powers,
 #'
 #' @param x A candidate `dp_game`.
 #' @param call Caller environment, for error reporting.
-#' @return `x`, invisibly validated.
+#' @return `x`, validated.
 #' @noRd
 validate_dp_game <- function(x, call = rlang::caller_env()) {
   .check_class(x, "dp_game", call = call)
@@ -75,7 +75,7 @@ validate_dp_game <- function(x, call = rlang::caller_env()) {
   if (!x$phase %in% c("movement", "retreat", "build")) {
     cli::cli_abort("Unknown phase {.val {x$phase}}.", call = call)
   }
-  invisible(x)
+  x
 }
 
 #' Start a new standard Diplomacy game

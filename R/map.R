@@ -48,7 +48,7 @@ new_dp_map <- function(name, description, powers, provinces, coasts,
 #'
 #' @param x A candidate `dp_map` object.
 #' @param call Caller environment, for error reporting.
-#' @return `x`, invisibly validated.
+#' @return `x`, validated.
 #' @noRd
 validate_dp_map <- function(x, call = rlang::caller_env()) {
   .check_class(x, "dp_map", call = call)
@@ -88,7 +88,7 @@ validate_dp_map <- function(x, call = rlang::caller_env()) {
       }
     }
   }
-  invisible(x)
+  x
 }
 
 #' Load a Diplomacy board

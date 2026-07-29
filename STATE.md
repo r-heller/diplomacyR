@@ -66,6 +66,33 @@ preference recorded in the DATC.
   and sea graph for armies; a fleet goes before an army at equal distance, and
   ties break alphabetically by province (DATC 4.D.8, choice d).
 
+## Verification
+
+Run from the package root on R 4.6.1:
+
+```
+R CMD build .
+R CMD check --as-cran --no-manual diplomacyR_0.1.0.tar.gz
+#> Status: OK          (0 errors, 0 warnings, 0 notes)
+
+devtools::test()
+#> 15 files, 119 tests, 1656 expectations, 0 failures, 0 warnings, 0 skips
+
+devtools::spell_check()
+#> clean
+
+pkgdown::build_site()
+#> clean
+```
+
+Tarball size 954K, dominated by the hex logo, which is shipped twice: once as
+`man/figures/logo.png` for the manual and the website, once as
+`inst/shiny/diplomacyR/www/logo.png` for the application navbar.
+
+One field was added to `DESCRIPTION` beyond the values supplied with the
+repository: `Language: en-GB`. The prose is written in British English and the
+spell check needs the matching dictionary. No existing field was changed.
+
 ## Nothing outstanding
 
 The `negotiator` bot ships as documented but is deliberately shallow: the

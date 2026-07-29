@@ -20,7 +20,7 @@ new_dp_sim <- function(games, centres, contests, settings) {
 #'
 #' @param x A candidate `dp_sim`.
 #' @param call Caller environment, for error reporting.
-#' @return `x`, invisibly validated.
+#' @return `x`, validated.
 #' @noRd
 validate_dp_sim <- function(x, call = rlang::caller_env()) {
   .check_class(x, "dp_sim", call = call)
@@ -28,7 +28,7 @@ validate_dp_sim <- function(x, call = rlang::caller_env()) {
     cli::cli_abort("A {.cls dp_sim} must record per-game outcomes.",
                    call = call)
   }
-  invisible(x)
+  x
 }
 
 #' Test whether an object is a simulation result
@@ -98,7 +98,7 @@ dp_simulate <- function(n = 100, bots = "greedy", max_years = 20,
 
   games <- vector("list", n)
   centres <- vector("list", n)
-  contest_counts <- integer(0)
+  contest_tally <- new.env(parent = emptyenv())
 
   for (i in seq_len(n)) {
     h <- dp_play(dp_new_game(), bots = bots, max_years = max_years,
@@ -117,11 +117,8 @@ dp_simulate <- function(n = 100, bots = "greedy", max_years = 20,
       units = counts$units
     )
     for (tn in h$turns) {
-      cs <- tn$result$contested
-      if (length(cs) > 0L) {
-        for (p in cs) {
-          contest_counts[p] <- (contest_counts[p] %||% 0L) + 1L
-        }
+      for (p in tn$result$contested) {
+        contest_tally[[p]] <- (contest_tally[[p]] %||% 0L) + 1L
       }
     }
     if (verbose) {
@@ -129,13 +126,15 @@ dp_simulate <- function(n = 100, bots = "greedy", max_years = 20,
     }
   }
 
-  contests <- if (length(contest_counts) == 0L) {
+  hit <- ls(contest_tally)
+  contests <- if (length(hit) == 0L) {
     empty$contests
   } else {
-    ord <- order(-contest_counts, names(contest_counts))
+    counts <- vapply(hit, function(p) contest_tally[[p]], integer(1))
+    ord <- order(-counts, hit)
     tibble::tibble(
-      province = names(contest_counts)[ord],
-      contests = as.integer(unname(contest_counts)[ord])
+      province = hit[ord],
+      contests = unname(counts[ord])
     )
   }
 

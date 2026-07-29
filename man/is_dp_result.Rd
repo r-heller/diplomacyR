@@ -24,6 +24,7 @@ Other engine:
 \code{\link[=dp_advance]{dp_advance()}},
 \code{\link[=dp_build]{dp_build()}},
 \code{\link[=dp_play]{dp_play()}},
+\code{\link{dp_result}},
 \code{\link[=dp_retreat]{dp_retreat()}},
 \code{\link[=dp_step]{dp_step()}}
 }

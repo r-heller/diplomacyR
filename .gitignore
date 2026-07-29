@@ -10,3 +10,8 @@ CLAUDE_CODE_*.md
 *.tar.gz
 docs/
 inst/doc/
+doc/
+Meta/
+/doc/
+/Meta/
+diplomacyR_*.tar.gz

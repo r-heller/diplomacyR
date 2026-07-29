@@ -20,6 +20,7 @@ is_dp_sim(dp_simulate(n = 1, bots = "hold", max_years = 1, verbose = FALSE))
 }
 \seealso{
 Other simulation:
+\code{\link{dp_sim}},
 \code{\link[=dp_simulate]{dp_simulate()}},
 \code{\link[=dp_stats]{dp_stats()}}
 }

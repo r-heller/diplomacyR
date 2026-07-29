@@ -68,14 +68,22 @@ result$orders[result$orders$loc %in% c("par", "mar", "mun"), ]
 #> ✗ Germany: A Mun - Bur
 ```
 
-`dp_advance()` applies the result and steps the season, phase and year.
+Every power that was not ordered simply held, which is what the rules
+say happens to a unit with no orders. `dp_advance()` applies the result
+and steps the season, phase and year.
 
 ``` r
-dp_advance(game, result)
+game <- dp_advance(game, result)
+game
+#> <dp_game> Fall 1901 (movement phase)
+#> Russia    4 centres   4 units
+#> Austria   3 centres   3 units
+#> England   3 centres   3 units
+#> France    3 centres   3 units
+#> Germany   3 centres   3 units
+#> Italy     3 centres   3 units
+#> Turkey    3 centres   3 units
 ```
-
-Every power that was not ordered simply held, which is what the rules
-say happens to a unit with no orders.
 
 To watch a whole game instead, hand it to the bots:
 

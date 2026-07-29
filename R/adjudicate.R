@@ -44,14 +44,14 @@ new_dp_result <- function(orders, units, dislodged, contested, season, year,
 #'
 #' @param x A candidate `dp_result`.
 #' @param call Caller environment, for error reporting.
-#' @return `x`, invisibly validated.
+#' @return `x`, validated.
 #' @noRd
 validate_dp_result <- function(x, call = rlang::caller_env()) {
   .check_class(x, "dp_result", call = call)
   if (!"success" %in% names(x$orders)) {
     cli::cli_abort("A {.cls dp_result} must record order success.", call = call)
   }
-  invisible(x)
+  x
 }
 
 #' Test whether an object is an adjudication result

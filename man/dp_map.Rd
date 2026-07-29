@@ -31,8 +31,10 @@ nrow(dp_provinces(m))
 Other setup:
 \code{\link[=dp_adjacent]{dp_adjacent()}},
 \code{\link[=dp_example_game]{dp_example_game()}},
+\code{\link{dp_game}},
 \code{\link[=dp_game_from_units]{dp_game_from_units()}},
 \code{\link[=dp_home_centres]{dp_home_centres()}},
+\code{\link{dp_map-class}},
 \code{\link[=dp_new_game]{dp_new_game()}},
 \code{\link[=dp_provinces]{dp_provinces()}},
 \code{\link[=dp_unit]{dp_unit()}},

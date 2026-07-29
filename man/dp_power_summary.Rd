@@ -33,6 +33,7 @@ dp_power_summary(dp_new_game())
 Other analysis:
 \code{\link[=as_tibble.dp_history]{as_tibble.dp_history()}},
 \code{\link[=dp_history]{dp_history()}},
+\code{\link{dp_history-class}},
 \code{\link[=dp_history_append]{dp_history_append()}},
 \code{\link[=dp_power_counts]{dp_power_counts()}},
 \code{\link[=dp_sc_trajectory]{dp_sc_trajectory()}},

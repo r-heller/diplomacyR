@@ -4,14 +4,22 @@
 \alias{dp_sc_trajectory}
 \title{Supply-centre trajectories from a game history}
 \usage{
-dp_sc_trajectory(history)
+dp_sc_trajectory(history, wide = FALSE, powers = .dp_powers())
 }
 \arguments{
 \item{history}{A \link{dp_history} object.}
+
+\item{wide}{Return one column per power instead of one row per power.
+Default \code{FALSE}.}
+
+\item{powers}{Powers to include as columns when \code{wide = TRUE}. Defaults to
+the seven Great Powers, so the shape of the result does not depend on who
+happens to have survived.}
 }
 \value{
-A tibble with columns \code{turn}, \code{season}, \code{year}, \code{power} and
-\code{centres}, taken at the movement phases only.
+A tibble taken at the movement phases only. In long form the columns
+are \code{turn}, \code{season}, \code{year}, \code{power} and \code{centres}; in wide form they are
+\code{turn}, \code{season}, \code{year} and one integer column per power.
 }
 \description{
 Supply-centre trajectories from a game history
@@ -19,11 +27,13 @@ Supply-centre trajectories from a game history
 \examples{
 h <- dp_play(bots = "hold", max_years = 2)
 dp_sc_trajectory(h)
+dp_sc_trajectory(h, wide = TRUE)
 }
 \seealso{
 Other analysis:
 \code{\link[=as_tibble.dp_history]{as_tibble.dp_history()}},
 \code{\link[=dp_history]{dp_history()}},
+\code{\link{dp_history-class}},
 \code{\link[=dp_history_append]{dp_history_append()}},
 \code{\link[=dp_power_counts]{dp_power_counts()}},
 \code{\link[=dp_power_summary]{dp_power_summary()}},

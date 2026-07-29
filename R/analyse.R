@@ -33,24 +33,28 @@ dp_stats <- function(sim, what = c("power", "outcome", "length")) {
     mean_centres = numeric(0), max_centres = integer(0)
   )
   if (nrow(sim$centres) == 0L) return(empty)
-  cent <- sim$centres
   won <- sim$games$winner
-  powers <- sort(unique(cent$power))
-  n_games <- length(unique(cent$game))
-  out <- lapply(powers, function(p) {
-    rows <- cent[cent$power == p, , drop = FALSE]
-    tibble::tibble(
-      power = p,
+  n_games <- length(unique(sim$centres$game))
+  sim$centres |>
+    dplyr::group_by(.data$power) |>
+    dplyr::summarise(
       games = n_games,
-      solos = sum(!is.na(won) & won == p),
-      win_rate = sum(!is.na(won) & won == p) / n_games,
-      survival_rate = mean(rows$centres > 0L | rows$units > 0L),
-      mean_centres = mean(rows$centres),
-      max_centres = max(rows$centres)
-    )
-  })
-  out <- do.call(rbind, out)
-  out[order(-out$win_rate, -out$mean_centres, out$power), , drop = FALSE]
+      survival_rate = mean(.data$centres > 0L | .data$units > 0L),
+      mean_centres = mean(.data$centres),
+      max_centres = max(.data$centres),
+      .groups = "drop"
+    ) |>
+    dplyr::mutate(
+      solos = vapply(.data$power, function(p) sum(!is.na(won) & won == p),
+                     integer(1)),
+      win_rate = .data$solos / .data$games
+    ) |>
+    dplyr::select(
+      "power", "games", "solos", "win_rate", "survival_rate", "mean_centres",
+      "max_centres"
+    ) |>
+    dplyr::arrange(dplyr::desc(.data$win_rate),
+                   dplyr::desc(.data$mean_centres), .data$power)
 }
 
 #' @noRd
@@ -120,20 +124,17 @@ dp_power_summary.dp_history <- function(x, ...) {
       mean_centres = numeric(0)
     ))
   }
-  powers <- sort(unique(tab$power))
-  out <- lapply(powers, function(p) {
-    rows <- tab[tab$power == p, , drop = FALSE]
-    tibble::tibble(
-      power = p,
-      turns = nrow(rows),
-      start_centres = rows$centres[1],
-      final_centres = rows$centres[nrow(rows)],
-      peak_centres = max(rows$centres),
-      mean_centres = mean(rows$centres)
-    )
-  })
-  out <- do.call(rbind, out)
-  out[order(-out$final_centres, out$power), , drop = FALSE]
+  tab |>
+    dplyr::group_by(.data$power) |>
+    dplyr::summarise(
+      turns = dplyr::n(),
+      start_centres = dplyr::first(.data$centres),
+      final_centres = dplyr::last(.data$centres),
+      peak_centres = max(.data$centres),
+      mean_centres = mean(.data$centres),
+      .groups = "drop"
+    ) |>
+    dplyr::arrange(dplyr::desc(.data$final_centres), .data$power)
 }
 
 #' @rdname dp_power_summary
@@ -146,22 +147,46 @@ dp_power_summary.dp_sim <- function(x, ...) {
 #' Supply-centre trajectories from a game history
 #'
 #' @param history A [dp_history] object.
-#' @return A tibble with columns `turn`, `season`, `year`, `power` and
-#'   `centres`, taken at the movement phases only.
+#' @param wide Return one column per power instead of one row per power.
+#'   Default `FALSE`.
+#' @param powers Powers to include as columns when `wide = TRUE`. Defaults to
+#'   the seven Great Powers, so the shape of the result does not depend on who
+#'   happens to have survived.
+#' @return A tibble taken at the movement phases only. In long form the columns
+#'   are `turn`, `season`, `year`, `power` and `centres`; in wide form they are
+#'   `turn`, `season`, `year` and one integer column per power.
 #' @export
 #' @family analysis
 #' @examples
 #' h <- dp_play(bots = "hold", max_years = 2)
 #' dp_sc_trajectory(h)
-dp_sc_trajectory <- function(history) {
+#' dp_sc_trajectory(h, wide = TRUE)
+dp_sc_trajectory <- function(history, wide = FALSE, powers = .dp_powers()) {
   .check_class(history, "dp_history")
+  .check_flag(wide)
+  long <- tibble::tibble(
+    turn = integer(0), season = character(0), year = integer(0),
+    power = character(0), centres = integer(0)
+  )
   tab <- as_tibble(history)
-  if (nrow(tab) == 0L) {
-    return(tibble::tibble(
-      turn = integer(0), season = character(0), year = integer(0),
-      power = character(0), centres = integer(0)
-    ))
+  if (nrow(tab) > 0L) {
+    tab <- tab[tab$phase == "movement", , drop = FALSE]
+    long <- tab[, c("turn", "season", "year", "power", "centres"),
+                drop = FALSE]
   }
-  tab <- tab[tab$phase == "movement", , drop = FALSE]
-  tab[, c("turn", "season", "year", "power", "centres"), drop = FALSE]
+  if (!wide) return(long)
+
+  blank <- tibble::tibble(turn = integer(0), season = character(0),
+                          year = integer(0))
+  for (p in powers) blank[[p]] <- integer(0)
+  if (nrow(long) == 0L) return(blank)
+
+  out <- long |>
+    tidyr::pivot_wider(
+      id_cols = c("turn", "season", "year"),
+      names_from = "power", values_from = "centres", values_fill = 0L
+    )
+  missing <- setdiff(powers, names(out))
+  for (p in missing) out[[p]] <- 0L
+  out[, c("turn", "season", "year", powers), drop = FALSE]
 }

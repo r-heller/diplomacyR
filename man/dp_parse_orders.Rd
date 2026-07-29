@@ -57,6 +57,7 @@ Other orders:
 \code{\link[=dp_example_orders]{dp_example_orders()}},
 \code{\link[=dp_legal_orders]{dp_legal_orders()}},
 \code{\link[=dp_order]{dp_order()}},
+\code{\link{dp_orders}},
 \code{\link[=format.dp_orders]{format.dp_orders()}},
 \code{\link[=is_dp_orders]{is_dp_orders()}}
 }

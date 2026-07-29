@@ -62,14 +62,14 @@ result <- dp_adjudicate(game, dp_parse_orders(c(
 result$orders[result$orders$loc %in% c("par", "mar", "mun"), ]
 ```
 
-`dp_advance()` applies the result and steps the season, phase and year.
+Every power that was not ordered simply held, which is what the rules say
+happens to a unit with no orders. `dp_advance()` applies the result and steps
+the season, phase and year.
 
 ```{r advance}
-dp_advance(game, result)
+game <- dp_advance(game, result)
+game
 ```
-
-Every power that was not ordered simply held, which is what the rules say
-happens to a unit with no orders.
 
 To watch a whole game instead, hand it to the bots:
 

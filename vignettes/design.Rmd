@@ -138,7 +138,8 @@ itself does not fully determine:
   succeed.
 * **A convoy paradox.** If any order in the cycle is a convoy, the convoys in
   the cycle are disrupted. This is the Szykman rule, and it is the resolution
-  the Diplomacy Adjudicator Test Cases mark as preferred. `vignette("adjudication")` works through the classic example.
+  the Diplomacy Adjudicator Test Cases mark as preferred;
+  `vignette("adjudication")` works through the classic example.
 
 The dependency stack is what makes this tractable. Without it the resolver
 would have to guess about every order in the position; with it, it only ever

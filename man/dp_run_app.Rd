@@ -7,7 +7,8 @@
 dp_run_app(..., call = rlang::caller_env())
 }
 \arguments{
-\item{...}{Passed to \code{\link[shiny:runApp]{shiny::runApp()}}, for example \code{port} or \code{launch.browser}.}
+\item{...}{Passed to \code{\link[shiny:runApp]{shiny::runApp()}}, for example \code{port} or
+\code{launch.browser}.}
 
 \item{call}{Caller environment, for error reporting. Experts only.}
 }

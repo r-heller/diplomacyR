@@ -7,6 +7,15 @@ template:
     link-color: "#5E2C8E"
 
 reference:
+- title: Classes
+  desc: The six S3 objects the package is built from.
+  contents:
+  - dp_game
+  - dp_map-class
+  - dp_orders
+  - dp_result
+  - dp_history-class
+  - dp_sim
 - title: Setup
   desc: The board, the units and a game to play on it.
   contents:

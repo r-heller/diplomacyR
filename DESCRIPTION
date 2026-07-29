@@ -14,6 +14,7 @@ License: MIT + file LICENSE
 URL: https://github.com/r-heller/diplomacyR, https://r-heller.github.io/diplomacyR/
 BugReports: https://github.com/r-heller/diplomacyR/issues
 Encoding: UTF-8
+Language: en-GB
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.1.0)
 Imports:

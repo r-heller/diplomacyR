@@ -67,3 +67,37 @@ test_that("bad arguments abort", {
                "whole number")
   expect_error(dp_stats("not a sim"), "dp_sim")
 })
+
+test_that("standoffs are tallied as counts, not missing values", {
+  sim <- dp_simulate(n = 2, bots = "random", max_years = 3, seed = 21,
+                     verbose = FALSE)
+  expect_type(sim$contests$contests, "integer")
+  expect_false(anyNA(sim$contests$contests))
+  if (nrow(sim$contests) > 0L) {
+    expect_true(all(sim$contests$contests >= 1L))
+    expect_true(all(sim$contests$province %in% dp_map()$provinces$code))
+    expect_true(!is.unsorted(rev(sim$contests$contests)))
+  }
+})
+
+test_that("constructors return their value visibly", {
+  vis <- function(expr) withVisible(expr)$visible
+  expect_true(vis(dp_map()))
+  expect_true(vis(dp_new_game()))
+  expect_true(vis(dp_order("France", "hold", "par")))
+  expect_true(vis(dp_adjudicate(dp_new_game(), NULL)))
+  expect_true(vis(dp_advance(dp_new_game(), dp_adjudicate(dp_new_game(), NULL))))
+  expect_true(vis(dp_history()))
+  expect_true(vis(dp_simulate(n = 0, verbose = FALSE)))
+})
+
+test_that("supply-centre trajectories pivot to a stable wide shape", {
+  h <- dp_play(bots = "hold", max_years = 2)
+  wide <- dp_sc_trajectory(h, wide = TRUE)
+  expect_s3_class(wide, "tbl_df")
+  expect_equal(names(wide), c("turn", "season", "year", dp_map()$powers))
+  expect_equal(nrow(wide), nrow(dp_sc_trajectory(h)) / 7L)
+  empty <- dp_sc_trajectory(dp_history(), wide = TRUE)
+  expect_equal(names(empty), names(wide))
+  expect_equal(nrow(empty), 0L)
+})

@@ -30,6 +30,7 @@ dp_stats(sim, "outcome")
 }
 \seealso{
 Other simulation:
+\code{\link{dp_sim}},
 \code{\link[=dp_simulate]{dp_simulate()}},
 \code{\link[=is_dp_sim]{is_dp_sim()}}
 }

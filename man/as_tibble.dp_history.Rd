@@ -27,6 +27,7 @@ as_tibble(h)
 \seealso{
 Other analysis:
 \code{\link[=dp_history]{dp_history()}},
+\code{\link{dp_history-class}},
 \code{\link[=dp_history_append]{dp_history_append()}},
 \code{\link[=dp_power_counts]{dp_power_counts()}},
 \code{\link[=dp_power_summary]{dp_power_summary()}},

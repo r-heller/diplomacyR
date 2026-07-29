@@ -6,7 +6,8 @@
 #' editor with live legality checking, a turn adjudicator, a replayable
 #' history, analysis charts and a batch-simulation runner.
 #'
-#' @param ... Passed to [shiny::runApp()], for example `port` or `launch.browser`.
+#' @param ... Passed to [shiny::runApp()], for example `port` or
+#'   `launch.browser`.
 #' @param call Caller environment, for error reporting. Experts only.
 #' @return Invisibly `NULL`. Called for the side effect of running the app.
 #' @export
@@ -23,8 +24,8 @@ dp_run_app <- function(..., call = rlang::caller_env()) {
                             quietly = TRUE)]
   if (length(missing) > 0L) {
     cli::cli_abort(
-      c("The application needs {?package/packages} {.pkg {missing}}.",
-        i = 'Install {?it/them} with {.code install.packages(c({paste0(dQuote(missing, FALSE), collapse = ", ")}))}.'),
+      c("The application needs the {.pkg {missing}} package{?s}.",
+        i = "Install {?it/them} with {.fn install.packages} first."),
       call = call
     )
   }

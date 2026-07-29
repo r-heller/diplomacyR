@@ -13,7 +13,7 @@ new_dp_history <- function(turns = list()) {
 #'
 #' @param x A candidate `dp_history`.
 #' @param call Caller environment, for error reporting.
-#' @return `x`, invisibly validated.
+#' @return `x`, validated.
 #' @noRd
 validate_dp_history <- function(x, call = rlang::caller_env()) {
   .check_class(x, "dp_history", call = call)
@@ -21,7 +21,7 @@ validate_dp_history <- function(x, call = rlang::caller_env()) {
     cli::cli_abort("A {.cls dp_history} must hold a list of turns.",
                    call = call)
   }
-  invisible(x)
+  x
 }
 
 #' Start an empty game history
