@@ -198,6 +198,9 @@ dp_adjacent <- function(map, loc, unit_type = c("army", "fleet"),
   .check_string(loc, call = call)
   unit_type <- rlang::arg_match(unit_type, error_call = call)
   loc <- tolower(loc)
+  if (!.province(loc) %in% map$provinces$code) {
+    cli::cli_abort("Unknown province {.val {(.province(loc))}}.", call = call)
+  }
   if (unit_type == "army") {
     out <- map$army_adj[[.province(loc)]]
   } else {

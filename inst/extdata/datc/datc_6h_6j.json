@@ -49,6 +49,43 @@
           "loc": "gre"
         }
       ],
+      "prestate_results": [
+        {
+          "success": false,
+          "power": "Austria",
+          "order": "f tri h"
+        },
+        {
+          "success": true,
+          "power": "Austria",
+          "order": "a ser h"
+        },
+        {
+          "success": false,
+          "power": "Turkey",
+          "order": "f gre h"
+        },
+        {
+          "success": true,
+          "power": "Italy",
+          "order": "a ven s a tyr-tri"
+        },
+        {
+          "success": true,
+          "power": "Italy",
+          "order": "a tyr-tri"
+        },
+        {
+          "success": true,
+          "power": "Italy",
+          "order": "f ion-gre"
+        },
+        {
+          "success": true,
+          "power": "Italy",
+          "order": "f aeg s f ion-gre"
+        }
+      ],
       "sc_owners": [],
       "orders": ["Austria: f tri-alb", "Austria: a ser s f tri-alb", "Turkey: f gre-alb"],
       "poststate": [
@@ -134,6 +171,53 @@
           "loc": "hol"
         }
       ],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "England",
+          "order": "a lvp-edi"
+        },
+        {
+          "success": true,
+          "power": "England",
+          "order": "f yor s a lvp-edi"
+        },
+        {
+          "success": false,
+          "power": "England",
+          "order": "f nwy h"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a kie s a ruh-hol"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a ruh-hol"
+        },
+        {
+          "success": false,
+          "power": "Russia",
+          "order": "f edi h"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "a swe s a fin-nwy"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "a fin-nwy"
+        },
+        {
+          "success": false,
+          "power": "Russia",
+          "order": "f hol h"
+        }
+      ],
       "sc_owners": [],
       "orders": ["England: f nwy-nth", "Russia: f edi-nth", "Russia: f hol s f edi-nth"],
       "poststate": [
@@ -199,6 +283,28 @@
           "loc": "hol"
         }
       ],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "England",
+          "order": "f nth h"
+        },
+        {
+          "success": false,
+          "power": "England",
+          "order": "a hol h"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "f kie s a ruh-hol"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a ruh-hol"
+        }
+      ],
       "sc_owners": [],
       "orders": ["England: a hol-yor", "England: f nth c a hol-yor"],
       "poststate": [
@@ -247,6 +353,28 @@
           "power": "England",
           "type": "army",
           "loc": "hol"
+        }
+      ],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "England",
+          "order": "f nth h"
+        },
+        {
+          "success": false,
+          "power": "England",
+          "order": "a hol h"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "f kie s a ruh-hol"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a ruh-hol"
         }
       ],
       "sc_owners": [],
@@ -299,6 +427,23 @@
           "loc": "ank"
         }
       ],
+      "prestate_results": [
+        {
+          "success": false,
+          "power": "Turkey",
+          "order": "f ank h"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "f con s a ruh-hol"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "f bla-ank"
+        }
+      ],
       "sc_owners": [],
       "orders": "Turkey: f ank-bla",
       "poststate": [
@@ -337,6 +482,23 @@
           "power": "Turkey",
           "type": "fleet",
           "loc": "ank"
+        }
+      ],
+      "prestate_results": [
+        {
+          "success": false,
+          "power": "Turkey",
+          "order": "f ank h"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "f con s a ruh-hol"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "f bla-ank"
         }
       ],
       "sc_owners": [],
@@ -387,6 +549,33 @@
           "power": "Italy",
           "type": "army",
           "loc": "vie"
+        }
+      ],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "Austria",
+          "order": "a bud s a tri-vie"
+        },
+        {
+          "success": true,
+          "power": "Austria",
+          "order": "a tri-vie"
+        },
+        {
+          "success": false,
+          "power": "Germany",
+          "order": "a mun-boh"
+        },
+        {
+          "success": false,
+          "power": "Germany",
+          "order": "a sil-boh"
+        },
+        {
+          "success": false,
+          "power": "Italy",
+          "order": "a vie h"
         }
       ],
       "sc_owners": [],
@@ -454,6 +643,38 @@
           "loc": "boh"
         }
       ],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "Austria",
+          "order": "a bud s a tri-vie"
+        },
+        {
+          "success": true,
+          "power": "Austria",
+          "order": "a tri-vie"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a mun s a sil-boh"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a sil-boh"
+        },
+        {
+          "success": false,
+          "power": "Italy",
+          "order": "a vie h"
+        },
+        {
+          "success": false,
+          "power": "Italy",
+          "order": "a boh h"
+        }
+      ],
       "sc_owners": [],
       "orders": ["Italy: a vie-tyr", "Italy: a boh-tyr"],
       "poststate": [
@@ -476,11 +697,6 @@
           "power": "Germany",
           "type": "army",
           "loc": "boh"
-        },
-        {
-          "power": "all",
-          "type": "fleet",
-          "loc": "units"
         }
       ],
       "poststate_dislodged": []
@@ -537,6 +753,53 @@
           "power": "Russia",
           "type": "fleet",
           "loc": "hol"
+        }
+      ],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "England",
+          "order": "a lvp-edi"
+        },
+        {
+          "success": true,
+          "power": "England",
+          "order": "f yor s a lvp-edi"
+        },
+        {
+          "success": false,
+          "power": "England",
+          "order": "f nwy h"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a kie s a ruh-hol"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a ruh-hol"
+        },
+        {
+          "success": false,
+          "power": "Russia",
+          "order": "f edi h"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "a swe s a fin-nwy"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "a fin-nwy"
+        },
+        {
+          "success": false,
+          "power": "Russia",
+          "order": "f hol h"
         }
       ],
       "sc_owners": [],
@@ -614,6 +877,38 @@
           "loc": "kie"
         }
       ],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "England",
+          "order": "f hel-kie"
+        },
+        {
+          "success": true,
+          "power": "England",
+          "order": "f den s f hel-kie"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a ber-pru"
+        },
+        {
+          "success": false,
+          "power": "Germany",
+          "order": "f kie h"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a sil s a ber-pru"
+        },
+        {
+          "success": false,
+          "power": "Russia",
+          "order": "a pru-ber"
+        }
+      ],
       "sc_owners": [],
       "orders": ["Germany: f kie-ber", "Russia: a pru-war"],
       "poststate": [
@@ -689,6 +984,38 @@
           "loc": "pru"
         }
       ],
+      "prestate_results": [
+        {
+          "success": false,
+          "power": "England",
+          "order": "a kie h"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a ber-kie"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a mun s a ber-kie"
+        },
+        {
+          "success": false,
+          "power": "Germany",
+          "order": "a pru h"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "a war-pru"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "a sil s a war-pru"
+        }
+      ],
       "sc_owners": [],
       "orders": ["England: a kie-ber", "Germany: a pru-ber"],
       "poststate": [
@@ -757,6 +1084,38 @@
           "power": "Italy",
           "type": "army",
           "loc": "mar"
+        }
+      ],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "France",
+          "order": "a gas-mar via convoy"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "a bur s a gas-mar"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "f mao c a gas-mar"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "f wes c a gas-mar"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "f lyo c a gas-mar"
+        },
+        {
+          "success": false,
+          "power": "Italy",
+          "order": "a mar h"
         }
       ],
       "sc_owners": [],
@@ -854,6 +1213,58 @@
           "loc": "eng"
         }
       ],
+      "prestate_results": [
+        {
+          "success": false,
+          "power": "England",
+          "order": "a lvp-edi via convoy"
+        },
+        {
+          "success": true,
+          "power": "England",
+          "order": "f iri c a lvp-edi"
+        },
+        {
+          "success": true,
+          "power": "England",
+          "order": "f eng c a lvp-edi"
+        },
+        {
+          "success": true,
+          "power": "England",
+          "order": "f nth c a lvp-edi"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "f bre-eng"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "f mao s f bre-eng"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "a edi-lvp via convoy"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "f nwg c a edi-lvp"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "f nao c a edi-lvp"
+        },
+        {
+          "success": true,
+          "power": "Russia",
+          "order": "a cly s a edi-lvp"
+        }
+      ],
       "sc_owners": [],
       "orders": ["England: f eng-pic", "England: a lvp-edi"],
       "poststate": [
@@ -939,6 +1350,28 @@
           "loc": "pic"
         }
       ],
+      "prestate_results": [
+        {
+          "success": false,
+          "power": "England",
+          "order": "a pic h"
+        },
+        {
+          "success": false,
+          "power": "England",
+          "order": "f eng c a pic-lon"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "a par-pic"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "a bre s a par-pic"
+        }
+      ],
       "sc_owners": [],
       "orders": "England: a pic-lon",
       "poststate": [
@@ -1004,6 +1437,43 @@
           "loc": "bur"
         }
       ],
+      "prestate_results": [
+        {
+          "success": false,
+          "power": "England",
+          "order": "a pic h"
+        },
+        {
+          "success": false,
+          "power": "England",
+          "order": "f eng c a pic-bel"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "a par-pic"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "a bre s a par-pic"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "a bur h"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a mun s a mar-bur"
+        },
+        {
+          "success": true,
+          "power": "Germany",
+          "order": "a mar-bur"
+        }
+      ],
       "sc_owners": [],
       "orders": ["England: a pic-bel", "France: a bur-bel"],
       "poststate": [
@@ -1053,6 +1523,23 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [
+        {
+          "success": true,
+          "power": "France",
+          "order": "f spa/sc-por"
+        },
+        {
+          "success": true,
+          "power": "France",
+          "order": "f mao s f spa/sc-por"
+        },
+        {
+          "success": false,
+          "power": "England",
+          "order": "f por hold"
+        }
+      ],
       "sc_owners": [],
       "orders": [],
       "poststate": [
@@ -1103,6 +1590,33 @@
           "loc": "wes"
         }
       ],
+      "prestate_results": [
+        {
+          "success": false,
+          "power": "France",
+          "order": "f mao-spa"
+        },
+        {
+          "success": false,
+          "power": "France",
+          "order": "f gas-spa/nc"
+        },
+        {
+          "success": false,
+          "power": "France",
+          "order": "f wes h"
+        },
+        {
+          "success": true,
+          "power": "Italy",
+          "order": "f tun s f tys-wes"
+        },
+        {
+          "success": true,
+          "power": "Italy",
+          "order": "f tys-wes"
+        }
+      ],
       "sc_owners": [],
       "orders": "France: f wes-spa/sc",
       "poststate": [
@@ -1147,6 +1661,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1194,6 +1709,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1227,6 +1743,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Germany",
@@ -1260,6 +1777,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1293,6 +1811,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1326,6 +1845,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Germany",
@@ -1359,6 +1879,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1406,6 +1927,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "France",
@@ -1445,6 +1967,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "France",
@@ -1489,6 +2012,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1551,6 +2075,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1613,6 +2138,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1675,6 +2201,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1732,6 +2259,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1785,6 +2313,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1837,6 +2366,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1871,6 +2401,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1915,6 +2446,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Italy",
@@ -1977,6 +2509,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Italy",

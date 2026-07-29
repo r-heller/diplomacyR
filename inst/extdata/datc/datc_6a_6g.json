@@ -18,6 +18,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "England: f nth-pic",
       "poststate": [
@@ -42,6 +43,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "England: a lvp-iri",
       "poststate": [
@@ -66,6 +68,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "Germany: f kie-mun",
       "poststate": [
@@ -105,6 +108,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f tri s a bud", "Austria: a bud h", "Russia: a gal-bud", "Russia: a rum s a gal-bud"],
       "poststate": [
@@ -145,6 +149,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "Germany: f kie-kie",
       "poststate": [
@@ -189,6 +194,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth convoys a yor - yor", "England: a yor-yor", "England: a lvp supports a yor-yor", "Germany: f lon-yor", "Germany: a wal supports f lon-yor"],
       "poststate": [
@@ -249,6 +255,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f lon-yor", "England: f nth convoys a yor - yor", "England: a yor-yor", "England: a lvp supports a yor-yor"],
       "poststate": [
@@ -288,6 +295,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "Germany: f lon-nth",
       "poststate": [
@@ -317,6 +325,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f lon-bel", "England: f nth convoys a lon-bel"],
       "poststate": [
@@ -351,6 +360,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f lon-bel", "England: f nth convoys f lon-bel"],
       "poststate": [
@@ -390,6 +400,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Italy: a ven-tri", "Italy: a tyr supports a ven-tri", "Austria: f tri supports f tri"],
       "poststate": [
@@ -425,6 +436,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "Italy: f rom-ven",
       "poststate": [
@@ -459,6 +471,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a ven hold", "Italy: f rom supports a apu-ven", "Italy: a apu-ven"],
       "poststate": [
@@ -503,6 +516,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a bud supports f tri-ven", "Austria: f tri-ven", "Italy: a ven hold"],
       "poststate": [
@@ -542,6 +556,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a vie-tyr", "Italy: a ven-tyr"],
       "poststate": [
@@ -581,6 +596,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a vie-tyr", "Italy: a ven-tyr", "Germany: a mun-tyr"],
       "poststate": [
@@ -615,6 +631,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "France: f por-spa",
       "poststate": [
@@ -639,6 +656,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "France: f gas-spa",
       "poststate": [
@@ -663,6 +681,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "France: f gas-spa/sc",
       "poststate": [
@@ -697,6 +716,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: f gas-spa/nc", "France: f mar supports f gas-spa/nc", "Italy: f wes-spa/sc"],
       "poststate": [
@@ -741,6 +761,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: f spa/nc supports f mar-lyo", "France: f mar-lyo", "Italy: f lyo hold"],
       "poststate": [
@@ -795,6 +816,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f iri supports f nao-mao", "England: f nao-mao", "France: f spa/nc supports f mao", "France: f mao hold", "Italy: f lyo-spa/sc"],
       "poststate": [
@@ -855,6 +877,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: f por supports f mao - spa", "France: f mao - spa/nc", "Italy: f lyo supports f wes-spa/sc", "Italy: f wes-spa/sc"],
       "poststate": [
@@ -909,6 +932,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: f por supports f gas-spa", "France: f gas-spa/nc", "Italy: f lyo supports f wes-spa/sc", "Italy: f wes-spa/sc"],
       "poststate": [
@@ -963,6 +987,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: f por supports f mao - spa/nc", "France: f mao - spa/sc", "Italy: f lyo supports f wes-spa/sc", "Italy: f wes-spa/sc"],
       "poststate": [
@@ -1002,6 +1027,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "France: f spa/nc-lyo",
       "poststate": [
@@ -1026,6 +1052,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "France: f spa/sc-lyo",
       "poststate": [
@@ -1050,6 +1077,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": "France: a gas-spa/nc",
       "poststate": [
@@ -1079,6 +1107,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Turkey: f bul/sc-con", "Turkey: f con-bul/ec"],
       "poststate": [
@@ -1108,6 +1137,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [
         {
           "power": "Russia",
@@ -1151,6 +1181,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Turkey: f ank-con", "Turkey: a con-smy", "Turkey: a smy-ank"],
       "poststate": [
@@ -1200,6 +1231,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Turkey: f ank-con", "Turkey: a con-smy", "Turkey: a smy-ank", "Turkey: a bul s f ank-con"],
       "poststate": [
@@ -1254,6 +1286,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Turkey: f ank-con", "Turkey: a con-smy", "Turkey: a smy-ank", "Turkey: a bul-con"],
       "poststate": [
@@ -1323,6 +1356,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a tri-ser", "Austria: a ser-bul", "Turkey: a bul-tri", "Turkey: f aeg c a bul-tri", "Turkey: f ion c a bul-tri", "Turkey: f adr c a bul-tri", "Italy: f nap-ion"],
       "poststate": [
@@ -1412,6 +1446,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a tri-ser", "Austria: a ser-bul", "Turkey: a bul-tri", "Turkey: f aeg c a bul-tri", "Turkey: f ion c a bul-tri", "Turkey: f adr c a bul-tri", "Italy: f nap-ion", "Italy: f tun s f nap-ion"],
       "poststate": [
@@ -1487,6 +1522,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-bel", "England: a lon-bel", "France: f eng c a bel-lon", "France: a bel-lon"],
       "poststate": [
@@ -1546,6 +1582,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-bel", "England: a lon-bel", "France: f eng c a bel-lon", "France: a bel-lon", "France: a bur-bel"],
       "poststate": [
@@ -1605,6 +1642,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f adr s a tri-ven", "Austria: a tri-ven", "Italy: a ven h", "Italy: a tyr s a ven"],
       "poststate": [
@@ -1664,6 +1702,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f adr s a tri-ven", "Austria: a tri-ven", "Austria: a vie-tyr", "Italy: a ven h", "Italy: a tyr s a ven"],
       "poststate": [
@@ -1724,6 +1763,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f adr s a tri-ven", "Austria: a tri-ven", "Italy: a ven h", "Italy: f ion-adr"],
       "poststate": [
@@ -1778,6 +1818,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber s f kie", "Germany: f kie s a ber", "Russia: f bal s a pru-ber", "Russia: a pru-ber"],
       "poststate": [
@@ -1837,6 +1878,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber s a mun-sil", "Germany: f kie s a ber", "Germany: a mun-sil", "Russia: f bal s a pru-ber", "Russia: a pru-ber"],
       "poststate": [
@@ -1901,6 +1943,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber-swe", "Germany: f bal c a ber-swe", "Germany: f pru s f bal", "Russia: f lvn-bal", "Russia: f bot s f lvn-bal"],
       "poststate": [
@@ -1965,6 +2008,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: f bal-swe", "Germany: f pru s f bal", "Russia: f lvn-bal", "Russia: f bot s f lvn-bal", "Russia: a fin-swe"],
       "poststate": [
@@ -2030,6 +2074,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f ion h", "Austria: a ser s a alb-gre", "Austria: a alb-gre", "Turkey: a gre-nap", "Turkey: a bul s a gre"],
       "poststate": [
@@ -2090,6 +2135,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Italy: a ven-tri", "Italy: a tyr s a ven-tri", "Austria: f alb s a tri-ser", "Austria: f tri h"],
       "poststate": [
@@ -2140,6 +2186,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber h", "Germany: f kie-ber", "Germany: a mun s f kie-ber"],
       "poststate": [
@@ -2189,6 +2236,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber-pru", "Germany: f kie-ber", "Germany: a mun s f kie-ber", "Russia: a war-pru"],
       "poststate": [
@@ -2238,6 +2286,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f tri h", "Austria: a vie s a ven-tri", "Italy: a ven-tri"],
       "poststate": [
@@ -2287,6 +2336,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f tri-adr", "Austria: a vie s a ven-tri", "Italy: a ven-tri", "Italy: f apu-adr"],
       "poststate": [
@@ -2346,6 +2396,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f tri h", "Austria: a vie s a ven-tri", "Italy: a ven-tri", "Italy: a tyr s a ven-tri", "Italy: f adr s a ven-tri"],
       "poststate": [
@@ -2401,6 +2452,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Russia: f con s f bla-ank", "Russia: f bla-ank", "Turkey: f ank-con"],
       "poststate": [
@@ -2451,6 +2503,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a lon h", "England: f nth c a bel-lon", "France: f eng s a bel-lon", "France: a bel-lon"],
       "poststate": [
@@ -2511,6 +2564,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Russia: f con s f bla-ank", "Russia: f bla-ank", "Turkey: f ank-con", "Turkey: a smy s f ank-con", "Turkey: a arm-ank"],
       "poststate": [
@@ -2581,6 +2635,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Russia: f con s f bla-ank", "Russia: f bla-ank", "Russia: a bul s f con", "Turkey: f ank-con", "Turkey: a smy s f ank-con", "Turkey: a arm-ank"],
       "poststate": [
@@ -2646,6 +2701,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Russia: f con s f bla-ank", "Russia: f bla-ank", "Russia: a smy s f ank-con", "Turkey: f ank-con"],
       "poststate": [
@@ -2701,6 +2757,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f lon s f nth-eng", "England: f nth-eng", "England: a yor-lon", "France: f eng h"],
       "poststate": [
@@ -2766,6 +2823,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f tri h", "Italy: a ven-tri", "Italy: a tyr s a ven-tri", "Germany: a mun-tyr", "Russia: a sil-mun", "Russia: a ber s a sil-mun"],
       "poststate": [
@@ -2831,6 +2889,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: f kie-mun", "Germany: a bur s a mun-kie", "Russia: a mun-kie", "Russia: a ber s a mun-kie"],
       "poststate": [
@@ -2886,6 +2945,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Italy: f lyo-spa/sc", "Italy: f wes s f lyo-spa/sc", "France: f spa/nc-lyo", "France: f mar s f spa/nc-lyo"],
       "poststate": [
@@ -2946,6 +3006,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: a mar-lyo", "France: f spa/sc s a mar-lyo", "Italy: f lyo h", "Turkey: f tys s f wes-lyo", "Turkey: f wes-lyo"],
       "poststate": [
@@ -3006,6 +3067,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber s a pru", "Germany: f kie s a ber", "Russia: f bal s a pru-ber", "Russia: a pru-ber"],
       "poststate": [
@@ -3060,6 +3122,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber s a sil", "Germany: f kie s a ber", "Russia: f bal s a pru-ber", "Russia: a pru-ber"],
       "poststate": [
@@ -3119,6 +3182,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f swe-bal", "England: f den s f swe-bal", "Germany: a ber h", "Russia: f bal c a ber-lvn", "Russia: f pru s f bal"],
       "poststate": [
@@ -3178,6 +3242,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a bud s f rum", "Russia: f rum-hol", "Turkey: f bla-rum", "Turkey: a bul s f bla-rum"],
       "poststate": [
@@ -3232,6 +3297,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a bud s f rum", "Russia: f rum-bul/sc", "Turkey: f bla-rum", "Turkey: a bul s f bla-rum"],
       "poststate": [
@@ -3286,6 +3352,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Italy: f aeg s f con", "Russia: f con-bul", "Turkey: f bla-con", "Turkey: a bul s f bla-con"],
       "poststate": [
@@ -3330,6 +3397,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a rum-arm", "Turkey: f bla s a rum-arm"],
       "poststate": [
@@ -3374,6 +3442,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f edi s a lvp-yor", "England: a lvp-yor", "France: f lon s a yor", "Germany: a yor-hol"],
       "poststate": [
@@ -3428,6 +3497,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a ser-bud", "Austria: a vie-bud", "Russia: a gal s a ser-bud", "Turkey: a bul-ser"],
       "poststate": [
@@ -3492,6 +3562,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber-pru", "Germany: a sil s a ber-pru", "Germany: f bal s a ber-pru", "Italy: a pru s a lvn-pru", "Russia: a war s a lvn-pru", "Russia: a lvn-pru"],
       "poststate": [
@@ -3551,6 +3622,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber-pru", "Germany: a kie-ber", "Germany: a sil s a ber-pru", "Russia: a pru-ber"],
       "poststate": [
@@ -3601,6 +3673,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber-kie", "Germany: f kie-ber", "Germany: a mun s a ber-kie"],
       "poststate": [
@@ -3645,6 +3718,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: a ber-kie", "Germany: a mun s f kie-ber", "England: f kie-ber"],
       "poststate": [
@@ -3724,6 +3798,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: f hol-nth", "Germany: f hel s f hol-nth", "Germany: f ska s f hol-nth", "France: f nth-hol", "France: f bel s f nth-hol", "England: f edi s f nwg-nth", "England: f yor s f nwg-nth", "England: f nwg-nth", "Austria: a kie s a ruh-hol", "Austria: a ruh-hol"],
       "poststate": [
@@ -3843,6 +3918,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: f hol-nth", "Germany: f hel s f hol-nth", "Germany: f ska s f hol-nth", "France: f nth-hol", "France: f bel s f nth-hol", "England: f edi s f nwg-nth", "England: f yor s f nwg-nth", "England: f nwg-nth", "England: f lon s f nwg-nth", "Austria: a kie s a ruh-hol", "Austria: a ruh-hol"],
       "poststate": [
@@ -3948,6 +4024,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Germany: f hol-nth", "Germany: f hel s f hol-nth", "France: f nth-hol", "France: f bel s f nth-hol", "France: f eng s f hol-nth", "Austria: a kie s a ruh-hol", "Austria: a ruh-hol"],
       "poststate": [
@@ -4027,6 +4104,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth h", "England: f yor s f nwy-nth", "Germany: f hol s f hel-nth", "Germany: f hel-nth", "Russia: f ska s f nwy-nth", "Russia: f nwy-nth"],
       "poststate": [
@@ -4101,6 +4179,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth-nwy", "England: f yor s f nwy-nth", "Germany: f hol s f hel-nth", "Germany: f hel-nth", "Russia: f ska s f nwy-nth", "Russia: f nwy-nth"],
       "poststate": [
@@ -4175,6 +4254,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth-nwg", "England: f yor s f nwy-nth", "Germany: f hol s f hel-nth", "Germany: f hel-nth", "Russia: f ska s f nwy-nth", "Russia: f nwy-nth"],
       "poststate": [
@@ -4254,6 +4334,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth-den", "England: f yor s f nwy-nth", "Germany: f hol s f hel-nth", "Germany: f hel-nth", "Germany: f den-hel", "Russia: f ska s f nwy-nth", "Russia: f nwy-nth"],
       "poststate": [
@@ -4338,6 +4419,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: a spa - por via convoy", "France: f mao c a spa-por", "France: f lyo s f por-spa/nc", "Germany: a mar s a gas-spa", "Germany: a gas-spa", "Italy: f por-spa/nc", "Italy: f wes s f por-spa/nc"],
       "poststate": [
@@ -4412,6 +4494,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: a bud-rum", "Austria: a ser s a vie-bud", "Italy: a vie-bud", "Russia: a gal-bud", "Russia: a rum s a gal-bud"],
       "poststate": [
@@ -4486,6 +4569,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f edi s f yor-nth", "England: f yor-nth", "France: f bel-nth", "France: f eng s f bel-nth", "Germany: f nth h", "Russia: f nwg-nth", "Russia: f nwy s f nwg-nth"],
       "poststate": [
@@ -4545,6 +4629,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a lvp-edi", "Russia: f edi-lvp"],
       "poststate": [
@@ -4619,6 +4704,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f hol supports a ruh - kie", "England: a ruh - kie", "France: a kie - ber", "France: a mun supports a kie - ber", "France: a sil supports a kie - ber", "Germany: a ber - kie", "Germany: f den supports a ber - kie", "Germany: f hel supports a ber - kie", "Russia: f bal supports a pru - ber", "Russia: a pru - ber"],
       "poststate": [
@@ -4703,6 +4789,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Turkey: a gre-sev", "Turkey: f aeg c a gre-sev", "Turkey: f con c a gre-sev", "Turkey: f bla c a gre-sev"],
       "poststate": [
@@ -4752,6 +4839,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f eng c a lon-bre", "England: a lon-bre", "France: a par-bre"],
       "poststate": [
@@ -4801,6 +4889,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f eng c a lon-bre", "England: a lon-bre", "England: f mao s a lon-bre", "France: a par-bre"],
       "poststate": [
@@ -4850,6 +4939,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "Germany: f ska-nth"],
       "poststate": [
@@ -4909,6 +4999,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "France: f eng-nth", "France: f bel s f eng-nth", "Germany: f ska-nth", "Germany: f den s f ska-nth"],
       "poststate": [
@@ -4993,6 +5084,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "Germany: a hol s a bel", "Germany: a bel s a hol", "Germany: f hel s f ska-nth", "Germany: f ska-nth", "France: a pic-bel", "France: a bur s a pic-bel"],
       "poststate": [
@@ -5068,6 +5160,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "Germany: f hel s f ska-nth", "Germany: f ska-nth"],
       "poststate": [
@@ -5128,6 +5221,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-hol", "England: a lon-hol", "Germany: f hel s f ska-nth", "Germany: f ska-nth", "Germany: a bel-hol"],
       "poststate": [
@@ -5193,6 +5287,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f eng c a lon-bel", "England: f nth c a lon-bel", "England: a lon-bel", "France: f bre s f mao-eng", "France: f mao-eng"],
       "poststate": [
@@ -5258,6 +5353,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-bel", "England: a lon-bel", "Germany: f eng c a lon-bel", "France: f bre s f mao-eng", "France: f mao-eng"],
       "poststate": [
@@ -5323,6 +5419,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a lon-bel", "Germany: f eng c a lon-bel", "Russia: f nth c a lon-bel", "France: f bre s f mao-eng", "France: f mao-eng"],
       "poststate": [
@@ -5388,6 +5485,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f eng c a lon-bel", "England: a lon-bel", "England: f iri c a lon-bel", "France: f nao s f mao-iri", "France: f mao-iri"],
       "poststate": [
@@ -5453,6 +5551,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a lon-bel", "England: f nth c a lon-bel", "France: f eng c a lon-bel", "Germany: f hol s f den-nth", "Germany: f den-nth"],
       "poststate": [
@@ -5513,6 +5612,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f lon s f wal-eng", "England: f wal-eng", "France: a bre-lon", "France: f eng c a bre-lon"],
       "poststate": [
@@ -5583,6 +5683,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f lon s f wal-eng", "England: f wal-eng", "France: a bre-lon", "France: f eng c a bre-lon", "Italy: f iri c a naf-wal", "Italy: f mao c a naf-wal", "Italy: f naf-wal"],
       "poststate": [
@@ -5663,6 +5764,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f lon s f wal-eng", "England: f wal-eng", "France: a bre-lon", "France: f eng c a bre-lon", "Germany: f nth s f bel-eng", "Germany: f bel-eng"],
       "poststate": [
@@ -5742,6 +5844,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f lon s f wal-eng", "England: f wal-eng", "France: a bre-lon", "France: f eng c a bre-lon", "France: f yor s a bre-lon", "Germany: f nth s f bel-eng", "Germany: f bel-eng"],
       "poststate": [
@@ -5821,6 +5924,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth c a lon-bel", "England: a lon-bel", "England: f eng s a lon-bel", "France: f bel s f nth", "Germany: f hel s f ska-nth", "Germany: f ska-nth"],
       "poststate": [
@@ -5890,6 +5994,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: a tun-nap", "France: f tys c a tun-nap", "France: f ion c a tun-nap", "Italy: f nap s f rom-tys", "Italy: f rom-tys"],
       "poststate": [
@@ -5959,6 +6064,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: a tun-nap", "France: f tys c a tun-nap", "Italy: f nap s f ion", "Italy: f ion c a tun-nap", "Turkey: f aeg s f eas-ion", "Turkey: f eas-ion"],
       "poststate": [
@@ -6044,6 +6150,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Russia: a edi s a nwy-cly", "Russia: f nwg c a nwy-cly", "Russia: a nwy-cly", "France: f iri s f mao-nao", "France: f mao-nao", "England: a lvp-cly via convoy", "England: f nao c a lvp-cly", "England: f cly s f nao"],
       "poststate": [
@@ -6128,6 +6235,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f edi-nth", "England: f lon s f edi-nth", "France: a bre-lon", "France: f eng c a bre-lon", "Germany: f bel s f pic-eng", "Germany: f pic-eng", "Russia: a nwy-bel", "Russia: f nth c a nwy-bel"],
       "poststate": [
@@ -6238,6 +6346,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f edi-nth", "England: f lon s f edi-nth", "France: a bre-lon", "France: f eng c a bre-lon", "Germany: f bel s f pic-eng", "Germany: f pic-eng", "Russia: a nwy-bel", "Russia: f nth c a nwy-bel", "Russia: f nwg c a stp-edi", "Russia: f bar c a stp-edi", "Russia: a stp-edi"],
       "poststate": [
@@ -6358,6 +6467,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f edi-nth", "England: f yor s f edi-nth", "France: a bre-lon", "France: f eng c a bre-lon", "Germany: f bel s f eng", "Germany: f lon s f nth", "Italy: f mao-eng", "Italy: f iri s f mao-eng", "Russia: a nwy-bel", "Russia: f nth c a nwy-bel"],
       "poststate": [
@@ -6467,6 +6577,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f edi-nth", "England: f lon s f edi-nth", "England: f iri-eng", "England: f mao s f iri-eng", "France: a bre-lon", "France: f eng c a bre-lon", "France: f bel s f eng", "Russia: a nwy-bel", "Russia: f nth c a nwy-bel"],
       "poststate": [
@@ -6542,6 +6653,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a nwy-swe", "England: f ska c a nwy-swe", "Russia: a swe-nwy"],
       "poststate": [
@@ -6586,6 +6698,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a nwy-swe", "Russia: f swe-nwy", "Germany: f ska c a nwy-swe"],
       "poststate": [
@@ -6640,6 +6753,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: f bre-eng", "France: a pic-bel", "France: a bur s a pic-bel", "France: f mao s f bre-eng", "England: f eng c a pic-bel"],
       "poststate": [
@@ -6710,6 +6824,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: f bre-eng", "France: a pic-bel", "France: a bur s a pic-bel", "France: f mao s f bre-eng", "England: f eng c a pic-bel", "England: a bel-pic"],
       "poststate": [
@@ -6775,6 +6890,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Italy: a rom-apu", "Italy: f tys c a apu-rom", "Turkey: a apu-rom", "Turkey: f ion c a apu-rom"],
       "poststate": [
@@ -6844,6 +6960,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a lvp-edi", "England: f eng c a lvp-edi", "Germany: a edi-lvp", "France: f iri h", "France: f nth h", "Russia: f nwg c a lvp-edi", "Russia: f nao c a lvp-edi"],
       "poststate": [
@@ -6913,6 +7030,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f ska c a swe-nwy", "England: f nwy-swe", "Russia: a swe-nwy", "Russia: f bot c a swe-nwy"],
       "poststate": [
@@ -6962,6 +7080,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["France: a bel-hol via convoy", "England: f nth-hel", "England: a hol-kie"],
       "poststate": [
@@ -7011,6 +7130,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a nwy-swe", "England: f ska c a nwy-swe", "England: f fin s a nwy-swe", "Russia: a swe-nwy"],
       "poststate": [
@@ -7085,6 +7205,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a nwy-swe via convoy", "England: f den s a nwy-swe", "England: f fin s a nwy-swe", "Germany: f ska c a nwy-swe", "Russia: a swe-nwy", "Russia: f bar s a swe-nwy", "France: f nwg-nwy", "France: f nth s f nwg-nwy"],
       "poststate": [
@@ -7174,6 +7295,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a nwy-swe", "England: f den s a nwy-swe", "England: f fin s a nwy-swe", "Germany: f ska c a nwy-swe", "Russia: a swe-nwy", "Russia: f bar s a swe-nwy", "France: f nwg-nwy", "France: f nth s f nwg-nwy"],
       "poststate": [
@@ -7248,6 +7370,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nwy s f nth-ska", "England: f nth-ska", "Russia: a swe-nwy", "Russia: f ska c a swe-nwy", "Russia: f bar s a swe-nwy"],
       "poststate": [
@@ -7313,6 +7436,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nwy s f nth-ska", "England: f nth-ska", "Russia: a swe-nwy via convoy", "Russia: f ska c a swe-nwy", "Russia: f bar s a swe-nwy"],
       "poststate": [
@@ -7388,6 +7512,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a lvp-edi via convoy", "England: f nao c a lvp-edi", "England: f nwg c a lvp-edi", "Germany: a edi-lvp via convoy", "Germany: f nth c a edi-lvp", "Germany: f eng c a edi-lvp", "Germany: f iri c a edi-lvp"],
       "poststate": [
@@ -7457,6 +7582,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["Austria: f adr c a tri-ven", "Austria: a tri-ven", "Italy: a ven s f alb-tri", "Italy: f alb-tri"],
       "poststate": [
@@ -7532,6 +7658,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a nwy - swe", "England: f den supports a nwy - swe", "England: f fin supports a nwy - swe", "France: f nwg - nwy", "France: f nth supports f nwg - nwy", "Germany: f ska convoys a swe - nwy", "Russia: a swe - nwy via convoy", "Russia: f bar supports a swe - nwy"],
       "poststate": [
@@ -7611,6 +7738,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth convoys a lon - bel", "England: a hol supports a lon - bel", "England: a yor - lon", "England: a lon - bel via convoy", "France: f eng convoys a bel - lon", "France: a bel - lon via convoy"],
       "poststate": [
@@ -7691,6 +7819,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a nwy - swe", "England: a den supports a nwy - swe", "England: f bal supports a nwy - swe", "England: f nth - nwy", "Russia: a swe - nwy via convoy", "Russia: f ska convoys a swe - nwy", "Russia: f nwg supports a swe - nwy"],
       "poststate": [
@@ -7775,6 +7904,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: a nwy - swe via convoy", "England: a den supports a nwy - swe", "England: f bal supports a nwy - swe", "England: f ska convoys a nwy - swe", "England: f nth - nwy", "Russia: a swe - nwy", "Russia: f nwg supports a swe - nwy"],
       "poststate": [
@@ -7864,6 +7994,7 @@
         }
       ],
       "prestate_dislodged": [],
+      "prestate_results": [],
       "sc_owners": [],
       "orders": ["England: f nth convoys a lon - bel", "England: a hol supports a lon - bel", "England: a yor - lon", "England: a lon - bel", "England: a ruh supports a lon - bel", "France: f eng convoys a bel - lon", "France: a bel - lon", "France: a wal supports a bel - lon"],
       "poststate": [

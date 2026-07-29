@@ -13,11 +13,14 @@
 #' @param phase `"movement"`, `"retreat"` or `"build"`.
 #' @param powers Character vector of powers in the game.
 #' @param dislodged A tibble of dislodged units awaiting retreat.
+#' @param contested Provinces where a standoff occurred in the preceding
+#'   movement phase, closed to retreats.
 #' @param status A list of status flags, such as the winner.
 #' @return An object of class `dp_game`.
 #' @noRd
 new_dp_game <- function(map, units, sc_owner, season, year, phase, powers,
-                        dislodged = .empty_dislodged(), status = list()) {
+                        dislodged = .empty_dislodged(),
+                        contested = character(0), status = list()) {
   stopifnot(inherits(map, "dp_map"))
   structure(
     list(
@@ -29,6 +32,7 @@ new_dp_game <- function(map, units, sc_owner, season, year, phase, powers,
       phase = phase,
       powers = powers,
       dislodged = dislodged,
+      contested = contested,
       status = status
     ),
     class = "dp_game"
@@ -106,7 +110,9 @@ dp_new_game <- function(map = dp_map(), year = 1901,
       phase = "movement",
       powers = map$powers,
       dislodged = .empty_dislodged(),
-      status = list(winner = NA_character_, over = FALSE, outcome = NA_character_)
+      contested = character(0),
+      status = list(winner = NA_character_, over = FALSE,
+                    outcome = NA_character_)
     ),
     call = call
   )
@@ -126,7 +132,8 @@ dp_new_game <- function(map = dp_map(), year = 1901,
 #' @param sc_owner Optional named character vector mapping supply centre to
 #'   owning power. Defaults to home ownership.
 #' @param dislodged Optional tibble of dislodged units awaiting retreat, with
-#'   columns `power`, `type`, `loc` and `from`.
+#'   columns `power`, `type`, `loc`, `from` and `by_convoy`.
+#' @param contested Provinces closed to retreats after a standoff.
 #' @param call Caller environment, for error reporting. Experts only.
 #' @return A validated [dp_game] object.
 #' @export
@@ -141,6 +148,7 @@ dp_new_game <- function(map = dp_map(), year = 1901,
 dp_game_from_units <- function(units, map = dp_map(), season = "Spring",
                                year = 1901, phase = "movement",
                                sc_owner = NULL, dislodged = NULL,
+                               contested = character(0),
                                call = rlang::caller_env()) {
   .check_class(map, "dp_map", call = call)
   season <- rlang::arg_match(season, c("Spring", "Fall", "Winter"),
@@ -178,7 +186,7 @@ dp_game_from_units <- function(units, map = dp_map(), season = "Spring",
     new_dp_game(
       map = map, units = units, sc_owner = sc_owner, season = season,
       year = year, phase = phase, powers = map$powers,
-      dislodged = tibble::as_tibble(dislodged),
+      dislodged = tibble::as_tibble(dislodged), contested = contested,
       status = list(winner = NA_character_, over = FALSE,
                     outcome = NA_character_)
     ),

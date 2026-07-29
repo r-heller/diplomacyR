@@ -86,7 +86,7 @@ dp_order <- function(power, type, unit = NULL, target = NULL, aux = NULL,
 
   loc <- if (is.null(unit)) NA_character_ else tolower(unit)
   if (!is.na(loc) && !.province(loc) %in% map$provinces$code) {
-    cli::cli_abort("Unknown province {.val {.province(loc)}}.", call = call)
+    cli::cli_abort("Unknown province {.val {(.province(loc))}}.", call = call)
   }
   tgt <- if (is.null(target)) NA_character_ else tolower(target)
 
@@ -123,6 +123,11 @@ dp_order <- function(power, type, unit = NULL, target = NULL, aux = NULL,
   ut <- unit_type %||% NA_character_
   if (!is.na(ut)) {
     ut <- rlang::arg_match0(ut, c("army", "fleet"), error_call = call)
+  } else if (!is.na(loc)) {
+    # An inland province can only hold an army and a sea province only a
+    # fleet; a coastal province stays ambiguous until the board says.
+    ptype <- .province_type(map, loc)
+    ut <- switch(ptype, land = "army", sea = "fleet", NA_character_)
   }
   at <- aux_type %||% NA_character_
   if (!is.na(at)) {
@@ -223,109 +228,117 @@ dp_legal_orders <- function(game, power = NULL, unit = NULL,
   )
 }
 
+#' Assemble an orders tibble from accumulated column chunks
+#'
+#' Building one tibble per candidate order is far too slow for the order
+#' enumerator, so chunks of columns are collected and bound once.
+#'
+#' @param chunks A list of named lists of equal-length vectors.
+#' @return A `dp_orders` tibble.
+#' @noRd
+.orders_from_chunks <- function(chunks) {
+  if (length(chunks) == 0L) return(.empty_orders())
+  nms <- names(.empty_orders())
+  cols <- lapply(nms, function(cn) {
+    unlist(lapply(chunks, function(ch) ch[[cn]]), use.names = FALSE)
+  })
+  names(cols) <- nms
+  n <- length(cols$type)
+  if (n == 0L) return(.empty_orders())
+  new_dp_orders(tibble::new_tibble(cols, nrow = n))
+}
+
+#' @noRd
+.order_chunk <- function(power, type, unit_type, loc, target = NA_character_,
+                         aux_type = NA_character_, aux_loc = NA_character_,
+                         aux_target = NA_character_, via_convoy = FALSE) {
+  n <- max(lengths(list(target, aux_type, aux_loc, aux_target)), 1L)
+  list(
+    power = rep_len(power, n), type = rep_len(type, n),
+    unit_type = rep_len(unit_type, n), loc = rep_len(loc, n),
+    target = rep_len(target, n), aux_type = rep_len(aux_type, n),
+    aux_loc = rep_len(aux_loc, n), aux_target = rep_len(aux_target, n),
+    via_convoy = rep_len(via_convoy, n)
+  )
+}
+
 #' @noRd
 .legal_movement_orders <- function(game, power = NULL, unit = NULL) {
   map <- game$map
-  units <- game$units
-  if (!is.null(power)) units <- units[units$power %in% power, , drop = FALSE]
-  if (!is.null(unit)) {
-    units <- units[.province(units$loc) %in% .province(tolower(unit)), ,
-                   drop = FALSE]
-  }
-  if (nrow(units) == 0L) return(.empty_orders())
-
   all_units <- game$units
-  reach <- .convoy_reach_table(game)
-  conv_to <- function(prov) reach[[prov]] %||% character(0)
-  out <- vector("list", 0L)
+  if (nrow(all_units) == 0L) return(.empty_orders())
 
-  for (i in seq_len(nrow(units))) {
-    u <- units[i, ]
-    dest <- if (u$type == "army") {
-      map$army_adj[[.province(u$loc)]] %||% character(0)
+  reach <- .convoy_reach_table(game)
+  n <- nrow(all_units)
+  # Where each unit on the board could step, as full locations and as
+  # provinces. Building this once turns the support enumeration below into a
+  # lookup instead of a scan over every unit.
+  step_locs <- vector("list", n)
+  conv_locs <- vector("list", n)
+  for (j in seq_len(n)) {
+    prov <- .province(all_units$loc[j])
+    if (all_units$type[j] == "army") {
+      step_locs[[j]] <- map$army_adj[[prov]] %||% character(0)
+      conv_locs[[j]] <- setdiff(reach[[prov]] %||% character(0),
+                                c(step_locs[[j]], prov))
     } else {
-      .fleet_moves(map, u$loc)
+      step_locs[[j]] <- .fleet_moves(map, all_units$loc[j])
+      conv_locs[[j]] <- character(0)
     }
-    out[[length(out) + 1L]] <- tibble::tibble(
-      power = u$power, type = "hold", unit_type = u$type, loc = u$loc,
-      target = NA_character_, aux_type = NA_character_,
-      aux_loc = NA_character_, aux_target = NA_character_, via_convoy = FALSE
-    )
-    if (length(dest) > 0L) {
-      out[[length(out) + 1L]] <- tibble::tibble(
-        power = u$power, type = "move", unit_type = u$type, loc = u$loc,
-        target = dest, aux_type = NA_character_, aux_loc = NA_character_,
-        aux_target = NA_character_, via_convoy = FALSE
-      )
+  }
+  targets <- lapply(seq_len(n), function(j) {
+    unique(.province(c(step_locs[[j]], conv_locs[[j]])))
+  })
+  movers_to <- split(rep(seq_len(n), lengths(targets)),
+                     unlist(targets, use.names = FALSE))
+
+  keep <- seq_len(n)
+  if (!is.null(power)) keep <- keep[all_units$power[keep] %in% power]
+  if (!is.null(unit)) {
+    keep <- keep[.province(all_units$loc[keep]) %in% .province(tolower(unit))]
+  }
+  if (length(keep) == 0L) return(.empty_orders())
+
+  chunks <- vector("list", 0L)
+  add <- function(...) chunks[[length(chunks) + 1L]] <<- .order_chunk(...)
+
+  for (i in keep) {
+    pw <- all_units$power[i]
+    ut <- all_units$type[i]
+    loc <- all_units$loc[i]
+    prov <- .province(loc)
+    add(pw, "hold", ut, loc)
+    if (length(step_locs[[i]]) > 0L) {
+      add(pw, "move", ut, loc, target = step_locs[[i]])
     }
-    # Convoyed moves: any coastal province reachable through a sea chain of
-    # friendly-or-not fleets currently on the board.
-    if (u$type == "army") {
-      conv <- conv_to(.province(u$loc))
-      conv <- setdiff(conv, c(dest, .province(u$loc)))
-      if (length(conv) > 0L) {
-        out[[length(out) + 1L]] <- tibble::tibble(
-          power = u$power, type = "move", unit_type = u$type, loc = u$loc,
-          target = conv, aux_type = NA_character_, aux_loc = NA_character_,
-          aux_target = NA_character_, via_convoy = TRUE
-        )
+    if (length(conv_locs[[i]]) > 0L) {
+      add(pw, "move", ut, loc, target = conv_locs[[i]], via_convoy = TRUE)
+    }
+    for (d in unique(.province(step_locs[[i]]))) {
+      here <- .unit_index(all_units, d)
+      if (!is.na(here) && here != i) {
+        add(pw, "support", ut, loc, aux_type = all_units$type[here],
+            aux_loc = d)
+      }
+      src <- setdiff(movers_to[[d]] %||% integer(0), i)
+      if (length(src) > 0L) {
+        add(pw, "support", ut, loc, aux_type = all_units$type[src],
+            aux_loc = .province(all_units$loc[src]), aux_target = d)
       }
     }
-    # Supports.
-    for (d in dest) {
-      other <- .unit_at(all_units, .province(d))
-      if (nrow(other) == 1L && .province(other$loc) != .province(u$loc)) {
-        out[[length(out) + 1L]] <- tibble::tibble(
-          power = u$power, type = "support", unit_type = u$type, loc = u$loc,
-          target = NA_character_, aux_type = other$type,
-          aux_loc = .province(other$loc), aux_target = NA_character_,
-          via_convoy = FALSE
-        )
-      }
-      movers <- all_units[.province(all_units$loc) != .province(u$loc), ,
-                          drop = FALSE]
-      if (nrow(movers) > 0L) {
-        can <- vapply(
-          seq_len(nrow(movers)),
-          function(j) {
-            .can_step(map, movers$type[j], movers$loc[j], d) ||
-              (movers$type[j] == "army" &&
-                 .province(d) %in% conv_to(.province(movers$loc[j])))
-          },
-          logical(1)
-        )
-        src <- movers[can, , drop = FALSE]
-        if (nrow(src) > 0L) {
-          out[[length(out) + 1L]] <- tibble::tibble(
-            power = u$power, type = "support", unit_type = u$type,
-            loc = u$loc, target = NA_character_, aux_type = src$type,
-            aux_loc = .province(src$loc), aux_target = .province(d),
-            via_convoy = FALSE
-          )
-        }
-      }
-    }
-    # Convoys.
-    if (u$type == "fleet" && .province_type(map, u$loc) == "sea") {
-      armies <- all_units[all_units$type == "army", , drop = FALSE]
-      if (nrow(armies) > 0L) {
-        for (j in seq_len(nrow(armies))) {
-          from <- .province(armies$loc[j])
-          tos <- .convoy_reachable(game, from, must_use = .province(u$loc))
-          tos <- setdiff(tos, from)
-          if (length(tos) > 0L) {
-            out[[length(out) + 1L]] <- tibble::tibble(
-              power = u$power, type = "convoy", unit_type = "fleet",
-              loc = u$loc, target = NA_character_, aux_type = "army",
-              aux_loc = from, aux_target = tos, via_convoy = FALSE
-            )
-          }
+    if (ut == "fleet" && .province_type(map, loc) == "sea") {
+      for (j in which(all_units$type == "army")) {
+        from <- .province(all_units$loc[j])
+        tos <- setdiff(.convoy_reachable(game, from, must_use = prov), from)
+        if (length(tos) > 0L) {
+          add(pw, "convoy", "fleet", loc, aux_type = "army", aux_loc = from,
+              aux_target = tos)
         }
       }
     }
   }
-  res <- do.call(rbind, out)
-  new_dp_orders(unique(res))
+  out <- .orders_from_chunks(chunks)
+  new_dp_orders(unique(out))
 }
 
 #' @noRd

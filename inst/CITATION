@@ -1,0 +1,20 @@
+citHeader("To cite diplomacyR in publications, use:")
+
+bibentry(
+  bibtype  = "Manual",
+  title    = "diplomacyR: Play, Simulate, and Analyse the Board Game Diplomacy",
+  author   = person("Raban", "Heller"),
+  year     = "2026",
+  note     = "R package version 0.1.0",
+  url      = "https://github.com/r-heller/diplomacyR",
+  textVersion = paste(
+    "Heller, R. (2026). diplomacyR: Play, Simulate, and Analyse the Board",
+    "Game Diplomacy. R package version 0.1.0.",
+    "https://github.com/r-heller/diplomacyR"
+  )
+)
+
+citFooter(paste(
+  "The adjudicator is validated against the Diplomacy Adjudicator Test Cases",
+  "compiled by Lucas B. Kruijswijk."
+))

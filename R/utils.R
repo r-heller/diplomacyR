@@ -1,15 +1,8 @@
 # Internal helpers ------------------------------------------------------------
 
-#' Default value for `NULL`
-#'
-#' Re-exported from \pkg{rlang}. See [rlang::%||%()].
-#'
-#' @name grapes-or-or-grapes
-#' @rdname op-null-default
-#' @keywords internal
-#' @export
 #' @importFrom rlang %||%
-NULL
+#' @export
+rlang::`%||%`
 
 #' Check that a value is a single string
 #'
@@ -191,13 +184,15 @@ NULL
 
 #' An empty dislodged-units tibble
 #'
-#' @return A zero-row tibble with columns `power`, `type`, `loc`, `from`.
+#' @return A zero-row tibble with columns `power`, `type`, `loc`, `from` and
+#'   `by_convoy`.
 #' @noRd
 .empty_dislodged <- function() {
   tibble::tibble(
     power = character(0),
     type = character(0),
     loc = character(0),
-    from = character(0)
+    from = character(0),
+    by_convoy = logical(0)
   )
 }

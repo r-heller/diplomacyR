@@ -17,16 +17,21 @@
 #' @param season Season of the adjudicated phase.
 #' @param year Year of the adjudicated phase.
 #' @param phase Phase that was adjudicated.
+#' @param disbanded Units removed from the board by the phase.
+#' @param built Units added to the board by the phase.
 #' @return An object of class `dp_result`.
 #' @noRd
 new_dp_result <- function(orders, units, dislodged, contested, season, year,
-                          phase) {
+                          phase, disbanded = .empty_units(),
+                          built = .empty_units()) {
   structure(
     list(
       orders = orders,
       units = units,
       dislodged = dislodged,
       contested = contested,
+      disbanded = disbanded,
+      built = built,
       season = season,
       year = as.integer(year),
       phase = phase
@@ -192,9 +197,9 @@ is_dp_result <- function(x) inherits(x, "dp_result")
       cs <- .coasts_of(map, .province(dst))
       if (length(cs) > 0L && is.na(.coast(dst))) {
         # A single reachable coast is unambiguous; two are not.
-        reach <- intersect(cs, adj)
-        if (length(reach) == 1L) return(ok(reach))
-        if (length(reach) > 1L) return(no("coast not specified (holds)"))
+        open <- intersect(cs, adj)
+        if (length(open) == 1L) return(ok(open))
+        if (length(open) > 1L) return(no("coast not specified (holds)"))
       }
       return(no("illegal move (holds)"))
     }

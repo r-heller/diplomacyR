@@ -1,0 +1,56 @@
+/* diplomacyR - purple accent ------------------------------------------------ */
+
+:root {
+  --dp-accent: #5E2C8E;
+  --dp-accent-soft: #F2EDF7;
+}
+
+.navbar {
+  border-bottom: 3px solid var(--dp-accent);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--dp-accent) !important;
+}
+
+.card-header {
+  background-color: var(--dp-accent-soft);
+  border-bottom: 1px solid rgba(94, 44, 142, 0.25);
+  font-weight: 600;
+  color: var(--dp-accent);
+}
+
+.btn-primary {
+  background-color: var(--dp-accent);
+  border-color: var(--dp-accent);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #4a2270;
+  border-color: #4a2270;
+}
+
+.nav-link.active {
+  color: var(--dp-accent) !important;
+  font-weight: 600;
+}
+
+.irs-bar,
+.irs-handle > i:first-child {
+  background-color: var(--dp-accent) !important;
+  border-color: var(--dp-accent) !important;
+}
+
+pre {
+  background-color: var(--dp-accent-soft);
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+}
+
+table.dataTable thead th {
+  border-bottom: 2px solid var(--dp-accent) !important;
+}

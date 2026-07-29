@@ -1,0 +1,277 @@
+---
+title: "Getting started with diplomacyR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with diplomacyR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7.2,
+  fig.height = 5.4,
+  fig.align = "center",
+  dpi = 96
+)
+```
+
+Diplomacy is a game of negotiation played on a map of Europe as it stood
+before the First World War. Seven Great Powers share 75 provinces, 34 of
+which are supply centres; a power that comes to control 18 of those centres
+wins outright. There are no dice. Every player writes orders for every one of
+their units in secret, all the orders are revealed at once, and a single set
+of rules decides what actually happened.
+
+That last step is the hard part, and it is what this package is mostly about.
+`diplomacyR` gives you the board, an adjudicator that resolves a turn under
+the standard rules, a phase machine that carries a game from Spring 1901 to
+its conclusion, a handful of bots, and the tools to simulate and analyse many
+games at once.
+
+```{r library}
+library(diplomacyR)
+```
+
+## The board
+
+`dp_map()` loads the standard seven-power board. It is a validated object,
+not a bare list: the province table, the army and fleet adjacency graphs, the
+supply centres, the home centres and the canonical opening position all
+travel together.
+
+```{r map}
+board <- dp_map()
+board
+```
+
+Provinces are addressed by three-letter codes. `dp_provinces()` lists them,
+optionally filtered by type.
+
+```{r provinces}
+head(dp_provinces(board, type = "sea"), 5)
+```
+
+Armies and fleets move on different graphs, so `dp_adjacent()` needs to know
+which kind of unit is asking. An army in Paris may walk into Burgundy; a
+fleet in Brest may not.
+
+```{r adjacent}
+dp_adjacent(board, "par", "army")
+dp_adjacent(board, "bre", "fleet")
+```
+
+## A new game
+
+`dp_new_game()` sets up Spring 1901 with the canonical 22-unit opening
+position and each power owning its home centres.
+
+```{r new-game}
+game <- dp_new_game()
+game
+```
+
+The units are a plain tibble, so anything you would normally do to a data
+frame works.
+
+```{r units}
+dp_units(game, "France")
+```
+
+`dp_power_counts()` is the scoreboard: centres held, units on the board, and
+the difference between them, which is what the winter adjustment phase acts
+on.
+
+```{r counts}
+dp_power_counts(game)
+```
+
+## Looking at the board
+
+`dp_plot_map()` draws a schematic board as a **ggplot2** object: seas in
+blue, land in buff, supply centres ringed, and each unit as an `A` or an `F`
+in its owner's colour. `autoplot()` on a game does the same thing.
+
+```{r plot-opening}
+dp_plot_map(game)
+```
+
+The palette is colourblind-safe and available on its own as `dp_palette()`,
+so charts you build yourself can use the same colours.
+
+## Writing orders
+
+Orders can be written the way players write them. `dp_parse_orders()` reads
+standard notation and returns a `dp_orders` tibble.
+
+```{r parse}
+french <- dp_parse_orders(c(
+  "France: A Par - Bur",
+  "France: A Mar - Spa",
+  "France: F Bre - Mao"
+))
+french
+```
+
+The same orders can be built programmatically with `dp_order()` and stacked
+with `dp_bind_orders()`, which is what you want when orders are generated
+rather than typed.
+
+```{r order}
+dp_bind_orders(
+  dp_order("England", "move", "lon", target = "nth",
+           unit_type = "fleet"),
+  dp_order("England", "support", "edi", aux = c("lon", "nth"),
+           unit_type = "fleet", aux_type = "fleet")
+)
+```
+
+Unit types are optional. They are only there to make an order readable; the
+engine takes the real types from the board when it adjudicates.
+
+If you are not sure what a unit may legally do, ask. `dp_legal_orders()`
+enumerates every order the rules allow a power to issue in the current phase,
+convoyed moves included.
+
+```{r legal}
+legal <- dp_legal_orders(game, "France")
+table(legal$type)
+```
+
+The full notation reference, including retreats, builds and the coast
+qualifiers, lives in `vignette("notation")`.
+
+## Adjudicating a turn
+
+`dp_adjudicate()` resolves a movement phase. It takes the game and the orders
+and returns a `dp_result`.
+
+```{r adjudicate}
+orders <- dp_example_orders("spring_1901")
+result <- dp_adjudicate(game, orders)
+result
+```
+
+Two orders failed. `summary()` on a result returns the effective orders with
+two extra columns: `success`, which says whether the order achieved anything,
+and `note`, which says how the engine treated the order in the first place.
+
+```{r failures}
+resolved <- summary(result)
+resolved[!resolved$success, c("power", "loc", "target", "success", "note")]
+```
+
+Both Russia and Turkey ordered a fleet into the Black Sea, neither had
+support, and the two attacks cancelled. A province where a move bounced is
+recorded as contested, which matters because dislodged units may not retreat
+into it.
+
+```{r contested}
+result$contested
+```
+
+Units that were not ordered, or whose order broke the rules, hold. Nothing is
+ever rejected outright: an unparseable order is an error at parse time, but
+an order that is merely illegal on the board becomes a hold with a note.
+
+## Advancing the game
+
+A result does not change the game; `dp_advance()` does. It applies the
+outcome, steps the season and phase machine, recalculates supply-centre
+ownership when the year turns, and checks for a solo victory.
+
+```{r advance}
+game <- dp_advance(game, result)
+game
+```
+
+Nothing was dislodged in the spring, so the retreat phase is skipped and the
+game moves straight to the autumn.
+
+## A full year
+
+The autumn works the same way. This time the moves are contested, and the
+autumn is the season in which supply centres change hands.
+
+```{r fall}
+result <- dp_adjudicate(game, dp_example_orders("fall_1901"))
+game <- dp_advance(game, result)
+game
+```
+
+Ownership has been recalculated on the way into the winter, so several powers
+now own more centres than they have units and are owed builds. The winter
+adjustment phase is resolved by `dp_build()`.
+
+```{r build}
+builds <- dp_parse_orders(
+  c("France: Build A Par", "France: Build F Bre", "France: Build F Mar"),
+  phase = "build"
+)
+result <- dp_build(game, builds)
+summary(result)[, c("power", "type", "unit_type", "loc", "success", "note")]
+```
+
+France ordered three builds and got three. Every other power is owed builds
+too but ordered none, which is legal — an unused build is simply forfeited
+for the year.
+
+```{r advance-build}
+game <- dp_advance(game, result)
+game
+```
+
+Spring 1902, and the game is ready for the next set of orders. The third
+phase type, the retreat phase, is resolved by `dp_retreat()`; it only appears
+in years where something was actually dislodged.
+
+## Letting the engine play
+
+Driving the three adjudicators by hand is useful when you care about a
+particular position. When you do not, `dp_step()` resolves whatever phase the
+game is in and hands back the next state, filling in orders for any power you
+did not order with a bot.
+
+```{r step}
+mine <- dp_parse_orders(c("France: A Par - Pic", "France: F Bre - Mao"))
+dp_step(game, orders = mine, bots = "greedy")
+```
+
+Bots stand in for whole powers, not for individual units. France ordered two
+of its six units here, so the other four held; the six other powers were
+played by the greedy bot.
+
+`dp_play()` runs that loop until someone wins or the turn cap is reached, and
+records every turn in a `dp_history`.
+
+```{r play}
+history <- dp_play(bots = "hold", max_years = 2, seed = 1)
+history
+```
+
+The history coerces to a tibble with one row per power per turn, which is the
+natural input for a plot or a model.
+
+```{r history-tibble}
+head(as_tibble(history), 4)
+```
+
+## Where to go next
+
+* `vignette("notation")` — every order form the parser accepts.
+* `vignette("adjudication")` — how the engine resolves a turn, worked
+  position by worked position.
+* `vignette("ai-and-simulation")` — the bots, batch simulation and the
+  analysis plots.
+* `vignette("design")` — the S3 architecture and why the resolver works the
+  way it does.
+
+There is also a **shiny** application bundled with the package. It gives you
+the board, an order editor that checks legality as you type, a turn
+adjudicator, a replayable history and a simulation runner:
+
+```{r app, eval = FALSE}
+dp_run_app()
+```

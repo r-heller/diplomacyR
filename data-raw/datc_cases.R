@@ -51,7 +51,11 @@ split_entry <- function(x) {
   if (!grepl(":", x, fixed = TRUE)) x <- sub("\\s+", ": ", trimws(x))
   pw <- fix_power(trimws(sub(":.*$", "", x)))
   body <- trimws(sub("^[^:]*:", "", x))
-  list(power = pw, body = fix_alias(tolower(body)))
+  list(power = pw, body = fix_alias(tolower(body)), raw = body)
+}
+
+is_unit_spec <- function(entry) {
+  grepl("^[af]\\s+[a-z]{3}(/[a-z]{2})?$", entry$body)
 }
 
 parse_unit <- function(entry) {
@@ -96,6 +100,7 @@ for (ln in raw) {
         description = paste(utils::tail(desc_buf, 3L), collapse = " "),
         phase = "Movement",
         prestate = list(), prestate_dislodged = list(),
+        prestate_results = list(),
         sc_owners = list(), orders = character(0),
         poststate = list(), poststate_dislodged = list(),
         poststate_same = FALSE
@@ -125,30 +130,49 @@ for (ln in raw) {
   entry <- split_entry(bare)
   switch(mode,
     PRESTATE = {
-      cur$prestate[[length(cur$prestate) + 1L]] <- parse_unit(entry)
+      if (is_unit_spec(entry)) {
+        cur$prestate[[length(cur$prestate) + 1L]] <- parse_unit(entry)
+      }
     },
     PRESTATE_DISLODGED = {
-      cur$prestate_dislodged[[length(cur$prestate_dislodged) + 1L]] <-
-        parse_unit(entry)
+      if (is_unit_spec(entry)) {
+        cur$prestate_dislodged[[length(cur$prestate_dislodged) + 1L]] <-
+          parse_unit(entry)
+      }
     },
     PRESTATE_SUPPLYCENTER_OWNERS = {
+      if (!is_unit_spec(entry)) next
       u <- parse_unit(entry)
       cur$sc_owners[[length(cur$sc_owners) + 1L]] <-
         list(power = u$power, centre = u$loc)
     },
     PRESTATE_RESULTS = {
-      # Not required: the package recomputes retreat options from the
-      # dislodging move recorded in the prestate.
+      # "SUCCESS: France: A par-bur" -- the outcome of the movement phase that
+      # produced this retreat position. The harness reads the dislodging move
+      # and the standoffs out of these lines.
+      body <- entry$raw
+      flag <- toupper(entry$power)
+      cur_pw <- trimws(sub(":.*$", "", body))
+      cur_ord <- trimws(sub("^[^:]*:", "", body))
+      cur$prestate_results[[length(cur$prestate_results) + 1L]] <- list(
+        success = identical(flag, "SUCCESS"),
+        power = fix_power(cur_pw),
+        order = fix_alias(tolower(cur_ord))
+      )
     },
     ORDERS = {
       cur$orders <- c(cur$orders, paste0(entry$power, ": ", entry$body))
     },
     POSTSTATE = {
-      cur$poststate[[length(cur$poststate) + 1L]] <- parse_unit(entry)
+      if (is_unit_spec(entry)) {
+        cur$poststate[[length(cur$poststate) + 1L]] <- parse_unit(entry)
+      }
     },
     POSTSTATE_DISLODGED = {
-      cur$poststate_dislodged[[length(cur$poststate_dislodged) + 1L]] <-
-        parse_unit(entry)
+      if (is_unit_spec(entry)) {
+        cur$poststate_dislodged[[length(cur$poststate_dislodged) + 1L]] <-
+          parse_unit(entry)
+      }
     }
   )
 }

@@ -70,7 +70,7 @@
     loc = vapply(raw$start_units, function(u) u$loc, character(1))
   )
 
-  out <- new_dp_map(
+  base <- new_dp_map(
     name = raw$name,
     description = raw$description,
     powers = unlist(raw$powers),
@@ -83,6 +83,17 @@
     home_centres = as_chr_list(raw$home_centres),
     start_units = start_units
   )
-  .map_cache$standard <- out
-  out
+  # Precomputed sea/coast neighbourhoods: the convoy code walks these graphs
+  # constantly and recomputing them dominates simulation time otherwise.
+  base$adj_seas <- stats::setNames(
+    lapply(c(provinces$code, coast_xy$loc),
+           function(l) .adjacent_seas(base, l)),
+    c(provinces$code, coast_xy$loc)
+  )
+  seas <- provinces$code[provinces$type == "sea"]
+  base$adj_coasts <- stats::setNames(
+    lapply(seas, function(s) .adjacent_coasts(base, s)), seas
+  )
+  .map_cache$standard <- base
+  base
 }

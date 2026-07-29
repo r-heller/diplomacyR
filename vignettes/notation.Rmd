@@ -1,0 +1,286 @@
+---
+title: "Order notation reference"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Order notation reference}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r library}
+library(diplomacyR)
+```
+
+Diplomacy players write orders in a compact shorthand that has been stable
+for decades but was never standardised. `dp_parse_orders()` accepts the
+spellings people actually use, and `format()` renders any `dp_orders` tibble
+back into one canonical form. This vignette is the reference for both.
+
+Every example below is parsed and then rendered back, so the second column is
+what the engine understood.
+
+```{r roundtrip-helper}
+notation <- function(x, ...) {
+  knitr::kable(data.frame(
+    Written = x,
+    Understood = format(dp_parse_orders(x, ...))
+  ))
+}
+```
+
+## The shape of an order
+
+An order is
+
+```
+Power: <unit> <verb> <arguments>
+```
+
+The power prefix may be dropped if the `power` argument supplies it instead.
+Everything is case-insensitive, and powers may be abbreviated to any
+unambiguous prefix.
+
+```{r powers}
+notation(c(
+  "France: A Par - Bur",
+  "FRANCE: A Par - Bur",
+  "Fra: A Par - Bur",
+  "F: A Par - Bur"
+))
+```
+
+```{r power-arg}
+dp_parse_orders(c("A Par - Bur", "A Mar - Spa"), power = "France")
+```
+
+## Locations
+
+Provinces are three-letter codes. Full province names are accepted too and
+are translated to codes.
+
+```{r locations}
+notation(c(
+  "France: A Par - Bur",
+  "France: A Paris - Burgundy",
+  "France: A paris to burgundy"
+))
+```
+
+Three provinces on the standard board have two coasts that a fleet cannot
+sail between: Spain (`nc`, `sc`), Bulgaria (`ec`, `sc`) and St Petersburg
+(`nc`, `sc`). Write the coast after a slash, or in brackets.
+
+```{r coasts}
+notation(c(
+  "Russia: F Stp/sc - Bot",
+  "Russia: F Stp (sc) - Bot",
+  "Russia: F STP/SC - BOT",
+  "Turkey: F Bul/ec - Bla"
+))
+```
+
+A coast is only required where the choice is genuinely ambiguous. If exactly
+one coast of the destination is reachable, the engine fills it in for you
+when it adjudicates; if two are, the order is void and the unit holds.
+
+## Units
+
+`A` and `F` mark armies and fleets, and the long forms `army` and `fleet`
+work as well. The designator is optional — the engine reads the real unit
+type off the board — but including it is the convention, and it makes an
+order set readable on its own.
+
+```{r units}
+notation(c(
+  "France: A Par - Bur",
+  "France: army Par - Bur",
+  "France: Par - Bur"
+))
+```
+
+## Holds
+
+A unit with no verb holds. `H`, `hold`, `holds`, `stand` and `stands` all say
+the same thing explicitly.
+
+```{r holds}
+notation(c(
+  "Austria: A Bud H",
+  "Austria: A Bud holds",
+  "Austria: A Bud stands",
+  "Austria: A Bud"
+))
+```
+
+## Moves
+
+The move arrow may be a hyphen, an arrow, a dash of any Unicode flavour, or
+the word `to`. Spaces around it are optional.
+
+```{r moves}
+notation(c(
+  "France: A Par - Bur",
+  "France: A Par-Bur",
+  "France: A Par -> Bur",
+  "France: A Par to Bur"
+))
+```
+
+## Supports
+
+A support either backs a unit that is staying where it is, in which case only
+the supported unit's province is named, or backs a move, in which case the
+whole move is written out. `S`, `sup`, `supp`, `support` and `supports` are
+interchangeable, and the supported unit's own designator is optional.
+
+```{r supports}
+notation(c(
+  "England: F Lon S F Yor",
+  "England: F Lon S Yor",
+  "England: F Lon S A Wal - Yor",
+  "England: F Lon supports A Wal - Yor"
+))
+```
+
+## Convoys
+
+A convoy order names the army and its full move. `C`, `conv`, `convoy` and
+`convoys` are interchangeable.
+
+```{r convoys}
+notation(c(
+  "England: F Nth C A Lon - Nwy",
+  "England: F Nth convoys A Lon - Nwy",
+  "England: F Nth C Lon - Nwy"
+))
+```
+
+The army being convoyed is ordered to move as usual. Where the destination is
+not adjacent, the move is a convoy automatically. Where both a land route and
+a sea route exist, append `via convoy` — or `by convoy` — to insist on the
+sea route.
+
+```{r via-convoy}
+notation(c(
+  "England: A Lon - Bel via convoy",
+  "England: A Lon - Bel by convoy"
+))
+```
+
+This is the one distinction `format()` preserves in the rendered output, as
+`via Convoy`, because it changes the meaning of the order.
+
+## Retreat phases
+
+The `phase` argument tells the parser which kind of turn the orders belong
+to. In a retreat phase a bare move arrow means a retreat; `R`, `retreat` and
+`retreats` say so explicitly and work in any phase. A dislodged unit that is
+not retreating is removed with `D`, `disband` or `remove`.
+
+```{r retreats}
+notation(
+  c("Austria: A Tri R Alb",
+    "Austria: A Tri retreats Alb",
+    "Austria: A Tri - Alb",
+    "Austria: A Tri D"),
+  phase = "retreat"
+)
+```
+
+## Adjustment phases
+
+Winter orders build and remove units. Builds must name the unit type, since
+there is no unit on the board to read it from; removals need not.
+
+```{r builds}
+notation(
+  c("Germany: Build A Ber",
+    "Germany: Build F Kie",
+    "Germany: F Kie B",
+    "Germany: Remove F Ber",
+    "Germany: Disband A Mun",
+    "Germany: A Mun",
+    "Germany: Waive"),
+  phase = "build"
+)
+```
+
+Note the last two rows. In an adjustment phase a bare `A Mun` is a removal,
+not a hold — there is nothing to hold in a winter turn. `Waive` declines a
+build that is owed, which matters when a power would rather not put a unit on
+the board.
+
+A fleet built on a split-coast province names its coast the same way a move
+does.
+
+```{r build-coast}
+notation("Russia: Build F Stp/sc", phase = "build")
+```
+
+## Writing several orders at once
+
+`dp_parse_orders()` takes a character vector of orders, but it also splits on
+newlines and semicolons, so a whole turn can be pasted in as one string.
+Anything after a `#` is a comment.
+
+```{r multiline}
+dp_parse_orders(
+  "A Par - Bur      # open towards Munich
+   A Mar S A Par - Bur
+   F Bre - Mao",
+  power = "France"
+)
+```
+
+## Round trips
+
+`format()` renders orders in one canonical spelling: power prefix, unit
+designator, three-letter codes with the first letter capitalised, and the
+single-letter verbs. Parsing the rendered text gives the same orders back.
+
+```{r canonical}
+orders <- dp_example_orders("fall_1901")
+canonical <- format(orders)
+head(canonical, 4)
+```
+
+```{r roundtrip}
+identical(format(dp_parse_orders(canonical)), canonical)
+```
+
+`as.character()` on a `dp_orders` tibble is the same as `format()`, and
+`as_tibble()` strips the class to expose the columns the engine actually
+works with.
+
+```{r columns}
+as_tibble(dp_parse_orders("England: F Nth C A Lon - Nwy"))
+```
+
+## When an order cannot be read
+
+A string that is not an order at all is an error, with the offending piece
+named. This is deliberate: a typo in an order set should stop the turn rather
+than quietly become a hold.
+
+```{r errors, error = TRUE}
+dp_parse_orders("France: A Par flies to Bur")
+```
+
+```{r errors-2, error = TRUE}
+dp_parse_orders("France: A Xyz - Bur")
+```
+
+```{r errors-3, error = TRUE}
+dp_parse_orders("A Par - Bur")
+```
+
+An order that parses but breaks the rules of the board is a different matter.
+Those are accepted here and dealt with by the adjudicator, which converts
+them to holds and records why — see `vignette("adjudication")`.

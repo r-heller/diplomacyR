@@ -14,6 +14,10 @@
 #' @return A character vector of adjacent sea provinces.
 #' @noRd
 .adjacent_seas <- function(map, loc) {
+  if (!is.null(map$adj_seas)) {
+    hit <- map$adj_seas[[loc]]
+    if (!is.null(hit)) return(hit)
+  }
   prov <- .province(loc)
   locs <- c(prov, .coasts_of(map, prov))
   nb <- unlist(lapply(locs, function(l) map$fleet_adj[[l]] %||% character(0)),
@@ -29,6 +33,10 @@
 #' @return A character vector of adjacent coastal provinces.
 #' @noRd
 .adjacent_coasts <- function(map, sea) {
+  if (!is.null(map$adj_coasts)) {
+    hit <- map$adj_coasts[[sea]]
+    if (!is.null(hit)) return(hit)
+  }
   nb <- unique(.province(map$fleet_adj[[sea]] %||% character(0)))
   nb[.province_type(map, nb) == "coast"]
 }

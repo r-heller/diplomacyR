@@ -28,7 +28,7 @@
 .normalise_order_text <- function(x, map) {
   x <- sub("#.*$", "", x)
   x <- tolower(trimws(x))
-  x <- gsub("[‐-―−]", "-", x)
+  x <- gsub("[\u2010-\u2015\u2212]", "-", x)
   x <- gsub("->", "-", x, fixed = TRUE)
   x <- gsub("([a-z]{3})\\s*\\(\\s*([ns]?[ew]?c)\\s*\\)", "\\1/\\2", x)
   x <- gsub("\\s*/\\s*", "/", x)
