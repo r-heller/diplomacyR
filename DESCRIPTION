@@ -1,7 +1,7 @@
 Package: diplomacyR
 Title: Play, Simulate, and Analyse the Board Game Diplomacy
 Version: 0.1.0
-Authors@R: person("Raban", "Heller", email = "raban.heller@charite.de",
+Authors@R: person("Raban", "Heller", email = "raban.heller@uni-ulm.de",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8006-9742"))
 Description: A complete engine for the strategic board game Diplomacy, covering
     the standard seven-power pre-1914 European map. Provides a rules-accurate
