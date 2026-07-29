@@ -133,10 +133,8 @@ mod_orders_server <- function(id, state) {
     })
 
     output$submitted <- DT::renderDT({
-      DT::datatable(
-        dp_orders_table(state$orders), rownames = FALSE,
-        options = list(pageLength = 12, dom = "tp")
-      )
+      dp_table(dp_orders_table(state$orders), page = 12L,
+               empty = "No orders submitted yet")
     })
 
     output$status <- shiny::renderText({

@@ -15,7 +15,7 @@ mod_history_ui <- function(id) {
       col_widths = c(7, 5),
       bslib::card(
         bslib::card_header("Board at this turn"),
-        shiny::plotOutput(ns("map"), height = "520px")
+        shiny::plotOutput(ns("map"), height = "680px")
       ),
       bslib::card(
         bslib::card_header("Orders of this turn"),
@@ -60,11 +60,9 @@ mod_history_server <- function(id, state) {
 
     output$orders <- DT::renderDT({
       tn <- turn()
-      shiny::req(tn)
-      DT::datatable(
-        dp_orders_table(tn$result$orders), rownames = FALSE,
-        options = list(pageLength = 12, dom = "tp")
-      )
+      empty <- "Resolve a turn to build a history"
+      if (is.null(tn)) return(dp_table(data.frame(), empty = empty))
+      dp_table(dp_orders_table(tn$result$orders), page = 12L, empty = empty)
     })
   })
 }

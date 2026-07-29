@@ -20,7 +20,7 @@ mod_adjudicate_ui <- function(id) {
       col_widths = c(6, 6),
       bslib::card(
         bslib::card_header("Board after the phase"),
-        shiny::plotOutput(ns("map"), height = "520px")
+        shiny::plotOutput(ns("map"), height = "680px")
       ),
       bslib::card(
         bslib::card_header("Order results"),
@@ -63,11 +63,10 @@ mod_adjudicate_server <- function(id, state) {
     })
 
     output$results <- DT::renderDT({
-      shiny::req(state$result)
-      DT::datatable(
-        dp_orders_table(state$result$orders), rownames = FALSE,
-        options = list(pageLength = 12, dom = "tp")
-      )
+      empty <- "Resolve a phase to see how each order fared"
+      if (is.null(state$result)) return(dp_table(data.frame(), empty = empty))
+      dp_table(dp_orders_table(state$result$orders), page = 12L,
+               empty = empty)
     })
 
     output$summary <- shiny::renderText({

@@ -20,19 +20,26 @@ mod_board_ui <- function(id) {
         "than on a drawn coastline."
       )
     ),
-    bslib::card(
-      bslib::card_header("Board"),
-      shiny::plotOutput(ns("map"), height = "620px")
-    ),
+    # The board is a shade taller than it is wide, so a full-width card
+    # letterboxes it into an unreadable thumbnail. Giving it seven columns and a
+    # tall plot makes the drawing area close to square, and the tables move up
+    # beside it instead of sitting under a half-empty row.
     bslib::layout_columns(
-      col_widths = c(6, 6),
+      col_widths = c(7, 5),
       bslib::card(
-        bslib::card_header("Units"),
-        DT::DTOutput(ns("units"))
+        bslib::card_header("Board"),
+        shiny::plotOutput(ns("map"), height = "800px")
       ),
-      bslib::card(
-        bslib::card_header("Supply centres"),
-        DT::DTOutput(ns("centres"))
+      bslib::layout_columns(
+        col_widths = 12,
+        bslib::card(
+          bslib::card_header("Units"),
+          DT::DTOutput(ns("units"))
+        ),
+        bslib::card(
+          bslib::card_header("Supply centres"),
+          DT::DTOutput(ns("centres"))
+        )
       )
     )
   )
@@ -57,18 +64,14 @@ mod_board_server <- function(id, state) {
 
     output$units <- DT::renderDT({
       shiny::req(state$game)
-      DT::datatable(
-        as.data.frame(diplomacyR::dp_units(state$game)),
-        rownames = FALSE, options = list(pageLength = 8, dom = "tp")
-      )
+      dp_table(diplomacyR::dp_units(state$game),
+               empty = "No units on the board")
     })
 
     output$centres <- DT::renderDT({
       shiny::req(state$game)
-      DT::datatable(
-        as.data.frame(diplomacyR::dp_supply_centres(state$game)),
-        rownames = FALSE, options = list(pageLength = 8, dom = "tp")
-      )
+      dp_table(diplomacyR::dp_supply_centres(state$game),
+               empty = "No supply centres on this board")
     })
   })
 }

@@ -13,7 +13,9 @@ dp_plot_winrates(sim)
 A \pkg{ggplot2} object.
 }
 \description{
-Chart win rates by power
+One bar per power against a light track running the full width, so that a
+power with no solo victories is still visible and still labelled. Each bar
+is annotated with the underlying count.
 }
 \examples{
 sim <- dp_simulate(n = 2, bots = "hold", max_years = 2, verbose = FALSE)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot-analysis.R
 \name{dp_plot_centres}
 \alias{dp_plot_centres}
-\title{Chart mean final supply centres by power}
+\title{Chart final supply centres by power}
 \usage{
 dp_plot_centres(sim)
 }
@@ -13,7 +13,9 @@ dp_plot_centres(sim)
 A \pkg{ggplot2} object.
 }
 \description{
-Chart mean final supply centres by power
+A box for the distribution with the individual games drawn over it, so that
+a simulation of deterministic bots -- where every game ends identically --
+reads as a single point rather than a flat line of unclear meaning.
 }
 \examples{
 sim <- dp_simulate(n = 2, bots = "hold", max_years = 2, verbose = FALSE)

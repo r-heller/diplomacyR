@@ -54,3 +54,15 @@ pre {
 table.dataTable thead th {
   border-bottom: 2px solid var(--dp-accent) !important;
 }
+
+/* Keep the primary action of a long sidebar reachable: the simulate sidebar
+   carries ten inputs, which pushes its Run button off the bottom of the
+   screen. */
+.dp-sticky-action {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  padding-block: 0.75rem;
+  background-color: var(--bs-body-bg, #fff);
+  border-top: 1px solid rgba(94, 44, 142, 0.15);
+}

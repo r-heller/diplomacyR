@@ -4,12 +4,14 @@
 \alias{dp_plot_supply_heatmap}
 \title{Map how often each province was contested}
 \usage{
-dp_plot_supply_heatmap(sim, map = dp_map())
+dp_plot_supply_heatmap(sim, map = dp_map(), labels = TRUE)
 }
 \arguments{
 \item{sim}{A \link{dp_sim} object.}
 
 \item{map}{A \link{dp_map} object supplying the board coordinates.}
+
+\item{labels}{Draw the three-letter province codes. Default \code{TRUE}.}
 }
 \value{
 A \pkg{ggplot2} object.

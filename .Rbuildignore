@@ -1,13 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
-^\.orchestration$
-^CLAUDE_CODE_.*\.md$
-^SKELETON\.md$
-^STUBS\.md$
-^STATE\.md$
 ^cran-comments\.md$
-^_build\.R$
 ^\.github$
 ^README\.Rmd$
 ^_pkgdown\.yml$

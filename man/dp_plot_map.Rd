@@ -4,25 +4,66 @@
 \alias{dp_plot_map}
 \title{Draw the board}
 \usage{
-dp_plot_map(game, labels = TRUE, title = NULL)
+dp_plot_map(
+  game,
+  orders = NULL,
+  labels = TRUE,
+  ownership = TRUE,
+  title = NULL,
+  subtitle = NULL
+)
 }
 \arguments{
 \item{game}{A \link{dp_game} object.}
 
+\item{orders}{Optional orders to draw over the board, as a \code{dp_orders}
+tibble. \code{TRUE} draws the orders the game last resolved, if it has any.}
+
 \item{labels}{Draw the three-letter province codes. Default \code{TRUE}.}
 
+\item{ownership}{Colour each supply centre's chip for the power that holds
+it. Default \code{TRUE}; \code{FALSE} leaves every chip neutral.}
+
 \item{title}{Plot title. \code{NULL} uses the current turn.}
+
+\item{subtitle}{Plot subtitle. \code{NULL} summarises the position.}
 }
 \value{
 A \pkg{ggplot2} object.
 }
 \description{
-Renders a schematic map: sea provinces in blue, land in buff, supply
-centres ringed, and every unit drawn as an \code{A} or \code{F} in its owner's
-colour. Units awaiting a retreat are ringed in red.
+Renders the board as a map. Every province is drawn as a territory rather
+than a point: seas in blue, coastal land and inland in two shades of buff,
+with coastlines picked out against the province borders. A supply centre
+wears its name on a chip coloured for the power that holds it, so the balance
+of the game is visible at a glance. Units are tokens in their power's colour
+-- a circle for an army, a diamond for a fleet -- and units awaiting a
+retreat are ringed in red.
+}
+\details{
+Terrain and ownership are deliberately encoded in different ways. Terrain
+gets the large quiet fills and ownership the small saturated chips, because
+washing a power's colour across a whole province makes a blue power's land
+look like sea.
+
+Pass \code{orders} to draw the turn on the board: solid arrows for moves and
+retreats, dashed for supports, dash-dotted for convoys. If the orders have
+been adjudicated, and so carry a \code{success} column, the arrows that failed are
+marked with a cross at their head.
+
+The board is schematic. Provinces sit at fixed coordinates and their shapes
+come from tessellating the plane between them, so the outlines are
+suggestive of Europe rather than a faithful coastline.
+
+The board is close to square. Give it a close-to-square figure: the default
+\verb{7 x 5} of many rendering setups leaves a third of the width empty and
+squeezes the province names together.
 }
 \examples{
 dp_plot_map(dp_new_game())
+
+g <- dp_new_game()
+dp_plot_map(g, orders = dp_example_orders())
 }
 \seealso{
 Other plot:

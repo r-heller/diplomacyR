@@ -209,7 +209,7 @@ each province by how often a move bounced there. With three short games there
 is almost nothing to see; the point of the chart is the pattern that emerges
 over hundreds.
 
-```{r heatmap, fig.height = 5.4}
+```{r heatmap, fig.height = 6.8}
 dp_plot_supply_heatmap(sim)
 ```
 

@@ -19,13 +19,14 @@ Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.1.0)
 Imports:
     cli,
+    dplyr,
     ggplot2,
+    grDevices,
     jsonlite,
     rlang,
     stats,
     tibble,
     tidyr,
-    dplyr,
     utils
 Suggests:
     bslib,

@@ -91,10 +91,12 @@ dp_power_counts(game)
 ## Looking at the board
 
 `dp_plot_map()` draws a schematic board as a **ggplot2** object: seas in
-blue, land in buff, supply centres ringed, and each unit as an `A` or an `F`
-in its owner's colour. `autoplot()` on a game does the same thing.
+blue, land in buff, every supply centre named on a chip in the colour of the
+power that holds it, and each unit as an `A` or an `F` in its owner's colour.
+`autoplot()` on a game does the same thing. The board is close to square, so
+give it a close-to-square figure.
 
-```{r plot-opening}
+```{r plot-opening, fig.height = 6.8}
 dp_plot_map(game)
 ```
 

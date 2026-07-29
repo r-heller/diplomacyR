@@ -34,19 +34,19 @@ mod_analysis_server <- function(id, state) {
 
     output$powers <- DT::renderDT({
       h <- state$history
-      shiny::req(h, length(h) > 0L)
-      DT::datatable(
-        as.data.frame(diplomacyR::dp_power_summary(h)), rownames = FALSE,
-        options = list(pageLength = 8, dom = "t")
-      )
+      # `req()` here left the card completely blank until a turn was resolved.
+      # An empty table with a message at least says why it is empty.
+      empty <- "Resolve a turn to build a history"
+      if (is.null(h) || length(h) == 0L) {
+        return(dp_table(data.frame(), empty = empty))
+      }
+      dp_table(diplomacyR::dp_power_summary(h), empty = empty)
     })
 
     output$standing <- DT::renderDT({
       shiny::req(state$game)
-      DT::datatable(
-        as.data.frame(diplomacyR::dp_power_summary(state$game)),
-        rownames = FALSE, options = list(pageLength = 8, dom = "t")
-      )
+      dp_table(diplomacyR::dp_power_summary(state$game),
+               empty = "No game loaded")
     })
   })
 }

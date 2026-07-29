@@ -4,19 +4,32 @@
 \alias{dp_plot_sc_history}
 \title{Chart supply-centre counts over a game}
 \usage{
-dp_plot_sc_history(history, threshold = 18)
+dp_plot_sc_history(history, threshold = 18, labels = TRUE)
 }
 \arguments{
 \item{history}{A \link{dp_history} object.}
 
 \item{threshold}{Draw a reference line at this centre count. \code{NULL} omits
-it. Default \code{18}, the solo-victory mark.}
+it. Default \code{18}, the solo-victory mark. The line is skipped, rather than
+stretching the axis over empty space, in a game where no power came close
+to it.}
+
+\item{labels}{Write each power's name at the end of its line. Default
+\code{TRUE}.}
 }
 \value{
 A \pkg{ggplot2} object.
 }
 \description{
-Chart supply-centre counts over a game
+One line per power against the game calendar, with the solo-victory mark
+drawn and labelled. The final standing is written at the right-hand end of
+each line so the powers can be told apart without reading a legend.
+}
+\details{
+Centre counts are small integers, so powers are level with each other for
+much of a normal game. Exactly coincident lines would hide all but the last
+power drawn, so each power's line is offset by a fraction of a centre. The
+offsets are a fixed, tiny fraction of the axis and are noted on the plot.
 }
 \examples{
 h <- dp_play(bots = "hold", max_years = 2)

@@ -29,12 +29,42 @@ if (length(.dp_missing) > 0L) {
   heading_font = bslib::font_google("Source Sans 3", local = FALSE)
 )
 
-# A blank plot used whenever a panel has nothing to show yet.
+# A blank plot used whenever a panel has nothing to show yet. Every plot output
+# routes through this when it has nothing to draw, so that no panel of the app
+# is ever simply blank.
 dp_placeholder_plot <- function(message = "Nothing to show yet") {
   ggplot2::ggplot() +
     ggplot2::annotate("text", x = 0, y = 0, label = message,
-                      colour = "grey40", size = 5) +
+                      colour = "grey45", size = 4.6, lineheight = 1.3) +
     ggplot2::theme_void()
+}
+
+# Column names straight off a tibble are lower-case and underscored, which is
+# right for code and wrong for a table someone is reading.
+dp_pretty_names <- function(df) {
+  nm <- gsub("_", " ", names(df))
+  names(df) <- paste0(toupper(substr(nm, 1L, 1L)), substr(nm, 2L, nchar(nm)))
+  df
+}
+
+# One table style for the whole app, with an empty state that says something
+# useful instead of DataTables' stock "No data available in table".
+dp_table <- function(df, page = 8L, empty = "Nothing to show yet") {
+  df <- as.data.frame(df)
+  # A frame with no columns at all draws nothing whatsoever -- not even the
+  # empty-table message -- which is how the simulate tab ended up showing a
+  # blank card. One nameless column is enough to give the message a home.
+  if (ncol(df) == 0L) {
+    df <- data.frame(` ` = character(0), check.names = FALSE)
+  }
+  DT::datatable(
+    dp_pretty_names(df),
+    rownames = FALSE,
+    options = list(
+      pageLength = page, dom = "tp",
+      language = list(emptyTable = empty, zeroRecords = empty)
+    )
+  )
 }
 
 # Render an orders tibble as a data table.

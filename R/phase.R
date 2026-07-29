@@ -55,6 +55,10 @@ dp_advance <- function(game, result, call = rlang::caller_env()) {
   game$units <- result$units
   game$dislodged <- result$dislodged
   game$contested <- result$contested
+  # Keep the phase that was just resolved on the state it produced, so that the
+  # turn can be drawn over the board afterwards with
+  # `dp_plot_map(game, orders = TRUE)`.
+  game$last_result <- result
 
   nxt <- .next_phase(game$season, game$phase, nrow(result$dislodged) > 0L,
                      game$year)
