@@ -1,0 +1,357 @@
+# diplomacyR
+
+diplomacyR is a complete engine for the board game Diplomacy on the
+standard seven-power pre-1914 map. It gives you a rules-accurate
+adjudicator for simultaneous movement, the full phase machine from
+Spring 1901 to a solo victory, scriptable bots, batch simulation with
+outcome analysis, and a **shiny** application for interactive play.
+
+Diplomacy has no dice. Every player writes orders for every unit in
+secret, all the orders are revealed at once, and one set of rules
+decides what actually happened — including the cases where the outcome
+of one order depends on the outcome of another that depends back on the
+first. Getting that right is what most of this package is.
+
+## Installation
+
+``` r
+
+# install.packages("pak")
+pak::pak("r-heller/diplomacyR")
+```
+
+## A first turn
+
+``` r
+
+library(diplomacyR)
+
+game <- dp_new_game()
+game
+#> <dp_game> Spring 1901 (movement phase)
+#> Russia    4 centres   4 units
+#> Austria   3 centres   3 units
+#> England   3 centres   3 units
+#> France    3 centres   3 units
+#> Germany   3 centres   3 units
+#> Italy     3 centres   3 units
+#> Turkey    3 centres   3 units
+```
+
+Orders are written the way players write them, and resolved with
+[`dp_adjudicate()`](https://r-heller.github.io/diplomacyR/reference/dp_adjudicate.md).
+Here France attacks Burgundy with support while Germany attacks it
+alone: two against one.
+
+``` r
+
+result <- dp_adjudicate(game, dp_parse_orders(c(
+  "France: A Par - Bur",
+  "France: A Mar S A Par - Bur",
+  "Germany: A Mun - Bur"
+)))
+
+result$orders[result$orders$loc %in% c("par", "mar", "mun"), ]
+#> <dp_orders> (3 orders)
+#> ✓ France: A Mar S A Par - Bur
+#> ✓ France: A Par - Bur
+#> ✗ Germany: A Mun - Bur
+```
+
+Every power that was not ordered simply held, which is what the rules
+say happens to a unit with no orders.
+[`dp_advance()`](https://r-heller.github.io/diplomacyR/reference/dp_advance.md)
+applies the result and steps the season, phase and year.
+
+``` r
+
+game <- dp_advance(game, result)
+game
+#> <dp_game> Fall 1901 (movement phase)
+#> Russia    4 centres   4 units
+#> Austria   3 centres   3 units
+#> England   3 centres   3 units
+#> France    3 centres   3 units
+#> Germany   3 centres   3 units
+#> Italy     3 centres   3 units
+#> Turkey    3 centres   3 units
+```
+
+To watch a whole game instead, hand it to the bots:
+
+``` r
+
+history <- dp_play(bots = "greedy", max_years = 3, seed = 1)
+dp_power_summary(history)
+#> # A tibble: 7 × 6
+#>   power   turns start_centres final_centres peak_centres mean_centres
+#>   <chr>   <int>         <int>         <int>        <int>        <dbl>
+#> 1 Germany    11             3             8            8         5.27
+#> 2 Turkey     11             3             7            7         5.18
+#> 3 France     11             3             4            4         3.82
+#> 4 Italy      11             3             4            4         3.09
+#> 5 Austria    11             3             3            3         3   
+#> 6 England    11             3             3            3         3   
+#> 7 Russia     11             4             2            4         3.09
+```
+
+## What is in the box
+
+- **The board.**
+  [`dp_map()`](https://r-heller.github.io/diplomacyR/reference/dp_map.md)
+  loads the standard 75-province, 34-centre map with separate army and
+  fleet adjacency graphs and per-coast fleet locations.
+- **The adjudicator.**
+  [`dp_adjudicate()`](https://r-heller.github.io/diplomacyR/reference/dp_adjudicate.md)
+  resolves movement phases — supports, support cutting, standoffs,
+  dislodgement, head-to-head battles, convoys and convoy paradoxes.
+  [`dp_retreat()`](https://r-heller.github.io/diplomacyR/reference/dp_retreat.md)
+  and
+  [`dp_build()`](https://r-heller.github.io/diplomacyR/reference/dp_build.md)
+  handle the other two phase types, and
+  [`dp_advance()`](https://r-heller.github.io/diplomacyR/reference/dp_advance.md)
+  drives the season machine.
+- **Orders.**
+  [`dp_parse_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_parse_orders.md)
+  reads standard notation in all its usual spellings;
+  [`format()`](https://rdrr.io/r/base/format.html) renders any order set
+  back to canonical text;
+  [`dp_legal_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_legal_orders.md)
+  enumerates everything the rules currently permit.
+- **Bots.** Four of them — `"random"`, `"hold"`, `"greedy"` and the
+  experimental `"negotiator"` — through
+  [`dp_ai_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_ai_orders.md),
+  plus
+  [`dp_step()`](https://r-heller.github.io/diplomacyR/reference/dp_step.md)
+  and
+  [`dp_play()`](https://r-heller.github.io/diplomacyR/reference/dp_play.md)
+  to drive whole games.
+- **Simulation and analysis.**
+  [`dp_simulate()`](https://r-heller.github.io/diplomacyR/reference/dp_simulate.md)
+  runs batches,
+  [`dp_stats()`](https://r-heller.github.io/diplomacyR/reference/dp_stats.md)
+  and
+  [`dp_power_summary()`](https://r-heller.github.io/diplomacyR/reference/dp_power_summary.md)
+  summarise them, and the `dp_plot_*()` functions return **ggplot2**
+  objects for the board, supply-centre trajectories, win rates and where
+  the fighting happens.
+
+## Rules conformance
+
+The adjudicator is validated against the Diplomacy Adjudicator Test
+Cases, the reference suite assembled by Lucas B. Kruijswijk. It passes
+all 130 movement-phase cases, sections 6.A to 6.G: legality and coasts,
+circular movement, supports and dislodges, head-to-head battles,
+convoys, convoy paradoxes and convoying to one’s own area. Where the
+suite allows more than one defensible answer, the engine implements the
+option it marks as preferred. The encoded cases ship with the package
+under `extdata/datc`.
+
+## The application
+
+``` r
+
+dp_run_app()
+```
+
+A **shiny** interface with an interactive board, an order editor that
+checks legality as you type, a turn adjudicator, a replayable history,
+analysis charts and a batch-simulation runner. It needs **shiny**,
+**bslib** and **DT**, which are suggested rather than required.
+
+## Learning more
+
+- [`vignette("diplomacyR")`](https://r-heller.github.io/diplomacyR/articles/diplomacyR.md)
+  — getting started.
+- [`vignette("notation")`](https://r-heller.github.io/diplomacyR/articles/notation.md)
+  — the order-notation reference.
+- [`vignette("adjudication")`](https://r-heller.github.io/diplomacyR/articles/adjudication.md)
+  — how a turn is resolved, worked position by worked position.
+- [`vignette("ai-and-simulation")`](https://r-heller.github.io/diplomacyR/articles/ai-and-simulation.md)
+  — bots, batch simulation and the analysis plots.
+- [`vignette("design")`](https://r-heller.github.io/diplomacyR/articles/design.md)
+  — the S3 architecture, the resolver, and how coasts are modelled.
+
+## Licence
+
+MIT. Diplomacy is a trademark of its respective owners; this package is
+an independent implementation of the published rules and is not
+affiliated with or endorsed by them.
+
+# Package index
+
+## Classes
+
+The six S3 objects the package is built from.
+
+- [`dp_game`](https://r-heller.github.io/diplomacyR/reference/dp_game.md)
+  : The game state
+- [`dp_map-class`](https://r-heller.github.io/diplomacyR/reference/dp_map-class.md)
+  : The board
+- [`dp_orders`](https://r-heller.github.io/diplomacyR/reference/dp_orders.md)
+  : A set of orders
+- [`dp_result`](https://r-heller.github.io/diplomacyR/reference/dp_result.md)
+  : The outcome of a phase
+- [`dp_history-class`](https://r-heller.github.io/diplomacyR/reference/dp_history-class.md)
+  : A game record
+- [`dp_sim`](https://r-heller.github.io/diplomacyR/reference/dp_sim.md)
+  : A batch of simulated games
+
+## Setup
+
+The board, the units and a game to play on it.
+
+- [`dp_map()`](https://r-heller.github.io/diplomacyR/reference/dp_map.md)
+  : Load a Diplomacy board
+- [`dp_provinces()`](https://r-heller.github.io/diplomacyR/reference/dp_provinces.md)
+  : List the provinces of a board
+- [`dp_adjacent()`](https://r-heller.github.io/diplomacyR/reference/dp_adjacent.md)
+  : Neighbours of a location
+- [`dp_home_centres()`](https://r-heller.github.io/diplomacyR/reference/dp_home_centres.md)
+  : Home supply centres
+- [`dp_new_game()`](https://r-heller.github.io/diplomacyR/reference/dp_new_game.md)
+  : Start a new standard Diplomacy game
+- [`dp_game_from_units()`](https://r-heller.github.io/diplomacyR/reference/dp_game_from_units.md)
+  : Build a game state from an explicit position
+- [`dp_units()`](https://r-heller.github.io/diplomacyR/reference/dp_units.md)
+  : Units currently on the board
+- [`dp_unit()`](https://r-heller.github.io/diplomacyR/reference/dp_unit.md)
+  : Describe a unit
+- [`dp_example_game()`](https://r-heller.github.io/diplomacyR/reference/dp_example_game.md)
+  : Example game positions
+
+## Orders
+
+Writing, parsing and enumerating orders.
+
+- [`dp_order()`](https://r-heller.github.io/diplomacyR/reference/dp_order.md)
+  : Construct a Diplomacy order
+- [`dp_parse_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_parse_orders.md)
+  : Parse Diplomacy order notation
+- [`dp_bind_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_bind_orders.md)
+  : Combine orders
+- [`dp_legal_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_legal_orders.md)
+  : Enumerate the legal orders available to a power
+- [`dp_example_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_example_orders.md)
+  : Example order sets
+- [`format(`*`<dp_orders>`*`)`](https://r-heller.github.io/diplomacyR/reference/format.dp_orders.md)
+  : Render orders as standard notation
+
+## Engine
+
+Adjudicating a phase and stepping the game forward.
+
+- [`dp_adjudicate()`](https://r-heller.github.io/diplomacyR/reference/dp_adjudicate.md)
+  : Adjudicate a movement phase
+- [`dp_retreat()`](https://r-heller.github.io/diplomacyR/reference/dp_retreat.md)
+  : Adjudicate a retreat phase
+- [`dp_build()`](https://r-heller.github.io/diplomacyR/reference/dp_build.md)
+  : Adjudicate a build phase
+- [`dp_advance()`](https://r-heller.github.io/diplomacyR/reference/dp_advance.md)
+  : Advance a game by applying an adjudication result
+- [`dp_step()`](https://r-heller.github.io/diplomacyR/reference/dp_step.md)
+  : Resolve one phase and advance the game
+- [`dp_play()`](https://r-heller.github.io/diplomacyR/reference/dp_play.md)
+  : Play a game to completion
+
+## AI
+
+Scriptable bots.
+
+- [`dp_ai_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_ai_orders.md)
+  : Generate orders for a power using a bot
+- [`dp_ai_all()`](https://r-heller.github.io/diplomacyR/reference/dp_ai_all.md)
+  : Orders for every power in a game
+
+## Simulation
+
+Playing many games and summarising them.
+
+- [`dp_simulate()`](https://r-heller.github.io/diplomacyR/reference/dp_simulate.md)
+  : Simulate many Diplomacy games
+- [`dp_stats()`](https://r-heller.github.io/diplomacyR/reference/dp_stats.md)
+  : Summarise a batch of simulated games
+
+## Analysis
+
+Supply centres, victory conditions and per-power summaries.
+
+- [`dp_supply_centres()`](https://r-heller.github.io/diplomacyR/reference/dp_supply_centres.md)
+  : Supply centres of a board or a game
+- [`dp_power_counts()`](https://r-heller.github.io/diplomacyR/reference/dp_power_counts.md)
+  : Count supply centres and units per power
+- [`dp_power_summary()`](https://r-heller.github.io/diplomacyR/reference/dp_power_summary.md)
+  : Summarise the powers of a game, a history or a simulation
+- [`dp_victory_check()`](https://r-heller.github.io/diplomacyR/reference/dp_victory_check.md)
+  : Check for a solo victory or a draw
+- [`dp_sc_trajectory()`](https://r-heller.github.io/diplomacyR/reference/dp_sc_trajectory.md)
+  : Supply-centre trajectories from a game history
+- [`dp_history()`](https://r-heller.github.io/diplomacyR/reference/dp_history.md)
+  : Start an empty game history
+- [`dp_history_append()`](https://r-heller.github.io/diplomacyR/reference/dp_history_append.md)
+  : Append a turn to a game history
+
+## Plot
+
+Every renderer returns a ggplot2 object.
+
+- [`dp_plot_map()`](https://r-heller.github.io/diplomacyR/reference/dp_plot_map.md)
+  : Draw the board
+- [`dp_plot_sc_history()`](https://r-heller.github.io/diplomacyR/reference/dp_plot_sc_history.md)
+  : Chart supply-centre counts over a game
+- [`dp_plot_winrates()`](https://r-heller.github.io/diplomacyR/reference/dp_plot_winrates.md)
+  : Chart win rates by power
+- [`dp_plot_centres()`](https://r-heller.github.io/diplomacyR/reference/dp_plot_centres.md)
+  : Chart final supply centres by power
+- [`dp_plot_supply_heatmap()`](https://r-heller.github.io/diplomacyR/reference/dp_plot_supply_heatmap.md)
+  : Map how often each province was contested
+- [`dp_palette()`](https://r-heller.github.io/diplomacyR/reference/dp_palette.md)
+  : Colours for the seven Great Powers
+- [`autoplot(`*`<dp_game>`*`)`](https://r-heller.github.io/diplomacyR/reference/autoplot.dp_game.md)
+  : Plot a game state
+
+## App
+
+- [`dp_run_app()`](https://r-heller.github.io/diplomacyR/reference/dp_run_app.md)
+  : Launch the diplomacyR application
+
+## Class predicates and coercion
+
+- [`is_dp_map()`](https://r-heller.github.io/diplomacyR/reference/is_dp_map.md)
+  : Test whether an object is a board
+- [`is_dp_game()`](https://r-heller.github.io/diplomacyR/reference/is_dp_game.md)
+  : Test whether an object is a game
+- [`is_dp_orders()`](https://r-heller.github.io/diplomacyR/reference/is_dp_orders.md)
+  : Test whether an object is an orders tibble
+- [`is_dp_result()`](https://r-heller.github.io/diplomacyR/reference/is_dp_result.md)
+  : Test whether an object is an adjudication result
+- [`is_dp_history()`](https://r-heller.github.io/diplomacyR/reference/is_dp_history.md)
+  : Test whether an object is a game history
+- [`is_dp_sim()`](https://r-heller.github.io/diplomacyR/reference/is_dp_sim.md)
+  : Test whether an object is a simulation result
+- [`as_tibble(`*`<dp_history>`*`)`](https://r-heller.github.io/diplomacyR/reference/as_tibble.dp_history.md)
+  : Coerce a game history to a tibble
+- [`as_tibble(`*`<dp_orders>`*`)`](https://r-heller.github.io/diplomacyR/reference/as_tibble.dp_orders.md)
+  : Coerce orders to a tibble
+- [`length(`*`<dp_history>`*`)`](https://r-heller.github.io/diplomacyR/reference/length.dp_history.md)
+  : Number of turns recorded
+- [`reexports`](https://r-heller.github.io/diplomacyR/reference/reexports.md)
+  [`as_tibble`](https://r-heller.github.io/diplomacyR/reference/reexports.md)
+  [`autoplot`](https://r-heller.github.io/diplomacyR/reference/reexports.md)
+  [`%||%`](https://r-heller.github.io/diplomacyR/reference/reexports.md)
+  : Objects exported from other packages
+
+# Articles
+
+### Articles
+
+- [Getting started with
+  diplomacyR](https://r-heller.github.io/diplomacyR/articles/diplomacyR.md):
+- [How the adjudicator resolves a
+  turn](https://r-heller.github.io/diplomacyR/articles/adjudication.md):
+- [Order notation
+  reference](https://r-heller.github.io/diplomacyR/articles/notation.md):
+- [Bots, batch simulation and
+  analysis](https://r-heller.github.io/diplomacyR/articles/ai-and-simulation.md):
+- [Design notes: classes, the resolver and
+  coasts](https://r-heller.github.io/diplomacyR/articles/design.md):

@@ -1,0 +1,283 @@
+# Design notes: classes, the resolver and coasts
+
+``` r
+
+library(diplomacyR)
+```
+
+This vignette is for people who want to extend the package, read its
+source, or understand why it is put together the way it is. Nothing here
+is needed to play a game.
+
+## Six classes
+
+Everything in the package is one of six S3 classes. They are all plain
+lists or tibbles underneath, deliberately: a user who wants to reach in
+and take something out should be able to, without learning an accessor
+API.
+
+| Class | What it is | Built by |
+|----|----|----|
+| `dp_map` | the board: provinces, both adjacency graphs, supply and home centres, the opening position | [`dp_map()`](https://r-heller.github.io/diplomacyR/reference/dp_map.md) |
+| `dp_game` | one position at one moment: units, ownership, season, year, phase, anything awaiting retreat | [`dp_new_game()`](https://r-heller.github.io/diplomacyR/reference/dp_new_game.md), [`dp_game_from_units()`](https://r-heller.github.io/diplomacyR/reference/dp_game_from_units.md) |
+| `dp_orders` | a set of orders, one per row | [`dp_order()`](https://r-heller.github.io/diplomacyR/reference/dp_order.md), [`dp_parse_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_parse_orders.md), [`dp_legal_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_legal_orders.md) |
+| `dp_result` | what a phase did: per-order success, new positions, dislodgements, standoffs | [`dp_adjudicate()`](https://r-heller.github.io/diplomacyR/reference/dp_adjudicate.md), [`dp_retreat()`](https://r-heller.github.io/diplomacyR/reference/dp_retreat.md), [`dp_build()`](https://r-heller.github.io/diplomacyR/reference/dp_build.md) |
+| `dp_history` | a whole game, turn by turn | [`dp_history()`](https://r-heller.github.io/diplomacyR/reference/dp_history.md), [`dp_play()`](https://r-heller.github.io/diplomacyR/reference/dp_play.md) |
+| `dp_sim` | a batch of games and their outcomes | [`dp_simulate()`](https://r-heller.github.io/diplomacyR/reference/dp_simulate.md) |
+
+The pipeline is a loop over three of them. A `dp_game` plus a
+`dp_orders` goes into an adjudicator, which returns a `dp_result`;
+[`dp_advance()`](https://r-heller.github.io/diplomacyR/reference/dp_advance.md)
+turns the game and the result into the next `dp_game`.
+[`dp_step()`](https://r-heller.github.io/diplomacyR/reference/dp_step.md)
+is that loop body,
+[`dp_play()`](https://r-heller.github.io/diplomacyR/reference/dp_play.md)
+is the loop, `dp_history` is its log and `dp_sim` is a pile of logs
+reduced to numbers.
+
+``` r
+
+names(dp_new_game())
+#>  [1] "map"       "units"     "sc_owner"  "season"    "year"      "phase"    
+#>  [7] "powers"    "dislodged" "contested" "status"
+```
+
+``` r
+
+result <- dp_adjudicate(dp_new_game(), dp_example_orders())
+names(result)
+#> [1] "orders"    "units"     "dislodged" "contested" "disbanded" "built"    
+#> [7] "season"    "year"      "phase"
+```
+
+`dp_orders` is the one class that is also a tibble, because orders are
+genuinely tabular and people want to filter and join them.
+
+``` r
+
+class(dp_example_orders())
+#> [1] "dp_orders"  "tbl_df"     "tbl"        "data.frame"
+```
+
+## Constructor, validator, helper
+
+Each class follows the same three-function pattern.
+
+- `new_dp_*()` is the **constructor**: it takes trusted, already-correct
+  components and attaches the class. It is internal, cheap, and does no
+  checking, so the hot paths in the engine can build objects freely.
+- `validate_dp_*()` is the **validator**: it takes a candidate object
+  and checks the invariants that the rest of the package is entitled to
+  assume. For a `dp_game` those are that no province holds two units,
+  that every unit stands somewhere legal for its type, that
+  supply-centre ownership refers to real centres and real powers, and
+  that the season and phase are ones the phase machine knows.
+- `dp_*()` is the **helper**: the exported, user-facing function that
+  takes convenient arguments, coerces them, and returns a validated
+  object.
+
+So
+[`dp_game_from_units()`](https://r-heller.github.io/diplomacyR/reference/dp_game_from_units.md)
+will refuse to build a nonsense position, while the adjudicator’s
+internals build unvalidated intermediates thousands of times a second
+without paying for the checks.
+
+``` r
+
+dp_game_from_units(data.frame(
+  power = c("France", "Germany"),
+  type = c("army", "army"),
+  loc = c("par", "par")
+))
+#> Error:
+#> ! More than one unit occupies "par".
+```
+
+Errors are raised with **cli** and carry the calling function’s
+environment, so the message points at the function the user called
+rather than at whatever internal helper noticed the problem. Every
+user-facing function takes a `call` argument for that purpose.
+
+Each class also has an `is_dp_*()` predicate, and the printing methods
+you would expect.
+
+``` r
+
+methods(class = "dp_game")
+#> [1] autoplot          dp_power_summary  dp_supply_centres format           
+#> [5] print             summary          
+#> see '?methods' for accessing help and source code
+```
+
+[`format()`](https://rdrr.io/r/base/format.html) gives a one-line
+summary suitable for embedding,
+[`print()`](https://rdrr.io/r/base/print.html) a readable block, and
+[`summary()`](https://rdrr.io/r/base/summary.html) a tibble rather than
+a printed object — so [`summary()`](https://rdrr.io/r/base/summary.html)
+on a result is the per-order outcome table, and
+[`summary()`](https://rdrr.io/r/base/summary.html) on a simulation is
+[`dp_stats()`](https://r-heller.github.io/diplomacyR/reference/dp_stats.md).
+
+Analysis output is tibbles and plot output is **ggplot2** objects,
+without exception. Neither ever prints as a side effect, so both
+compose.
+
+## Why the adjudicator guesses
+
+Diplomacy is adjudicated simultaneously, and the rules are genuinely
+circular. Whether a support holds depends on whether the attack on the
+supporting unit succeeds; whether that attack succeeds depends on what
+supports it; and those supports may in turn be cut by the first unit.
+There is no evaluation order that resolves every position, because for
+some positions no order exists.
+
+The engine therefore uses the standard guess-and-check resolver
+described by Lucas B. Kruijswijk. To resolve an order it:
+
+1.  marks the order as *being guessed*, provisionally `FALSE`, and
+    adjudicates it;
+2.  records every order that was consulted while still in the guessing
+    state — the dependency stack;
+3.  if nothing provisional was consulted, the answer is final;
+4.  otherwise re-adjudicates the same order under the opposite guess,
+    `TRUE`;
+5.  if both guesses agree, the answer is final regardless of the cycle;
+6.  if they disagree, the orders form a genuine cycle, and a backup rule
+    breaks it.
+
+Steps 1 to 5 settle the overwhelming majority of positions, including
+all the merely awkward ones. The backup rule handles the two cases the
+rulebook itself does not fully determine:
+
+- **Circular movement.** If every order in the cycle is a move — a ring
+  of units each stepping into the province the next one is vacating —
+  they all succeed.
+- **A convoy paradox.** If any order in the cycle is a convoy, the
+  convoys in the cycle are disrupted. This is the Szykman rule, and it
+  is the resolution the Diplomacy Adjudicator Test Cases mark as
+  preferred;
+  [`vignette("adjudication")`](https://r-heller.github.io/diplomacyR/articles/adjudication.md)
+  works through the classic example.
+
+The dependency stack is what makes this tractable. Without it the
+resolver would have to guess about every order in the position; with it,
+it only ever guesses about the handful of orders that actually depend on
+each other, and it unwinds the stack as soon as a sub-problem is
+settled.
+
+Convoy paths are resolved lazily for the same reason. A convoyed move
+needs an unbroken chain of fleets, each ordered to convoy that exact
+move and none of them dislodged; the search walks the chain depth-first
+and resolves a convoy order only at the moment the path actually needs
+it, so a fleet on an irrelevant branch never enters the dependency stack
+at all.
+
+Order strength is expressed as the four quantities the rules imply —
+hold, attack, defend and prevent strength — and a move succeeds only
+when its attack strength *strictly* exceeds the relevant opposition.
+Every tie bounces. That single asymmetry is what produces standoffs,
+beleaguered garrisons and the two prohibitions on acting against one’s
+own units, without any of them needing a special case.
+
+## How coasts are modelled
+
+Coasts are where most Diplomacy engines get untidy, so they are worth a
+section.
+
+The board carries **two adjacency graphs**, not one. Armies move on a
+graph of provinces; fleets move on a graph of *locations*, where a
+location is either a province or a named coast of a province. The two
+are queried separately.
+
+``` r
+
+dp_adjacent(dp_map(), "spa", "army")
+#> [1] "gas" "mar" "por"
+dp_adjacent(dp_map(), "spa/nc", "fleet")
+#> [1] "gas" "mao" "por"
+dp_adjacent(dp_map(), "spa/sc", "fleet")
+#> [1] "lyo" "mao" "mar" "por" "wes"
+```
+
+Spain’s two coasts have different neighbours and a fleet cannot sail
+between them, which is exactly what the split-location representation
+encodes. Only three provinces on the standard board need it: Spain,
+Bulgaria and St Petersburg.
+
+A location is written `province/coast`, and two internal helpers do all
+the work: one strips a location down to its province, the other extracts
+the coast. Almost everything in the engine — occupancy, support,
+standoffs, dislodgement — is decided at province level, because the
+rules are about provinces. Only fleet movement, and the choice of
+destination coast, look at the coast.
+
+That is why support works the way it does. A support directed into Spain
+backs a fleet moving to either Spanish coast, since the support is about
+the province; but a support that *names* a coast has to name the right
+one.
+
+A fleet’s location must be unambiguous when it is created:
+
+``` r
+
+dp_unit("Russia", "fleet", "spa")
+#> Error:
+#> ! A fleet in "spa" must name a coast.
+#> ℹ Use one of "spa/nc" and "spa/sc".
+```
+
+but a coast that is forced is filled in silently, both when a unit is
+constructed and when a move is adjudicated. A fleet ordered from Gascony
+to Spain can only be arriving on the north coast, so that is where it
+goes:
+
+``` r
+
+gascony <- dp_game_from_units(
+  data.frame(power = "France", type = "fleet", loc = "gas")
+)
+dp_adjudicate(gascony, "France: F Gas - Spa")$orders
+#> <dp_orders> (1 order)
+#> ✔ France: F Gas - Spa/nc
+```
+
+A fleet in the Mid-Atlantic Ocean touches both coasts, so the same order
+there is ambiguous, and an ambiguous order is void:
+
+``` r
+
+atlantic <- dp_game_from_units(
+  data.frame(power = "France", type = "fleet", loc = "mao")
+)
+res <- dp_adjudicate(atlantic, "France: F Mao - Spa")
+summary(res)[, c("loc", "type", "target", "note")]
+#> # A tibble: 1 × 4
+#>   loc   type  target note                       
+#>   <chr> <chr> <chr>  <chr>                      
+#> 1 mao   hold  NA     coast not specified (holds)
+```
+
+Coordinates for the plot are stored per coast as well, so a fleet on the
+south coast of Spain is drawn in the right place rather than in the
+middle of the country.
+
+## Performance notes
+
+The engine is written to be run hundreds of thousands of times, which
+shapes a few decisions that would otherwise look odd.
+
+- The standard board is parsed from JSON once and cached for the
+  session, and the sea and coastal neighbourhoods the convoy code walks
+  constantly are precomputed at load rather than derived on demand.
+- [`dp_legal_orders()`](https://r-heller.github.io/diplomacyR/reference/dp_legal_orders.md)
+  accumulates chunks of columns and binds them once instead of building
+  a tibble per candidate order. Enumerating legal orders is on the hot
+  path for every bot and every turn of every simulated game, and the
+  row-wise version is orders of magnitude slower.
+- The resolver keeps its state in an environment rather than a list, so
+  that the recursive functions can update the guess state in place
+  without copying the position at every step.
+
+Everything above is internal. The public surface is the six classes, the
+adjudicators, the phase machine and the analysis functions; the rest can
+be rewritten without notice.
