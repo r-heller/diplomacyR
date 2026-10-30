@@ -71,7 +71,8 @@ is_dp_sim <- function(x) inherits(x, "dp_sim")
 #' @param bots A single bot name applied to all powers, or a named character
 #'   vector mapping power to bot. See [dp_ai_orders()].
 #' @param max_years Turn cap before the game is declared a draw. Default `20`.
-#' @param seed Optional RNG seed for reproducibility.
+#' @param seed Optional finite integer RNG seed. Restores the caller's random
+#'   state afterwards, including on failure.
 #' @param verbose Report progress. Default `TRUE`.
 #' @param call Caller environment, for error reporting. Experts only.
 #' @return A [dp_sim] object. Summarise it with [dp_stats()] and the
@@ -87,7 +88,12 @@ dp_simulate <- function(n = 100, bots = "greedy", max_years = 20,
   n <- .check_count(n, min = 0L, call = call)
   max_years <- .check_count(max_years, min = 1L, call = call)
   .check_flag(verbose, call = call)
-  if (!is.null(seed)) withr_seed(seed)
+  if (!is.null(seed)) {
+    seed <- .check_count(seed, min = -.Machine$integer.max, call = call)
+    old_seed <- get0(".Random.seed", envir = .GlobalEnv, inherits = FALSE)
+    on.exit(.restore_seed(old_seed), add = TRUE)
+    set.seed(seed)
+  }
 
   empty <- .empty_sim_tables()
   settings <- list(n = n, bots = bots, max_years = max_years, seed = seed)

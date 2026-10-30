@@ -46,8 +46,8 @@ rlang::`%||%`
 #' @noRd
 .check_count <- function(x, min = 0L, arg = rlang::caller_arg(x),
                          call = rlang::caller_env()) {
-  if (!is.numeric(x) || length(x) != 1L || is.na(x) || x != as.integer(x) ||
-      x < min) {
+  if (!is.numeric(x) || length(x) != 1L || !is.finite(x) || x != trunc(x) ||
+      x < min || x > .Machine$integer.max) {
     cli::cli_abort(
       "{.arg {arg}} must be a single whole number of at least {.val {min}}.",
       call = call
@@ -195,4 +195,11 @@ rlang::`%||%`
     from = character(0),
     by_convoy = logical(0)
   )
+}
+
+.restore_seed <- function(seed) {
+  if (is.null(seed)) {
+    if (exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE))
+      rm(".Random.seed", envir = .GlobalEnv)
+  } else assign(".Random.seed", seed, envir = .GlobalEnv)
 }

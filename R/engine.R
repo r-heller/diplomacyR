@@ -52,7 +52,8 @@ dp_step <- function(game, orders = NULL, bots = "greedy",
 #' @param bots Bot assignment: a single bot name or a named character vector
 #'   mapping power to bot.
 #' @param max_years Stop after this many game years. Default `20`.
-#' @param seed Optional RNG seed, for reproducibility.
+#' @param seed Optional finite integer RNG seed. Restores the caller's random
+#'   state afterwards, including on failure.
 #' @param verbose Report each year as it is played. Default `FALSE`.
 #' @param call Caller environment, for error reporting. Experts only.
 #' @return A [dp_history] object. The final state is in its last turn, and the
@@ -68,13 +69,20 @@ dp_play <- function(game = dp_new_game(), bots = "greedy", max_years = 20,
   .check_game(game, call = call)
   max_years <- .check_count(max_years, min = 1L, call = call)
   .check_flag(verbose, call = call)
-  if (!is.null(seed)) withr_seed(seed)
+  if (!is.null(seed)) {
+    seed <- .check_count(seed, min = -.Machine$integer.max, call = call)
+    old_seed <- get0(".Random.seed", envir = .GlobalEnv, inherits = FALSE)
+    on.exit(.restore_seed(old_seed), add = TRUE)
+    set.seed(seed)
+  }
 
   history <- dp_history()
-  last_year <- game$year + max_years - 1L
+  last_year <- as.double(game$year) + max_years - 1
+  if (last_year >= .Machine$integer.max)
+    cli::cli_abort("The requested year range exceeds the integer year limit.", call = call)
   guard <- 0L
   while (game$year <= last_year && !isTRUE(game$status$over) &&
-         guard < 40L * max_years) {
+         guard < 40 * max_years) {
     guard <- guard + 1L
     before <- game
     game <- dp_step(game, orders = NULL, bots = bots, call = call)
@@ -90,14 +98,4 @@ dp_play <- function(game = dp_new_game(), bots = "greedy", max_years = 20,
   history$winner <- vc$winner
   history$years <- game$year - (last_year - max_years + 1L)
   validate_dp_history(history, call = call)
-}
-
-#' Set the RNG seed without leaking it into the caller
-#'
-#' @param seed An integer seed.
-#' @return Nothing, called for its side effect.
-#' @noRd
-withr_seed <- function(seed) {
-  set.seed(seed)
-  invisible(NULL)
 }

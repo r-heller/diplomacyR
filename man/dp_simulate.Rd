@@ -21,7 +21,8 @@ vector mapping power to bot. See \code{\link[=dp_ai_orders]{dp_ai_orders()}}.}
 
 \item{max_years}{Turn cap before the game is declared a draw. Default \code{20}.}
 
-\item{seed}{Optional RNG seed for reproducibility.}
+\item{seed}{Optional finite integer RNG seed. Restores the caller's random
+state afterwards, including on failure.}
 
 \item{verbose}{Report progress. Default \code{TRUE}.}
 

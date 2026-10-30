@@ -33,6 +33,17 @@ first. Getting that right is what most of this package is.
 pak::pak("r-heller/diplomacyR")
 ```
 
+For a local checkout, use R 4.1 or later and run:
+
+```r
+install.packages("remotes")
+remotes::install_deps(dependencies = TRUE)
+remotes::install_local(".", dependencies = FALSE)
+```
+
+Seeded games and simulations restore the caller's random state, including when
+a run fails. Counts and seeds must be finite integers within R's integer range.
+
 ## A first turn
 
 ``` r

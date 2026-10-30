@@ -21,7 +21,8 @@ mapping power to bot.}
 
 \item{max_years}{Stop after this many game years. Default \code{20}.}
 
-\item{seed}{Optional RNG seed, for reproducibility.}
+\item{seed}{Optional finite integer RNG seed. Restores the caller's random
+state afterwards, including on failure.}
 
 \item{verbose}{Report each year as it is played. Default \code{FALSE}.}
 

@@ -11,3 +11,5 @@
 ^doc$
 ^Meta$
 ^pkgdown$
+^\.git$
+^MAINTENANCE\.md$
