@@ -77,11 +77,17 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"r-heller/diplomacyR"</span><span class="op">)</span></span></code></pre></div>
+<p>For a local checkout, use R 4.1 or later and run:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_deps</span><span class="op">(</span>dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_local</span><span class="op">(</span><span class="st">"."</span>, dependencies <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p>Seeded games and simulations restore the caller’s random state, including when a run fails. Counts and seeds must be finite integers within R’s integer range.</p>
 </div>
 <div class="section level2">
 <h2 id="a-first-turn">A first turn<a class="anchor" aria-label="anchor" href="#a-first-turn"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-heller/diplomacyR" class="external-link">diplomacyR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">game</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dp_new_game.html">dp_new_game</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -95,7 +101,7 @@
 <span><span class="co">#&gt; Italy     3 centres   3 units</span></span>
 <span><span class="co">#&gt; Turkey    3 centres   3 units</span></span></code></pre></div>
 <p>Orders are written the way players write them, and resolved with <code><a href="reference/dp_adjudicate.html">dp_adjudicate()</a></code>. Here France attacks Burgundy with support while Germany attacks it alone: two against one.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dp_adjudicate.html">dp_adjudicate</a></span><span class="op">(</span><span class="va">game</span>, <span class="fu"><a href="reference/dp_parse_orders.html">dp_parse_orders</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>  <span class="st">"France: A Par - Bur"</span>,</span>
 <span>  <span class="st">"France: A Mar S A Par - Bur"</span>,</span>
@@ -108,7 +114,7 @@
 <span><span class="co">#&gt; ✓ France: A Par - Bur</span></span>
 <span><span class="co">#&gt; ✗ Germany: A Mun - Bur</span></span></code></pre></div>
 <p>Every power that was not ordered simply held, which is what the rules say happens to a unit with no orders. <code><a href="reference/dp_advance.html">dp_advance()</a></code> applies the result and steps the season, phase and year.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">game</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dp_advance.html">dp_advance</a></span><span class="op">(</span><span class="va">game</span>, <span class="va">result</span><span class="op">)</span></span>
 <span><span class="va">game</span></span>
 <span><span class="co">#&gt; &lt;dp_game&gt; Fall 1901 (movement phase)</span></span>
@@ -120,7 +126,7 @@
 <span><span class="co">#&gt; Italy     3 centres   3 units</span></span>
 <span><span class="co">#&gt; Turkey    3 centres   3 units</span></span></code></pre></div>
 <p>To watch a whole game instead, hand it to the bots:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">history</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dp_play.html">dp_play</a></span><span class="op">(</span>bots <span class="op">=</span> <span class="st">"greedy"</span>, max_years <span class="op">=</span> <span class="fl">3</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/dp_power_summary.html">dp_power_summary</a></span><span class="op">(</span><span class="va">history</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 7 × 6</span></span>
@@ -158,7 +164,7 @@
 <div class="section level2">
 <h2 id="the-application">The application<a class="anchor" aria-label="anchor" href="#the-application"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/dp_run_app.html">dp_run_app</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>A <strong>shiny</strong> interface with an interactive board, an order editor that checks legality as you type, a turn adjudicator, a replayable history, analysis charts and a batch-simulation runner. It needs <strong>shiny</strong>, <strong>bslib</strong> and <strong>DT</strong>, which are suggested rather than required.</p>
 </div>

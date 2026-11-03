@@ -35,7 +35,8 @@ dp_simulate(
 
 - seed:
 
-  Optional RNG seed for reproducibility.
+  Optional finite integer RNG seed. Restores the caller's random state
+  afterwards, including on failure.
 
 - verbose:
 
